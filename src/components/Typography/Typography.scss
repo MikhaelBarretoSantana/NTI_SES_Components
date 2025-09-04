@@ -1,0 +1,194 @@
+.ui-typography {
+    margin: 0;
+    line-height: var(--line-height-normal);
+}
+
+/* Font Families */
+.ui-typography--family-display {
+    font-family: var(--font-family-display);
+    /* Outfit */
+}
+
+.ui-typography--family-body {
+    font-family: var(--font-family-body);
+    /* Inter */
+}
+
+.ui-typography--family-accent {
+    font-family: var(--font-family-accent);
+    /* Gibralt */
+}
+
+/* Variants com configurações específicas */
+.ui-typography--h1 {
+    font-size: var(--font-size-4xl);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--line-height-tight);
+    margin-bottom: var(--spacing-lg);
+}
+
+.ui-typography--h2 {
+    font-size: var(--font-size-3xl);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--line-height-tight);
+    margin-bottom: var(--spacing-lg);
+}
+
+.ui-typography--h3 {
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--line-height-tight);
+    margin-bottom: var(--spacing-md);
+}
+
+.ui-typography--h4 {
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-semibold);
+    margin-bottom: var(--spacing-md);
+}
+
+.ui-typography--h5 {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    margin-bottom: var(--spacing-sm);
+}
+
+.ui-typography--h6 {
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-semibold);
+    margin-bottom: var(--spacing-sm);
+}
+
+.ui-typography--body1 {
+    font-size: var(--font-size-md);
+    margin-bottom: var(--spacing-md);
+}
+
+.ui-typography--body2 {
+    font-size: var(--font-size-sm);
+    margin-bottom: var(--spacing-md);
+}
+
+.ui-typography--caption {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-muted);
+}
+
+.ui-typography--overline {
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-medium);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.ui-typography--display {
+    font-size: var(--font-size-5xl);
+    font-weight: var(--font-weight-extrabold);
+    line-height: var(--line-height-tight);
+    margin-bottom: var(--spacing-xl);
+}
+
+.ui-typography--accent {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-medium);
+}
+
+/* Custom Sizes (override variant sizes) */
+.ui-typography--size-xs {
+    font-size: var(--font-size-xs);
+}
+
+.ui-typography--size-sm {
+    font-size: var(--font-size-sm);
+}
+
+.ui-typography--size-md {
+    font-size: var(--font-size-md);
+}
+
+.ui-typography--size-lg {
+    font-size: var(--font-size-lg);
+}
+
+.ui-typography--size-xl {
+    font-size: var(--font-size-xl);
+}
+
+.ui-typography--size-2xl {
+    font-size: var(--font-size-2xl);
+}
+
+.ui-typography--size-3xl {
+    font-size: var(--font-size-3xl);
+}
+
+.ui-typography--size-4xl {
+    font-size: var(--font-size-4xl);
+}
+
+.ui-typography--size-5xl {
+    font-size: var(--font-size-5xl);
+}
+
+/* Weights */
+.ui-typography--weight-light {
+    font-weight: var(--font-weight-light);
+}
+
+.ui-typography--weight-normal {
+    font-weight: var(--font-weight-normal);
+}
+
+.ui-typography--weight-medium {
+    font-weight: var(--font-weight-medium);
+}
+
+.ui-typography--weight-semibold {
+    font-weight: var(--font-weight-semibold);
+}
+
+.ui-typography--weight-bold {
+    font-weight: var(--font-weight-bold);
+}
+
+.ui-typography--weight-extrabold {
+    font-weight: var(--font-weight-extrabold);
+}
+
+/* Colors */
+.ui-typography--color-primary {
+    color: var(--color-text-primary);
+}
+
+.ui-typography--color-secondary {
+    color: var(--color-text-secondary);
+}
+
+.ui-typography--color-muted {
+    color: var(--color-text-muted);
+}
+
+.ui-typography--color-inverse {
+    color: var(--color-text-inverse);
+}
+
+.ui-typography--color-inherit {
+    color: inherit;
+}
+
+/* Alignment */
+.ui-typography--align-left {
+    text-align: left;
+}
+
+.ui-typography--align-center {
+    text-align: center;
+}
+
+.ui-typography--align-right {
+    text-align: right;
+}
+
+.ui-typography--align-justify {
+    text-align: justify;
+}

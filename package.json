@@ -1,0 +1,96 @@
+{
+  "name": "@nti_ses/ui-components",
+  "version": "1.0.0",
+  "description": "Biblioteca de componentes React TypeScript para projetos da NTI",
+  "author": "NTI SES <nti@empresa.com>",
+  "license": "MIT",
+  "type": "module",
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "keywords": [
+    "react",
+    "typescript",
+    "components",
+    "ui",
+    "design-system",
+    "nti",
+    "fontawesome",
+    "outfit",
+    "inter",
+    "gibralt"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nti_ses/ui-components.git"
+  },
+  "homepage": "https://www.npmjs.com/package/@nti_ses/ui-components",
+  "bugs": {
+    "url": "https://github.com/nti_ses/ui-components/issues"
+  },
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=8.0.0"
+  },
+  "scripts": {
+    "build": "rollup -c --bundleConfigAsCjs",
+    "dev": "rollup -c -w --bundleConfigAsCjs",
+    "test": "echo \"Warning: No tests configured\" && exit 0",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build",
+    "lint": "eslint src/**/*.{ts,tsx}",
+    "lint:fix": "eslint src/**/*.{ts,tsx} --fix",
+    "typecheck": "tsc --noEmit",
+    "clean": "rm -rf dist/ storybook-static/",
+    "prepublishOnly": "npm run clean && npm run build",
+    "prepack": "npm run build",
+    "release:patch": "npm version patch && npm publish",
+    "release:minor": "npm version minor && npm publish",
+    "release:major": "npm version major && npm publish",
+    "release:beta": "npm version prerelease --preid=beta && npm publish --tag beta"
+  },
+  "peerDependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.0.0 || ^7.0.0",
+    "@fortawesome/free-solid-svg-icons": "^6.0.0 || ^7.0.0",
+    "@fortawesome/react-fontawesome": "^0.2.0 || ^3.0.0",
+    "react": ">=16.8.0",
+    "react-dom": ">=16.8.0"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^7.0.0",
+    "@fortawesome/free-brands-svg-icons": "^7.0.0",
+    "@fortawesome/free-regular-svg-icons": "^7.0.0",
+    "@fortawesome/free-solid-svg-icons": "^7.0.0",
+    "@fortawesome/react-fontawesome": "^3.0.2"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^25.0.0",
+    "@rollup/plugin-node-resolve": "^15.0.0",
+    "@rollup/plugin-typescript": "^11.0.0",
+    "@storybook/addon-essentials": "^7.0.0",
+    "@storybook/react": "^7.0.0",
+    "@storybook/react-vite": "^7.0.0",
+    "@types/jest": "^29.0.0",
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "eslint": "^8.0.0",
+    "eslint-plugin-react": "^7.32.0",
+    "jest": "^29.0.0",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "rollup": "^3.0.0",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "rollup-plugin-postcss": "^4.0.2",
+    "storybook": "^7.0.0",
+    "typescript": "^5.0.0"
+  }
+}

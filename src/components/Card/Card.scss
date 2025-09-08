@@ -1,0 +1,549 @@
+// Importar funções necessárias do Sass
+@use "sass:map";
+
+// Variáveis
+$card-border-radius: 0.5rem; // 8px
+$card-transition: all 0.2s ease;
+$card-padding: 1.5rem; // 24px
+$card-header-margin-bottom: 1rem; // 16px
+$card-footer-margin-top: 1rem; // 16px
+$card-footer-padding-top: 1rem; // 16px
+
+// Cores
+$card-bg-white: #ffffff;
+$card-bg-gray-50: #f9fafb;
+$card-bg-gradient: linear-gradient(135deg, #f0f9ff 0%, #e0e7ff 100%);
+
+$card-border-gray-200: #e5e7eb;
+$card-border-gray-300: #d1d5db;
+$card-border-blue-200: #bfdbfe;
+
+$card-text-gray-900: #111827;
+$card-text-gray-700: #374151;
+$card-text-gray-600: #4b5563;
+$card-text-gray-500: #6b7280;
+
+$card-shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+$card-shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -2px rgb(0 0 0 / 0.05);
+
+// Cores para ações
+$primary-color: #3b82f6;
+$primary-hover: #2563eb;
+$secondary-color: #6b7280;
+$secondary-hover: #4b5563;
+$danger-color: #dc2626;
+$danger-hover: #b91c1c;
+
+// Cores para header
+$header-colors: (
+    'primary': #3b82f6,
+    'secondary': #6b7280,
+    'success': #059669,
+    'warning': #d97706,
+    'danger': #dc2626,
+    'info': #0ea5e9
+);
+
+// Componente base
+.card {
+    border-radius: $card-border-radius;
+    transition: $card-transition;
+    position: relative;
+    overflow: hidden;
+
+    // Variantes
+    &--default {
+        background-color: $card-bg-white;
+        border: 1px solid $card-border-gray-200;
+    }
+
+    &--outlined {
+        background-color: $card-bg-white;
+        border: 2px solid $card-border-gray-300;
+    }
+
+    &--elevated {
+        background-color: $card-bg-white;
+        border: none;
+        box-shadow: $card-shadow-lg;
+    }
+
+    &--filled {
+        background-color: $card-bg-gray-50;
+        border: 1px solid $card-border-gray-200;
+    }
+
+    &--gradient {
+        background: $card-bg-gradient;
+        border: 1px solid $card-border-blue-200;
+    }
+
+    &--dashed {
+        background-color: $card-bg-white;
+        border: 2px dashed $card-border-gray-300;
+        
+        // Variações de cores para bordas pontilhadas
+        &.card--dashed-primary {
+            border-color: $primary-color;
+            border-width: 2px;
+        }
+        
+        &.card--dashed-secondary {
+            border-color: $secondary-color;
+            border-width: 2px;
+        }
+        
+        &.card--dashed-success {
+            border-color: #059669;
+            border-width: 2px;
+        }
+        
+        &.card--dashed-warning {
+            border-color: #d97706;
+            border-width: 2px;
+        }
+        
+        &.card--dashed-danger {
+            border-color: $danger-color;
+            border-width: 2px;
+        }
+        
+        &.card--dashed-info {
+            border-color: #0ea5e9;
+            border-width: 2px;
+        }
+        
+        // Suporte para cor customizada via CSS custom property
+        &.card--dashed-custom {
+            border-color: var(--dashed-color, #{$card-border-gray-300});
+            border-width: var(--dashed-width, 2px);
+        }
+        
+        // Diferentes estilos de pontilhado
+        &.card--dashed-thick {
+            border-width: 3px;
+        }
+        
+        &.card--dashed-thin {
+            border-width: 1px;
+        }
+        
+        // Efeito hover especial para dashed
+        &.card--hover:hover {
+            border-style: solid;
+            transform: translateY(-2px);
+            box-shadow: $card-shadow-lg;
+        }
+    }
+
+    &--header-colored {
+        background-color: $card-bg-white;
+        border: 1px solid $card-border-gray-200;
+        
+        &::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: var(--header-height, 4px);
+            background-color: var(--header-color, #{map.get($header-colors, 'primary')});
+            z-index: 1;
+        }
+
+        // Cores predefinidas para header
+        @each $name, $color in $header-colors {
+            &.card--header-#{$name} {
+                &::before {
+                    background-color: $color;
+                }
+            }
+        }
+    }
+
+    // Tamanhos
+    &--small {
+        font-size: 0.875rem; // 14px
+    }
+
+    &--medium {
+        font-size: 1rem; // 16px
+    }
+
+    &--large {
+        font-size: 1.125rem; // 18px
+    }
+
+    // Modificadores
+    &--shadow {
+        box-shadow: $card-shadow-sm;
+
+        &.card--elevated {
+            box-shadow: $card-shadow-lg;
+        }
+    }
+
+    &--padding {
+        padding: $card-padding;
+    }
+
+    &--hover {
+        cursor: pointer;
+
+        &:hover {
+            box-shadow: $card-shadow-lg;
+            transform: translateY(-2px);
+        }
+    }
+
+    &--clickable {
+        cursor: pointer;
+    }
+}
+
+// Sub-componentes
+.card-header {
+    margin-bottom: $card-header-margin-bottom;
+
+    &--with-icon {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+
+        &.card-header--icon-right {
+            justify-content: space-between;
+        }
+    }
+}
+
+.card-header__icon {
+    font-size: 1.25rem;
+    color: $card-text-gray-600;
+    flex-shrink: 0;
+}
+
+.card-header__content {
+    flex: 1;
+    min-width: 0;
+}
+
+.card-title {
+    font-size: 1.25rem; // 20px
+    font-weight: 600;
+    color: $card-text-gray-900;
+    margin-bottom: 0.5rem; // 8px
+    line-height: 1.6;
+
+    &--with-icon {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+
+        &.card-title--icon-right {
+            justify-content: space-between;
+        }
+    }
+}
+
+.card-title__icon {
+    font-size: 1.125rem;
+    color: $card-text-gray-600;
+    flex-shrink: 0;
+}
+
+.card-title__content {
+    flex: 1;
+    min-width: 0;
+}
+
+.card-subtitle {
+    font-size: 0.875rem; // 14px
+    color: $card-text-gray-600;
+    margin-bottom: 0.75rem; // 12px
+    line-height: 1.5;
+}
+
+.card-content {
+    color: $card-text-gray-700;
+    line-height: 1.6;
+}
+
+.card-footer {
+    margin-top: $card-footer-margin-top;
+    padding-top: $card-footer-padding-top;
+    border-top: 1px solid $card-border-gray-200;
+
+    &--actions {
+        display: flex;
+        gap: 0.75rem;
+        flex-wrap: wrap;
+
+        &.card-footer--space-between {
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        &.card-footer--center {
+            justify-content: center;
+        }
+
+        &.card-footer--end {
+            justify-content: flex-end;
+        }
+    }
+}
+
+// Componente de ação
+.card-action {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 0.375rem;
+    font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 0.875rem;
+    line-height: 1.25;
+
+    &:focus {
+        outline: 2px solid transparent;
+        outline-offset: 2px;
+        box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5);
+    }
+
+    &:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+
+        &:hover {
+            transform: none;
+        }
+    }
+
+    // Tamanhos
+    &--small {
+        padding: 0.375rem 0.75rem;
+        font-size: 0.8125rem;
+    }
+
+    &--medium {
+        padding: 0.5rem 1rem;
+        font-size: 0.875rem;
+    }
+
+    // Variantes
+    &--primary {
+        background-color: $primary-color;
+        color: white;
+
+        &:hover:not(:disabled) {
+            background-color: $primary-hover;
+            transform: translateY(-1px);
+        }
+    }
+
+    &--secondary {
+        background-color: $card-text-gray-500;
+        color: white;
+
+        &:hover:not(:disabled) {
+            background-color: $secondary-hover;
+            transform: translateY(-1px);
+        }
+    }
+
+    &--ghost {
+        background-color: transparent;
+        color: $card-text-gray-700;
+        border: 1px solid $card-border-gray-300;
+
+        &:hover:not(:disabled) {
+            background-color: $card-bg-gray-50;
+            border-color: $card-border-gray-300;
+            transform: translateY(-1px);
+        }
+    }
+
+    &--danger {
+        background-color: $danger-color;
+        color: white;
+
+        &:hover:not(:disabled) {
+            background-color: $danger-hover;
+            transform: translateY(-1px);
+        }
+    }
+}
+
+.card-action__icon {
+    font-size: 0.875rem;
+    flex-shrink: 0;
+}
+
+// Estados especiais
+.card-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 500;
+
+    &--success {
+        background-color: #dcfce7;
+        color: #166534;
+    }
+
+    &--warning {
+        background-color: #fef3c7;
+        color: #92400e;
+    }
+
+    &--error {
+        background-color: #fee2e2;
+        color: #991b1b;
+    }
+
+    &--info {
+        background-color: #dbeafe;
+        color: #1e40af;
+    }
+}
+
+.card-status__icon {
+    font-size: 0.75rem;
+}
+
+// Responsividade
+@media (max-width: 768px) {
+    .card {
+        &--padding {
+            padding: 1rem; // 16px em mobile
+        }
+    }
+
+    .card-title {
+        font-size: 1.125rem; // 18px em mobile
+    }
+
+    .card-footer--actions {
+        flex-direction: column;
+        align-items: stretch;
+
+        .card-action {
+            justify-content: center;
+        }
+    }
+}
+
+// Estados de foco para acessibilidade
+.card--hover:focus,
+.card--clickable:focus {
+    outline: 2px solid #3b82f6;
+    outline-offset: 2px;
+    transform: translateY(-1px);
+    box-shadow:
+        0 0 0 2px rgba(59, 130, 246, 0.2),
+        0 10px 15px -3px rgba(0, 0, 0, 0.1),
+        0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+// Animações especiais para diferentes elementos
+@keyframes cardShimmer {
+    0% {
+        transform: translateX(-100%);
+    }
+
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+@keyframes cardPulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.8;
+    }
+}
+
+// Efeito loading/skeleton
+.card--loading {
+    position: relative;
+    overflow: hidden;
+
+    &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg,
+                transparent,
+                rgba(255, 255, 255, 0.4),
+                transparent);
+        animation: cardShimmer 1.5s infinite;
+    }
+
+    .card-title,
+    .card-subtitle,
+    .card-content {
+        animation: cardPulse 1.5s ease-in-out infinite;
+    }
+}
+
+// Utilitários para ícones
+.card-icon {
+    &--xs {
+        font-size: 0.75rem;
+    }
+
+    &--sm {
+        font-size: 0.875rem;
+    }
+
+    &--md {
+        font-size: 1rem;
+    }
+
+    &--lg {
+        font-size: 1.125rem;
+    }
+
+    &--xl {
+        font-size: 1.25rem;
+    }
+
+    &--muted {
+        color: $card-text-gray-500;
+    }
+
+    &--secondary {
+        color: $card-text-gray-600;
+    }
+
+    &--primary {
+        color: $primary-color;
+    }
+
+    &--danger {
+        color: $danger-color;
+    }
+
+    &--success {
+        color: #059669;
+    }
+
+    &--warning {
+        color: #d97706;
+    }
+}

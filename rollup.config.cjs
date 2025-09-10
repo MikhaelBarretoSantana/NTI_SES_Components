@@ -3,7 +3,6 @@ const commonjs = require('@rollup/plugin-commonjs');
 const typescript = require('@rollup/plugin-typescript');
 const peerDepsExternal = require('rollup-plugin-peer-deps-external');
 const postcss = require('rollup-plugin-postcss');
-const copy = require('rollup-plugin-copy');
 
 module.exports = {
     input: 'src/index.ts',

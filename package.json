@@ -1,6 +1,6 @@
 {
   "name": "@nti_ses/ui-components",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "Biblioteca de componentes React TypeScript para projetos da NTI",
   "author": "NTI SES <nti@empresa.com>",
   "license": "MIT",

@@ -9,18 +9,56 @@ export { Input } from './components/Input/Input';
 export { Typography } from './components/Typography/Typography';
 export { Select } from './components/Select/Select';
 export { Dropdown } from './components/Dropdown/Dropdown';
-export { Card } from "./components/Card/Card";
+export { 
+    Card, 
+    CardHeader, 
+    CardTitle, 
+    CardSubtitle, 
+    CardContent, 
+    CardFooter, 
+    CardAction, 
+    CardStatus 
+} from "./components/Card/Card";
 export { Header } from "./components/Header/Header";
 export { Footer } from "./components/Footer/Footer";
 export { Pagination } from "./components/Pagination/Pagination";
 
-
 export type { ButtonProps } from './components/Button/Button.types';
-export type { InputProps } from './components/Input/Input.types';
+export type { InputProps, InputType, InputVariant } from './components/Input/Input.types';
 export type { TypographyProps } from './components/Typography/Typography.types';
-export type { SelectProps, SelectOption } from './components/Select/Select.types';
-export type { DropdownProps, DropdownItem } from './components/Dropdown/Dropdown.types';
-export type { CardProps } from "./components/Card/Card.types";
-export type { HeaderProps } from "./components/Header/Header.types";
-export type { PaginationProps } from "./components/Pagination/Pagination.types";
-
+export type { SelectProps, SelectOption, SelectVariant } from './components/Select/Select.types';
+export type { 
+    DropdownProps, 
+    DropdownItem, 
+    DropdownTrigger, 
+    DropdownPlacement 
+} from './components/Dropdown/Dropdown.types';
+export type { 
+    CardProps,
+    CardHeaderProps,
+    CardTitleProps,
+    CardSubtitleProps,
+    CardContentProps,
+    CardFooterProps,
+    CardActionProps,
+    CardVariant,
+    CardSize,
+    CardHeaderColor,
+    CardDashedColor,
+    CardDashedWidth
+} from "./components/Card/Card.types";
+export type { 
+    HeaderProps,
+    HeaderLogo,
+    HeaderNavigationItem,
+    HeaderActionButton
+} from "./components/Header/Header.types";
+export type { 
+    FooterProps,
+    FooterLogo,
+    FooterLink
+} from "./components/Footer/Footer.types";
+export type { 
+    PaginationProps,
+    PaginationLabels
+} from "./components/Pagination/Pagination.types";

@@ -3,6 +3,7 @@ const commonjs = require('@rollup/plugin-commonjs');
 const typescript = require('@rollup/plugin-typescript');
 const peerDepsExternal = require('rollup-plugin-peer-deps-external');
 const postcss = require('rollup-plugin-postcss');
+const copy = require('rollup-plugin-copy');
 
 module.exports = {
     input: 'src/index.ts',
@@ -32,8 +33,17 @@ module.exports = {
             exclude: ['**/*.test.ts', '**/*.test.tsx', '**/*.stories.ts', '**/*.stories.tsx']
         }),
         postcss({
-            extract: true,
-            minimize: true
+            extensions: ['.css', '.scss', '.sass'],
+            use: [
+                ['sass', {
+                    includePaths: ['./src/styles', './node_modules'],
+                    outputStyle: 'compressed',
+                    silenceDeprecations: ['legacy-js-api']
+                }]
+            ],
+            minimize: true,
+            sourceMap: true,
+            inject: true
         })
     ],
     external: ['react', 'react-dom']

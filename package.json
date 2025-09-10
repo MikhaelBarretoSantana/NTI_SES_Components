@@ -8,6 +8,16 @@
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
+  "style": {
+    "main": "dist/index.js",
+    "module": "dist/index.esm.js",
+    "types": "dist/index.d.ts",
+    "files": [
+      "dist",
+      "README.md",
+      "LICENSE"
+    ]
+  },
   "files": [
     "dist",
     "README.md",
@@ -38,8 +48,8 @@
     "npm": ">=8.0.0"
   },
   "scripts": {
-    "build": "rollup -c --bundleConfigAsCjs",
-    "dev": "rollup -c -w --bundleConfigAsCjs",
+    "build": "rollup -c",
+    "dev": "rollup -c -w",
     "test": "echo \"Warning: No tests configured\" && exit 0",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",

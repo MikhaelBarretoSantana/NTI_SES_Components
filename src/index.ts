@@ -1,3 +1,9 @@
+// Importação De estilização Essencial
+import './styles/fonts.scss';
+import './styles/tokens.scss';
+import './styles/global.scss';
+import './styles/typography.scss';
+
 export { Button } from './components/Button/Button';
 export { Input } from './components/Input/Input';
 export { Typography } from './components/Typography/Typography';
@@ -18,8 +24,3 @@ export type { CardProps } from "./components/Card/Card.types";
 export type { HeaderProps } from "./components/Header/Header.types";
 export type { PaginationProps } from "./components/Pagination/Pagination.types";
 
-// Importação De estilização Essencial
-import './styles/fonts.scss';
-import './styles/tokens.scss';
-import './styles/global.scss';
-import './styles/typography.scss';

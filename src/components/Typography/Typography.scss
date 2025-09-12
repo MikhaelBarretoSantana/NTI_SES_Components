@@ -192,3 +192,42 @@
 .ui-typography--align-justify {
     text-align: justify;
 }
+
+/* Pesos adicionais para Gibralt */
+.ui-typography--weight-extralight {
+    font-weight: 200; // Para GibraltDEMO-ExtraLight
+}
+
+.ui-typography--weight-black {
+    font-weight: 900; // Para GibraltDEMO-Black
+}
+
+/* Classes utilitárias para Gibralt */
+.font-extralight {
+    font-weight: 200;
+}
+
+.font-black {
+    font-weight: 900;
+}
+
+/* Exemplo de uso específico da Gibralt com diferentes pesos */
+.gibralt-showcase {
+    font-family: 'Gibralt', 'Helvetica Neue', Arial, sans-serif;
+    
+    &--extralight {
+        font-weight: 200;
+    }
+    
+    &--regular {
+        font-weight: 400;
+    }
+    
+    &--bold {
+        font-weight: 700;
+    }
+    
+    &--black {
+        font-weight: 900;
+    }
+}

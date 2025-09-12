@@ -1,26 +1,46 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
 
+// Gibralt ExtraLight (200)
 @font-face {
     font-family: 'Gibralt';
     font-style: normal;
-    font-weight: 300;
+    font-weight: 200;
     font-display: swap;
-    src: local('Arial'), local('Helvetica'), sans-serif;
+    src: url('../styles/fonts/gibralt/GibraltDEMO-ExtraLight.woff2') format('woff2'),
+         url('../styles/fonts/gibralt/GibraltDEMO-ExtraLight.woff') format('woff'),
+         local('Helvetica Neue Light'), local('Arial');
 }
 
+// Gibralt Regular (400)
 @font-face {
     font-family: 'Gibralt';
     font-style: normal;
     font-weight: 400;
     font-display: swap;
-    src: local('Arial'), local('Helvetica'), sans-serif;
+    src: url('../styles/fonts/gibralt/GibraltDEMO-Regular.woff2') format('woff2'),
+         url('../styles/fonts/gibralt/GibraltDEMO-Regular.woff') format('woff'),
+         local('Helvetica Neue'), local('Arial');
 }
 
+// Gibralt Bold (700)
 @font-face {
     font-family: 'Gibralt';
     font-style: normal;
     font-weight: 700;
     font-display: swap;
-    src: local('Arial'), local('Helvetica'), sans-serif;
+    src: url('../styles/fonts/gibralt/GibraltDEMO-Bold.woff2') format('woff2'),
+         url('../styles/fonts/gibralt/GibraltDEMO-Bold.woff') format('woff'),
+         local('Helvetica Neue Bold'), local('Arial Bold');
+}
+
+// Gibralt Black (900)
+@font-face {
+    font-family: 'Gibralt';
+    font-style: normal;
+    font-weight: 900;
+    font-display: swap;
+    src: url('../styles/fonts/gibralt/GibraltDEMO-Black.woff2') format('woff2'),
+         url('../styles/fonts/gibralt/GibraltDEMO-Black.woff') format('woff'),
+         local('Helvetica Neue Black'), local('Arial Black');
 }

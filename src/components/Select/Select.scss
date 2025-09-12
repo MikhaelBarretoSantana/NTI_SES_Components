@@ -179,6 +179,8 @@
 /* Dropdown */
 .ui-select__dropdown {
     position: absolute;
+    display: flex;
+    flex-direction: column;
     top: 100%;
     left: 0;
     right: 0;

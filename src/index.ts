@@ -9,31 +9,32 @@ export { Input } from './components/Input/Input';
 export { Typography } from './components/Typography/Typography';
 export { Select } from './components/Select/Select';
 export { Dropdown } from './components/Dropdown/Dropdown';
-export { 
-    Card, 
-    CardHeader, 
-    CardTitle, 
-    CardSubtitle, 
-    CardContent, 
-    CardFooter, 
-    CardAction, 
-    CardStatus 
+export {
+    Card,
+    CardHeader,
+    CardTitle,
+    CardSubtitle,
+    CardContent,
+    CardFooter,
+    CardAction,
+    CardStatus
 } from "./components/Card/Card";
 export { Header } from "./components/Header/Header";
 export { Footer } from "./components/Footer/Footer";
 export { Pagination } from "./components/Pagination/Pagination";
+export { Modal } from "./components/Modal/Modal";
 
 export type { ButtonProps } from './components/Button/Button.types';
 export type { InputProps, InputType, InputVariant } from './components/Input/Input.types';
 export type { TypographyProps } from './components/Typography/Typography.types';
 export type { SelectProps, SelectOption, SelectVariant } from './components/Select/Select.types';
-export type { 
-    DropdownProps, 
-    DropdownItem, 
-    DropdownTrigger, 
-    DropdownPlacement 
+export type {
+    DropdownProps,
+    DropdownItem,
+    DropdownTrigger,
+    DropdownPlacement
 } from './components/Dropdown/Dropdown.types';
-export type { 
+export type {
     CardProps,
     CardHeaderProps,
     CardTitleProps,
@@ -47,18 +48,33 @@ export type {
     CardDashedColor,
     CardDashedWidth
 } from "./components/Card/Card.types";
-export type { 
+export type {
     HeaderProps,
     HeaderLogo,
     HeaderNavigationItem,
     HeaderActionButton
 } from "./components/Header/Header.types";
-export type { 
+export type {
     FooterProps,
     FooterLogo,
     FooterLink
 } from "./components/Footer/Footer.types";
-export type { 
+export type {
     PaginationProps,
     PaginationLabels
 } from "./components/Pagination/Pagination.types";
+export type {
+    ModalProps,
+    ModalAnimationType,
+    ModalButtonProps,
+    ModalClassNames,
+    ModalComponentRef,
+    ModalConfigProps,
+    ModalHookReturnType,
+    ModalPosition,
+    ModalPresets,
+    ModalRef,
+    ModalSize,
+    ModalStyles,
+    ModalTheme
+} from "./components/Modal/Modal.types"

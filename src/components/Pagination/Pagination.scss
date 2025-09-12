@@ -1,3 +1,5 @@
+@use '../../styles/icons';
+
 .ui-pagination {
     display: flex;
     align-items: center;
@@ -132,6 +134,42 @@
     }
 }
 
+/* Ícones da paginação - todos padronizados */
+.ui-pagination__button {
+    svg {
+        width: var(--icon-size-md);
+        height: var(--icon-size-md);
+        font-size: var(--icon-size-md);
+        flex-shrink: 0;
+        transition: transform 0.2s ease;
+    }
+}
+
+/* Ícones de navegação com efeitos de hover */
+.ui-pagination__button--nav {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-xs);
+    
+    // Efeito hover para ícones de navegação
+    &:hover:not(:disabled) {
+        svg {
+            transform: translateX(2px);
+        }
+    }
+    
+    // Botões "anterior" movem para esquerda
+    &:has(svg[data-icon="chevron-left"]),
+    &:has(svg[data-icon="angle-double-left"]) {
+        &:hover:not(:disabled) {
+            svg {
+                transform: translateX(-2px);
+            }
+        }
+    }
+}
+
 .ui-pagination__button-text {
     @media (max-width: 640px) {
         display: none;
@@ -147,6 +185,13 @@
     height: 2.5rem;
     color: #9ca3af;
     font-size: 0.875rem;
+    
+    svg {
+        width: var(--icon-size-md);
+        height: var(--icon-size-md);
+        font-size: var(--icon-size-md);
+        color: var(--color-text-muted);
+    }
 }
 
 /* Jumper */
@@ -216,6 +261,13 @@
         padding: 0.25rem 0.5rem;
         font-size: 0.8rem;
     }
+    
+    .ui-pagination__button svg,
+    .ui-pagination__dots svg {
+        width: var(--icon-size-md);
+        height: var(--icon-size-md);
+        font-size: var(--icon-size-md);
+    }
 }
 
 .ui-pagination--large {
@@ -246,6 +298,49 @@
     .ui-pagination__jumper-input {
         padding: 0.5rem 0.75rem;
         font-size: 1rem;
+    }
+    
+    .ui-pagination__button svg,
+    .ui-pagination__dots svg {
+        width: var(--icon-size-md);
+        height: var(--icon-size-md);
+        font-size: var(--icon-size-md);
+    }
+}
+
+/* Garantir tamanho mínimo dos botões mesmo sem texto */
+.ui-pagination__button--nav {
+    min-width: var(--icon-size-lg);
+    min-height: var(--icon-size-lg);
+    
+    @media (max-width: 768px) {
+        min-width: var(--icon-size-md);
+        min-height: var(--icon-size-md);
+    }
+}
+
+/* Estados dos botões */
+.ui-pagination__button {
+    &:disabled,
+    &--disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+        
+        svg {
+            color: var(--color-text-disabled, #9ca3af);
+        }
+        
+        &:hover {
+            svg {
+                transform: none;
+            }
+        }
+    }
+    
+    &--active {
+        svg {
+            color: white;
+        }
     }
 }
 

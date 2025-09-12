@@ -1,5 +1,6 @@
 // Importação De estilização Essencial
 import './styles/fonts.scss';
+import './styles/_icons.scss';
 import './styles/tokens.scss';
 import './styles/global.scss';
 import './styles/typography.scss';
@@ -31,7 +32,8 @@ export type {
     DropdownProps, 
     DropdownItem, 
     DropdownTrigger, 
-    DropdownPlacement 
+    DropdownPlacement,
+    DropdownVariant
 } from './components/Dropdown/Dropdown.types';
 export type { 
     CardProps,

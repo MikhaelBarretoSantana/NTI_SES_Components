@@ -49,6 +49,7 @@ export interface SelectProps {
     noOptionsText?: string;
     loadingText?: string;
     searchPlaceholder?: string;
+    required?: boolean | undefined;
 
     // Callbacks
     onChange?: (value: string | number | (string | number)[] | null) => void;
@@ -61,7 +62,7 @@ export interface SelectProps {
     containerClassName?: string;
     dropdownClassName?: string;
     optionClassName?: string;
-
+    
     // Referências
     containerRef?: React.Ref<HTMLDivElement>;
 }

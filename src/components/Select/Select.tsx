@@ -63,6 +63,7 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(({
 
     // Refs
     containerRef,
+    required = false,
 
     ...props
 }, ref) => {
@@ -296,6 +297,7 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(({
             {label && (
                 <label htmlFor={inputId} className="ui-select__label">
                     {label}
+                    {required && <span className="ui-select__required">*</span>}
                 </label>
             )}
 

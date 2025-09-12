@@ -1,4 +1,4 @@
-/* src/components/Select/Select.css */
+@use '../../styles/icons';
 
 .ui-select {
     position: relative;
@@ -115,20 +115,25 @@
     color: var(--color-text-muted);
 }
 
-/* Icons */
+/* Ícones - todos padronizados */
 .ui-select__icon {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--color-text-muted);
-    transition: color 0.2s ease;
+    flex-shrink: 0;
+    color: var(--color-text-secondary);
+    transition: all 0.2s ease;
 }
 
+/* Ícone à esquerda */
 .ui-select__icon--left {
     position: absolute;
-    left: var(--spacing-md);
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
 }
 
+/* Container dos ícones à direita */
 .ui-select__icons {
     display: flex;
     align-items: center;
@@ -136,24 +141,26 @@
     margin-left: var(--spacing-sm);
 }
 
+/* Botão de limpar */
 .ui-select__clear {
-    background: none;
+    background: transparent;
     border: none;
     cursor: pointer;
+    padding: 2px;
+    border-radius: 2px;
     color: var(--color-text-muted);
+    transition: all 0.2s ease;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 2px;
-    border-radius: 2px;
-    transition: all 0.2s ease;
+    
+    &:hover {
+        color: var(--color-text-primary);
+        background-color: rgba(0, 0, 0, 0.05);
+    }
 }
 
-.ui-select__clear:hover {
-    color: var(--color-text-primary);
-    background-color: rgba(0, 0, 0, 0.05);
-}
-
+/* Chevron com animação */
 .ui-select__chevron {
     transition: transform 0.2s ease;
 }
@@ -162,23 +169,64 @@
     transform: rotate(180deg);
 }
 
+/* Spinner */
 .ui-select__spinner {
-    animation: spin 1s linear infinite;
+    .ui-select__icon {
+        animation: spin 1s linear infinite;
+        color: var(--color-primary);
+    }
+}
+
+/* Tamanhos por tamanho do select */
+.ui-select--small {
+    .ui-select__icon,
+    .ui-select__clear {
+        width: var(--icon-size-md);
+        height: var(--icon-size-md);
+        font-size: var(--icon-size-md);
+    }
+    
+    .ui-select__icon--left {
+        left: var(--spacing-sm);
+    }
+}
+
+.ui-select--medium {
+    .ui-select__icon,
+    .ui-select__clear {
+        width: var(--icon-size-sm);
+        height: var(--icon-size-sm);
+        font-size: var(--icon-size-sm);
+    }
+    
+    .ui-select__icon--left {
+        left: var(--spacing-md);
+    }
+}
+
+.ui-select--large {
+    .ui-select__icon,
+    .ui-select__clear {
+        width: var(--icon-size-md);
+        height: var(--icon-size-md);
+        font-size: var(--icon-size-md);
+    }
+    
+    .ui-select__icon--left {
+        left: var(--spacing-lg);
+    }
 }
 
 @keyframes spin {
-    from {
-        transform: rotate(0deg);
-    }
-
-    to {
-        transform: rotate(360deg);
-    }
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
 }
 
 /* Dropdown */
 .ui-select__dropdown {
     position: absolute;
+    display: flex;
+    flex-direction: column;
     top: 100%;
     left: 0;
     right: 0;
@@ -199,12 +247,14 @@
 }
 
 .ui-select__search-icon {
+    width: var(--icon-size-md);
+    height: var(--icon-size-md);
+    font-size: var(--icon-size-md);
+    color: var(--color-text-muted);
     position: absolute;
     left: var(--spacing-md);
     top: 50%;
     transform: translateY(-50%);
-    color: var(--color-text-muted);
-    font-size: var(--font-size-sm);
 }
 
 .ui-select__search-input {
@@ -268,9 +318,17 @@
     padding-left: var(--spacing-xl);
 }
 
-.ui-select__option-icon {
-    font-size: var(--font-size-md);
-    color: inherit;
+/* Ícones nas opções */
+.ui-select__option-icon,
+.ui-select__option-check {
+    width: var(--icon-size-sm);
+    height: var(--icon-size-sm);
+    font-size: var(--icon-size-sm);
+    flex-shrink: 0;
+}
+
+.ui-select__option-check {
+    color: var(--color-primary);
 }
 
 .ui-select__option-content {
@@ -295,11 +353,6 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-}
-
-.ui-select__option-check {
-    color: var(--color-primary);
-    font-size: var(--font-size-sm);
 }
 
 /* Groups */

@@ -23,6 +23,7 @@ export {
 export { Header } from "./components/Header/Header";
 export { Footer } from "./components/Footer/Footer";
 export { Pagination } from "./components/Pagination/Pagination";
+export { DateRange } from "./components/DateRange/DateRange";
 
 export type { ButtonProps } from './components/Button/Button.types';
 export type { InputProps, InputType, InputVariant } from './components/Input/Input.types';
@@ -64,3 +65,8 @@ export type {
     PaginationProps,
     PaginationLabels
 } from "./components/Pagination/Pagination.types";
+export type {
+    DateRangeProps,
+    DateRangeValue,
+    DateRangePreset
+} from "./components/DateRange/DateRange.types";

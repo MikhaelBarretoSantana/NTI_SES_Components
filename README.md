@@ -1578,30 +1578,48 @@ const OptimizedComponent = memo(({ data }) => (
 
 ## Roadmap e Próximas Funcionalidades
 
-### Q1 2024
+### Q1 2025 (Em Desenvolvimento)
 - [x] Componentes básicos (Button, Input, Card, etc.)
-- [x] Sistema de tipografia
-- [x] Temas e variáveis CSS
-- [ ] Componente Modal/Dialog
-- [ ] Componente Tabs
+- [x] Sistema de tipografia com 3 fontes (Outfit, Inter, Gibralt)
+- [x] Temas e variáveis CSS customizáveis
+- [x] Sistema de paginação avançado
+- [x] Header e Footer responsivos
+- [ ] **Modal/Dialog** - Sistema completo de modais com backdrop, animações e acessibilidade
+- [ ] **Toast/Notification** - Sistema de notificações com posicionamento e auto-dismiss
+- [ ] **DateRange/Period** - Seletor de período com data início/fim e presets configuráveis
+- [ ] **Testes Jest** - Implementação completa de testes unitários para todos os componentes
 
-### Q2 2024
-- [ ] Componente Table/DataTable avançado
-- [ ] Componente DatePicker/DateRange
-- [ ] Componente Upload/FileInput
-- [ ] Sistema de notificações (Toast)
+### Q2 2025
+- [ ] **Table/DataTable** - Tabela avançada com ordenação, filtros, paginação e seleção múltipla
+- [ ] **Tabs** - Sistema de abas com orientação horizontal/vertical e lazy loading
+- [ ] **Upload/FileInput** - Upload de arquivos com drag-and-drop, preview e validação
+- [ ] **Breadcrumb** - Navegação breadcrumb com separadores customizáveis
+- [ ] **Skeleton** - Loading states com skeleton screens animados
+- [ ] **Progress** - Indicadores de progresso (linear e circular) com animações
 
-### Q3 2024
-- [ ] Tema dark/light automático
-- [ ] Animações com Framer Motion
-- [ ] Componente Chart/Graph
-- [ ] Formulários avançados (FormBuilder)
+### Q3 2025
+- [ ] **Theme System** - Tema dark/light automático com transições suaves
+- [ ] **Animations** - Micro-interações e animações com Framer Motion
+- [ ] **Chart/Graph** - Componentes de gráficos básicos (line, bar, pie)
+- [ ] **Form Builder** - Formulários dinâmicos com validação e schema
+- [ ] **Autocomplete** - Input com sugestões, busca e seleção múltipla
+- [ ] **Badge** - Indicadores, labels e status badges
 
-### Q4 2024
-- [ ] Componente Calendar
-- [ ] Editor de texto rico (RichText)
-- [ ] Componente Map
-- [ ] PWA Support
+### Q4 2025
+- [ ] **Calendar** - Calendário completo com eventos, agenda e diferentes visualizações
+- [ ] **RichText Editor** - Editor de texto rico com formatação e plugins
+- [ ] **Map Integration** - Componente de mapas com markers e interações
+- [ ] **Data Visualization** - Dashboards e métricas com gráficos avançados
+- [ ] **Advanced Search** - Componente de busca com filtros e facetas
+- [ ] **A11y Audit** - Auditoria completa de acessibilidade WCAG 2.1
+
+### 2026 - Futuro
+- [ ] **Mobile Components** - Adaptações específicas para mobile e touch
+- [ ] **Advanced Layouts** - Layouts complexos (Split, Resizable, Dock)
+- [ ] **Virtualization** - Listas e tabelas virtualizadas para grandes datasets
+- [ ] **Internationalization** - Suporte completo i18n com RTL
+- [ ] **PWA Support** - Funcionalidades específicas para Progressive Web Apps
+- [ ] **AI Integration** - Componentes com integração de IA (autocomplete, suggestions)
 
 ---
 
@@ -1624,12 +1642,26 @@ src/
 │   │   ├── Button.types.ts
 │   │   ├── Button.scss
 │   │   └── Button.stories.tsx
+│   ├── Card/
+│   │   ├── Card.tsx
+│   │   ├── Card.types.ts
+│   │   ├── Card.scss
+│   │   └── Card.stories.tsx
+│   ├── Input/
+│   │   ├── Input.tsx
+│   │   ├── Input.types.ts
+│   │   ├── Input.scss
+│   │   └── Input.stories.tsx
 │   └── ...
-├── styles/
-│   ├── tokens/
-│   ├── mixins/
-│   └── globals/
-└── utils/
+└── styles/
+    ├── fonts/
+        ├── gibralt/
+        ├── Inter/
+        ├── Outfit/
+    ├── fonts.scss
+    ├── global.scss
+    ├── tokens.scss
+    └── typography.scss
 ```
 
 ### Criando Novos Componentes

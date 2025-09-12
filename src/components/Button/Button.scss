@@ -1,3 +1,5 @@
+@use '../../styles/icons';
+
 .ui-button {
     display: inline-flex;
     align-items: center;
@@ -18,6 +20,14 @@
     outline-offset: 2px;
 }
 
+/* Content container */
+.ui-button__content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-xs);
+}
+
 /* Sizes */
 .ui-button--small {
     padding: 8px 12px;
@@ -35,6 +45,40 @@
     padding: 16px 24px;
     font-size: 18px;
     min-height: 48px;
+}
+
+/* Icons - padrão baseado no tamanho */
+.ui-button__spinner,
+.ui-button__content-icon {
+    flex-shrink: 0;
+    transition: transform 0.2s ease;
+}
+
+.ui-button--small {
+    .ui-button__spinner,
+    .ui-button__content-icon {
+        width: var(--icon-size-md);
+        height: var(--icon-size-md);
+        font-size: var(--font-size-xs);
+    }
+}
+
+.ui-button--medium {
+    .ui-button__spinner,
+    .ui-button__content-icon {
+        width: var(--icon-size-lg);
+        height: var(--icon-size-lg);
+        font-size: var(--font-size-md);
+    }
+}
+
+.ui-button--large {
+    .ui-button__spinner,
+    .ui-button__content-icon {
+        width: var(--icon-size-xl);
+        height: var(--icon-size-xl);
+        font-size: var(--font-size-lg);
+    }
 }
 
 /* Variants */
@@ -83,13 +127,6 @@
     cursor: not-allowed;
 }
 
-.ui-button__content-text + .ui-button__content-icon {
-    margin-left: 5px;
-}
-.ui-button__content-icon + .ui-button__content-text {
-    margin-right: 5px;
-}
-
 .ui-button--loading .ui-button__content {
     visibility: hidden;
 }
@@ -104,7 +141,6 @@
     from {
         transform: rotate(0deg);
     }
-
     to {
         transform: rotate(360deg);
     }

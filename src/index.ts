@@ -1,5 +1,6 @@
 // Importação De estilização Essencial
 import './styles/fonts.scss';
+import './styles/_icons.scss';
 import './styles/tokens.scss';
 import './styles/global.scss';
 import './styles/typography.scss';
@@ -23,16 +24,18 @@ export { Header } from "./components/Header/Header";
 export { Footer } from "./components/Footer/Footer";
 export { Pagination } from "./components/Pagination/Pagination";
 export { Modal } from "./components/Modal/Modal";
+export { DateRange } from "./components/DateRange/DateRange";
 
 export type { ButtonProps } from './components/Button/Button.types';
 export type { InputProps, InputType, InputVariant } from './components/Input/Input.types';
 export type { TypographyProps } from './components/Typography/Typography.types';
 export type { SelectProps, SelectOption, SelectVariant } from './components/Select/Select.types';
-export type {
-    DropdownProps,
-    DropdownItem,
-    DropdownTrigger,
-    DropdownPlacement
+export type { 
+    DropdownProps, 
+    DropdownItem, 
+    DropdownTrigger, 
+    DropdownPlacement,
+    DropdownVariant
 } from './components/Dropdown/Dropdown.types';
 export type {
     CardProps,
@@ -63,6 +66,11 @@ export type {
     PaginationProps,
     PaginationLabels
 } from "./components/Pagination/Pagination.types";
+export type {
+    DateRangeProps,
+    DateRangeValue,
+    DateRangePreset
+} from "./components/DateRange/DateRange.types";
 export type {
     ModalProps,
     ModalAnimationType,

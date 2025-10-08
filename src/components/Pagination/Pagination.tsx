@@ -2,9 +2,7 @@ import React, { useMemo } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { 
     faChevronLeft, 
-    faChevronRight, 
-    faAngleDoubleLeft, 
-    faAngleDoubleRight,
+    faChevronRight,
     faEllipsisH
 } from '@fortawesome/free-solid-svg-icons';
 import { PaginationProps } from './Pagination.types';
@@ -16,7 +14,7 @@ export const Pagination: React.FC<PaginationProps> = ({
     onPageChange,
     
     // Configurações de visualização
-    showFirstLast = true,
+    showFirstLast = false, // Mudado para false por padrão para design mais compacto
     showPrevNext = true,
     showNumbers = true,
     showInfo = false,
@@ -48,7 +46,7 @@ export const Pagination: React.FC<PaginationProps> = ({
         items: 'itens',
         showing: 'Mostrando',
         to: 'até',
-        jumpTo: 'Ir para',
+        jumpTo: 'Página',
         itemsPerPage: 'itens por página'
     },
     
@@ -56,50 +54,41 @@ export const Pagination: React.FC<PaginationProps> = ({
     className = '',
     containerRef
 }) => {
-    // Calcular páginas visíveis
+    // Calcular páginas visíveis - Lógica mais simples para design compacto
     const visiblePages = useMemo(() => {
         const range = (start: number, end: number) => {
             return Array.from({ length: end - start + 1 }, (_, i) => start + i);
         };
 
-        const totalNumbers = siblingCount * 2 + 3 + boundaryCount * 2;
+        // Para design compacto, mostrar no máximo 7 elementos (incluindo dots)
+        const maxVisible = 7;
         
-        if (totalNumbers >= totalPages) {
+        if (totalPages <= maxVisible) {
             return range(1, totalPages);
         }
 
-        const leftSiblingIndex = Math.max(currentPage - siblingCount, boundaryCount + 1);
-        const rightSiblingIndex = Math.min(currentPage + siblingCount, totalPages - boundaryCount);
+        const leftSiblingIndex = Math.max(currentPage - siblingCount, 1);
+        const rightSiblingIndex = Math.min(currentPage + siblingCount, totalPages);
 
-        const shouldShowLeftDots = leftSiblingIndex > boundaryCount + 2;
-        const shouldShowRightDots = rightSiblingIndex < totalPages - boundaryCount - 1;
+        const shouldShowLeftDots = leftSiblingIndex > 2;
+        const shouldShowRightDots = rightSiblingIndex < totalPages - 1;
 
         if (!shouldShowLeftDots && shouldShowRightDots) {
-            const leftItemCount = siblingCount * 2 + boundaryCount + 2;
-            return [
-                ...range(1, leftItemCount),
-                'dots',
-                ...range(totalPages - boundaryCount + 1, totalPages)
-            ];
+            const leftItemCount = 3 + 2 * siblingCount;
+            return [...range(1, leftItemCount), 'dots', totalPages];
         }
 
         if (shouldShowLeftDots && !shouldShowRightDots) {
-            const rightItemCount = boundaryCount + 1 + 2 * siblingCount;
-            return [
-                ...range(1, boundaryCount),
-                'dots',
-                ...range(totalPages - rightItemCount + 1, totalPages)
-            ];
+            const rightItemCount = 3 + 2 * siblingCount;
+            return [1, 'dots', ...range(totalPages - rightItemCount + 1, totalPages)];
         }
 
-        return [
-            ...range(1, boundaryCount),
-            'dots',
-            ...range(leftSiblingIndex, rightSiblingIndex),
-            'dots',
-            ...range(totalPages - boundaryCount + 1, totalPages)
-        ];
-    }, [currentPage, totalPages, siblingCount, boundaryCount]);
+        if (shouldShowLeftDots && shouldShowRightDots) {
+            return [1, 'dots', ...range(leftSiblingIndex, rightSiblingIndex), 'dots', totalPages];
+        }
+
+        return range(1, totalPages);
+    }, [currentPage, totalPages, siblingCount]);
 
     // Calcular informações dos itens
     const itemInfo = useMemo(() => {
@@ -140,8 +129,7 @@ export const Pagination: React.FC<PaginationProps> = ({
     const buttonClass = (page: number, type: 'page' | 'nav' = 'page') => [
         'ui-pagination__button',
         `ui-pagination__button--${type}`,
-        page === currentPage && type === 'page' && 'ui-pagination__button--active',
-        disabled && 'ui-pagination__button--disabled'
+        page === currentPage && type === 'page' && 'ui-pagination__button--active'
     ].filter(Boolean).join(' ');
 
     return (
@@ -171,22 +159,8 @@ export const Pagination: React.FC<PaginationProps> = ({
                 </div>
             )}
 
-            {/* Controles de paginação */}
+            {/* Controles de paginação - Design compacto */}
             <div className="ui-pagination__controls">
-                {/* Primeira página */}
-                {showFirstLast && (
-                    <button
-                        className={buttonClass(1, 'nav')}
-                        onClick={() => handlePageChange(1)}
-                        disabled={currentPage === 1 || disabled}
-                        aria-label={labels.first}
-                        title={labels.first}
-                    >
-                        <FontAwesomeIcon icon={faAngleDoubleLeft} />
-                        <span className="ui-pagination__button-text">{labels.first}</span>
-                    </button>
-                )}
-
                 {/* Página anterior */}
                 {showPrevNext && (
                     <button
@@ -197,7 +171,6 @@ export const Pagination: React.FC<PaginationProps> = ({
                         title={labels.previous}
                     >
                         <FontAwesomeIcon icon={faChevronLeft} />
-                        <span className="ui-pagination__button-text">{labels.previous}</span>
                     </button>
                 )}
 
@@ -234,43 +207,28 @@ export const Pagination: React.FC<PaginationProps> = ({
                         aria-label={labels.next}
                         title={labels.next}
                     >
-                        <span className="ui-pagination__button-text">{labels.next}</span>
                         <FontAwesomeIcon icon={faChevronRight} />
-                    </button>
-                )}
-
-                {/* Última página */}
-                {showFirstLast && (
-                    <button
-                        className={buttonClass(totalPages, 'nav')}
-                        onClick={() => handlePageChange(totalPages)}
-                        disabled={currentPage === totalPages || disabled}
-                        aria-label={labels.last}
-                        title={labels.last}
-                    >
-                        <span className="ui-pagination__button-text">{labels.last}</span>
-                        <FontAwesomeIcon icon={faAngleDoubleRight} />
                     </button>
                 )}
             </div>
 
-            {/* Jump to page */}
+            {/* Jump to page - Design compacto como dropdown */}
             {showJumper && (
-                <form onSubmit={handleJumperSubmit} className="ui-pagination__jumper">
-                    <label htmlFor="pagination-jumper" className="ui-pagination__jumper-label">
-                        {labels.jumpTo}:
-                    </label>
-                    <input
-                        id="pagination-jumper"
-                        name="page"
-                        type="number"
-                        min="1"
-                        max={totalPages}
-                        placeholder="1"
-                        className="ui-pagination__jumper-input"
-                        disabled={disabled}
-                    />
-                </form>
+                <div className="ui-pagination__jumper">
+                    <span className="ui-pagination__jumper-label">{labels.jumpTo}</span>
+                    <form onSubmit={handleJumperSubmit} style={{ display: 'inline-flex', alignItems: 'center', gap: '0.25rem' }}>
+                        <input
+                            name="page"
+                            type="number"
+                            min="1"
+                            max={totalPages}
+                            placeholder={currentPage.toString()}
+                            className="ui-pagination__jumper-input"
+                            disabled={disabled}
+                        />
+                    </form>
+                    <span className="ui-pagination__jumper-label">{labels.of} {totalPages}</span>
+                </div>
             )}
         </div>
     );

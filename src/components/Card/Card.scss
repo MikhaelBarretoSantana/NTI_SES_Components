@@ -1,5 +1,5 @@
-// Importar funções necessárias do Sass
 @use "sass:map";
+@use '../../styles/icons';
 
 // Variáveis
 $card-border-radius: 0.5rem; // 8px
@@ -216,10 +216,13 @@ $header-colors: (
     }
 }
 
+// Ícones do Card Header
 .card-header__icon {
-    font-size: 1.25rem;
-    color: $card-text-gray-600;
+    width: var(--icon-size-md);
+    height: var(--icon-size-md);
+    font-size: var(--icon-size-md);
     flex-shrink: 0;
+    color: var(--color-text-primary);
 }
 
 .card-header__content {
@@ -245,10 +248,13 @@ $header-colors: (
     }
 }
 
+// Ícones do Card Title
 .card-title__icon {
-    font-size: 1.125rem;
-    color: $card-text-gray-600;
+    width: var(--icon-size-md);
+    height: var(--icon-size-md);
+    font-size: var(--icon-size-md);
     flex-shrink: 0;
+    color: var(--color-text-primary);
 }
 
 .card-title__content {
@@ -378,9 +384,13 @@ $header-colors: (
     }
 }
 
+// Ícones do Card Action
 .card-action__icon {
-    font-size: 0.875rem;
+    width: var(--icon-size-sm);
+    height: var(--icon-size-sm);
+    font-size: var(--icon-size-sm);
     flex-shrink: 0;
+    transition: transform 0.2s ease;
 }
 
 // Estados especiais
@@ -414,8 +424,86 @@ $header-colors: (
     }
 }
 
+// Ícones do Card Status
 .card-status__icon {
-    font-size: 0.75rem;
+    width: var(--icon-size-sm);
+    height: var(--icon-size-sm);
+    font-size: var(--icon-size-sm);
+    flex-shrink: 0;
+}
+
+/* Ajustes por tamanho do card */
+.card--small {
+    .card-header__icon,
+    .card-title__icon {
+        width: var(--icon-size-md);
+        height: var(--icon-size-md);
+        font-size: var(--icon-size-md);
+    }
+    
+    .card-action__icon,
+    .card-status__icon {
+        width: var(--icon-size-lg);
+        height: var(--icon-size-lg);
+        font-size: var(--icon-size-lg);
+    }
+}
+
+.card--medium {
+    .card-header__icon,
+    .card-title__icon {
+        width: var(--icon-size-lg);
+        height: var(--icon-size-lg);
+        font-size: var(--icon-size-lg);
+    }
+    
+    .card-action__icon,
+    .card-status__icon {
+        width: var(--icon-size-md);
+        height: var(--icon-size-md);
+        font-size: var(--icon-size-md);
+    }}
+
+.card--large {
+    .card-header__icon,
+    .card-title__icon {
+        width: var(--icon-size-xl);
+        height: var(--icon-size-xl);
+        font-size: var(--icon-size-xl);
+    }
+    
+    .card-action__icon,
+    .card-status__icon {
+        width: var(--icon-size-lg);
+        height: var(--icon-size-lg);
+        font-size: var(--icon-size-lg);
+    }
+}
+
+/* Estados de ícones por contexto */
+.card-status {
+    &--success .card-status__icon {
+        color: #059669;
+    }
+    
+    &--warning .card-status__icon {
+        color: #d97706;
+    }
+    
+    &--error .card-status__icon {
+        color: #dc2626;
+    }
+    
+    &--info .card-status__icon {
+        color: #0ea5e9;
+    }
+}
+
+/* Hover effects para ações */
+.card-action:hover:not(:disabled) {
+    .card-action__icon {
+        transform: translateX(2px);
+    }
 }
 
 // Responsividade
@@ -436,6 +524,22 @@ $header-colors: (
 
         .card-action {
             justify-content: center;
+        }
+    }
+    
+    .card-header__icon,
+    .card-title__icon {
+        width: var(--icon-size-sm);
+        height: var(--icon-size-sm);
+        font-size: var(--icon-size-sm);
+    }
+    
+    .card--large {
+        .card-header__icon,
+        .card-title__icon {
+            width: var(--icon-size-md);
+            height: var(--icon-size-md);
+            font-size: var(--icon-size-md);
         }
     }
 }
@@ -464,7 +568,6 @@ $header-colors: (
 }
 
 @keyframes cardPulse {
-
     0%,
     100% {
         opacity: 1;
@@ -498,52 +601,5 @@ $header-colors: (
     .card-subtitle,
     .card-content {
         animation: cardPulse 1.5s ease-in-out infinite;
-    }
-}
-
-// Utilitários para ícones
-.card-icon {
-    &--xs {
-        font-size: 0.75rem;
-    }
-
-    &--sm {
-        font-size: 0.875rem;
-    }
-
-    &--md {
-        font-size: 1rem;
-    }
-
-    &--lg {
-        font-size: 1.125rem;
-    }
-
-    &--xl {
-        font-size: 1.25rem;
-    }
-
-    &--muted {
-        color: $card-text-gray-500;
-    }
-
-    &--secondary {
-        color: $card-text-gray-600;
-    }
-
-    &--primary {
-        color: $primary-color;
-    }
-
-    &--danger {
-        color: $danger-color;
-    }
-
-    &--success {
-        color: #059669;
-    }
-
-    &--warning {
-        color: #d97706;
     }
 }

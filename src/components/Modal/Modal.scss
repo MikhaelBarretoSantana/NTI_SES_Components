@@ -1,0 +1,959 @@
+// ===== MODAL MASK & WRAPPER =====
+.ant-modal-mask {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.45);
+    filter: alpha(opacity=45);
+    backdrop-filter: blur(4px);
+    transition: all 0.3s;
+}
+
+.ant-modal-wrap {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow: auto;
+    outline: 0;
+    -webkit-overflow-scrolling: touch;
+    transition: all 0.3s;
+}
+
+.ant-modal-centered {
+    text-align: center;
+
+    &::before {
+        content: '';
+        display: inline-block;
+        height: 100%;
+        vertical-align: middle;
+        width: 0;
+    }
+}
+
+// ===== MAIN MODAL =====
+.ant-modal {
+    position: relative;
+    top: 100px;
+    width: auto;
+    max-width: calc(100vw - 32px);
+    margin: 0 auto;
+    padding-bottom: 24px;
+    pointer-events: none;
+    transition: all 0.3s ease-out;
+
+    // Size variants
+    &-small {
+        .ant-modal-content {
+            width: 416px;
+            max-width: 90vw;
+        }
+    }
+
+    &-large {
+        .ant-modal-content {
+            width: 880px;
+            max-width: 95vw;
+            min-height: 600px;
+        }
+    }
+
+    &-extra-large {
+        .ant-modal-content {
+            width: 1200px;
+            max-width: 98vw;
+            min-height: 700px;
+        }
+    }
+
+    // Enhanced features
+    &-draggable {
+        .ant-modal-header {
+            cursor: move;
+            user-select: none;
+
+            &:active {
+                cursor: grabbing;
+            }
+        }
+    }
+
+    &-dragging {
+        .ant-modal-content {
+            box-shadow:
+                0 6px 16px -8px rgba(0, 0, 0, 0.15),
+                0 9px 28px rgba(0, 0, 0, 0.12),
+                0 3px 6px -4px rgba(0, 0, 0, 0.18);
+        }
+    }
+
+    &-resizable {
+        .ant-modal-content {
+            resize: both;
+            overflow: auto;
+            min-width: 320px;
+            min-height: 200px;
+        }
+    }
+
+    &-fullscreen {
+        top: 0 !important;
+
+        .ant-modal-content {
+            height: 100vh;
+            border-radius: 0;
+            max-width: none;
+            max-height: none;
+        }
+    }
+
+    // Confirmation modal variants
+    &-confirm {
+        .ant-modal-header {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .ant-modal-body {
+            padding-top: 8px;
+        }
+    }
+
+    &-confirm-info .ant-modal-confirm-icon {
+        color: #1890ff;
+    }
+
+    &-confirm-success .ant-modal-confirm-icon {
+        color: #52c41a;
+    }
+
+    &-confirm-error .ant-modal-confirm-icon {
+        color: #ff4d4f;
+    }
+
+    &-confirm-warning .ant-modal-confirm-icon {
+        color: #faad14;
+    }
+
+    &-confirm-confirm .ant-modal-confirm-icon {
+        color: #faad14;
+    }
+}
+
+.ant-modal-centered .ant-modal {
+    display: inline-block;
+    padding-bottom: 0;
+    text-align: left;
+    top: 0;
+    vertical-align: middle;
+}
+
+// ===== MODAL CONTENT =====
+.ant-modal-content {
+    position: relative;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 0;
+    border-radius: 6px;
+    box-shadow:
+        0 3px 6px -4px rgba(0, 0, 0, 0.12),
+        0 6px 16px 0 rgba(0, 0, 0, 0.08),
+        0 9px 28px 8px rgba(0, 0, 0, 0.05);
+    pointer-events: auto;
+    max-width: 520px;
+    width: 520px;
+    transition: all 0.3s ease;
+}
+
+// ===== MODAL HEADER =====
+.ant-modal-header {
+    padding: 16px 24px;
+    color: rgba(0, 0, 0, 0.85);
+    background: #fff;
+    border-bottom: 1px solid #f0f0f0;
+    border-radius: 6px 6px 0 0;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &-content {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        flex: 1;
+        min-width: 0;
+    }
+}
+
+.ant-modal-title {
+    margin: 0;
+    color: rgba(0, 0, 0, 0.85);
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 22px;
+    word-wrap: break-word;
+    flex: 1;
+}
+
+// ===== CLOSE CONTROLS =====
+.ant-modal-close-group {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.ant-modal-close,
+.ant-modal-fullscreen {
+    padding: 0;
+    color: rgba(0, 0, 0, 0.45);
+    font-weight: 700;
+    line-height: 1;
+    text-decoration: none;
+    background: transparent;
+    border: 0;
+    outline: 0;
+    cursor: pointer;
+    transition: all 0.3s;
+    border-radius: 4px;
+
+    &:hover {
+        color: rgba(0, 0, 0, 0.75);
+        background-color: rgba(0, 0, 0, 0.06);
+    }
+
+    &:focus {
+        outline: 2px solid #1890ff;
+        outline-offset: 2px;
+    }
+}
+
+.ant-modal-close-x,
+.ant-modal-fullscreen {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    font-size: 14px;
+    font-style: normal;
+    text-align: center;
+    text-transform: none;
+    text-rendering: auto;
+}
+
+.ant-modal-close-icon {
+    color: rgba(0, 0, 0, 0.45);
+    font-size: 14px;
+    transition: color 0.3s;
+}
+
+// ===== CONFIRMATION ICON =====
+.ant-modal-confirm-icon {
+    margin-right: 8px;
+    font-size: 16px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+}
+
+.ant-modal-confirm-content {
+    margin-bottom: 16px;
+    font-size: 14px;
+    line-height: 1.5715;
+    color: rgba(0, 0, 0, 0.85);
+}
+
+// ===== MODAL BODY =====
+.ant-modal-body {
+    padding: 24px;
+    font-size: 14px;
+    line-height: 1.5715;
+    word-wrap: break-word;
+    color: rgba(0, 0, 0, 0.65);
+}
+
+// ===== LOADING CONTENT =====
+.ant-modal-loading-content {
+    text-align: center;
+    padding: 48px 24px;
+}
+
+.ant-modal-loading-tip {
+    margin-top: 16px;
+    color: rgba(0, 0, 0, 0.65);
+    font-size: 14px;
+}
+
+// ===== MODAL FOOTER =====
+.ant-modal-footer {
+    padding: 10px 16px;
+    text-align: right;
+    background: transparent;
+    border-top: 1px solid #f0f0f0;
+    border-radius: 0 0 6px 6px;
+
+    .ant-btn+.ant-btn:not(.ant-dropdown-trigger) {
+        margin-left: 8px;
+    }
+}
+
+// ===== RESIZE HANDLE =====
+.ant-modal-resize-handle {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 20px;
+    height: 20px;
+    cursor: se-resize;
+    background: linear-gradient(-45deg, transparent 40%, rgba(0, 0, 0, 0.1) 50%, transparent 60%);
+    background-size: 6px 6px;
+
+    &:hover {
+        background: linear-gradient(-45deg, transparent 40%, rgba(0, 0, 0, 0.2) 50%, transparent 60%);
+        background-size: 6px 6px;
+    }
+}
+
+// ===== BUTTONS =====
+.ant-btn {
+    position: relative;
+    display: inline-block;
+    font-weight: 400;
+    white-space: nowrap;
+    text-align: center;
+    background-image: none;
+    border: 1px solid transparent;
+    box-shadow: 0 2px 0 rgba(0, 0, 0, 0.015);
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+    user-select: none;
+    touch-action: manipulation;
+    height: 32px;
+    padding: 4px 15px;
+    font-size: 14px;
+    border-radius: 6px;
+    color: rgba(0, 0, 0, 0.85);
+    background: #fff;
+    border-color: #d9d9d9;
+    text-decoration: none;
+    outline: none;
+    line-height: 1.5715;
+
+    >span {
+        display: inline-block;
+    }
+
+    &:focus,
+    &:hover {
+        color: #40a9ff;
+        background: #fff;
+        border-color: #40a9ff;
+        text-decoration: none;
+    }
+
+    &:focus {
+        outline: 0;
+        box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
+    }
+
+    &:active {
+        color: #096dd9;
+        background: #fff;
+        border-color: #096dd9;
+    }
+
+    &[disabled] {
+        color: rgba(0, 0, 0, 0.25);
+        background: #f5f5f5;
+        border-color: #d9d9d9;
+        text-shadow: none;
+        box-shadow: none;
+        cursor: not-allowed;
+
+        &:hover,
+        &:focus,
+        &:active {
+            color: rgba(0, 0, 0, 0.25);
+            background: #f5f5f5;
+            border-color: #d9d9d9;
+            text-shadow: none;
+            box-shadow: none;
+        }
+    }
+
+    // Button sizes
+    &-sm {
+        height: 24px;
+        padding: 0px 7px;
+        font-size: 14px;
+        border-radius: 4px;
+    }
+
+    &-lg {
+        height: 40px;
+        padding: 6.4px 15px;
+        font-size: 16px;
+        border-radius: 6px;
+    }
+}
+
+// ===== BUTTON VARIANTS =====
+.ant-btn-primary {
+    color: #fff;
+    background: #1890ff;
+    border-color: #1890ff;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.12);
+    box-shadow: 0 2px 0 rgba(0, 0, 0, 0.045);
+
+    &:focus,
+    &:hover {
+        color: #fff;
+        background: #40a9ff;
+        border-color: #40a9ff;
+    }
+
+    &:focus {
+        box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
+    }
+
+    &:active {
+        color: #fff;
+        background: #096dd9;
+        border-color: #096dd9;
+    }
+
+    &[disabled] {
+        color: rgba(255, 255, 255, 0.25);
+        background: #f5f5f5;
+        border-color: #d9d9d9;
+        text-shadow: none;
+        box-shadow: none;
+
+        &:hover,
+        &:focus,
+        &:active {
+            color: rgba(255, 255, 255, 0.25);
+            background: #f5f5f5;
+            border-color: #d9d9d9;
+            text-shadow: none;
+            box-shadow: none;
+        }
+    }
+}
+
+.ant-btn-danger {
+    color: #fff;
+    background: #ff4d4f;
+    border-color: #ff4d4f;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.12);
+    box-shadow: 0 2px 0 rgba(0, 0, 0, 0.045);
+
+    &:focus,
+    &:hover {
+        color: #fff;
+        background: #ff7875;
+        border-color: #ff7875;
+    }
+
+    &:focus {
+        box-shadow: 0 0 0 2px rgba(255, 77, 79, 0.2);
+    }
+
+    &:active {
+        color: #fff;
+        background: #d9363e;
+        border-color: #d9363e;
+    }
+
+    &[disabled] {
+        color: rgba(255, 255, 255, 0.25);
+        background: #f5f5f5;
+        border-color: #d9d9d9;
+        text-shadow: none;
+        box-shadow: none;
+
+        &:hover,
+        &:focus,
+        &:active {
+            color: rgba(255, 255, 255, 0.25);
+            background: #f5f5f5;
+            border-color: #d9d9d9;
+            text-shadow: none;
+            box-shadow: none;
+        }
+    }
+}
+
+.ant-btn-dashed {
+    color: rgba(0, 0, 0, 0.85);
+    background: #fff;
+    border-color: #d9d9d9;
+    border-style: dashed;
+
+    &:focus,
+    &:hover {
+        color: #40a9ff;
+        background: #fff;
+        border-color: #40a9ff;
+    }
+
+    &:focus {
+        box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
+    }
+
+    &:active {
+        color: #096dd9;
+        background: #fff;
+        border-color: #096dd9;
+    }
+}
+
+.ant-btn-text {
+    color: rgba(0, 0, 0, 0.85);
+    background: transparent;
+    border-color: transparent;
+    box-shadow: none;
+
+    &:focus,
+    &:hover {
+        color: #40a9ff;
+        background: rgba(0, 0, 0, 0.018);
+        border-color: transparent;
+    }
+
+    &:active {
+        color: #096dd9;
+        background: rgba(0, 0, 0, 0.028);
+        border-color: transparent;
+    }
+
+    &[disabled] {
+        color: rgba(0, 0, 0, 0.25);
+        background: transparent;
+        border-color: transparent;
+        box-shadow: none;
+
+        &:hover,
+        &:focus,
+        &:active {
+            color: rgba(0, 0, 0, 0.25);
+            background: transparent;
+            border-color: transparent;
+            box-shadow: none;
+        }
+    }
+}
+
+.ant-btn-link {
+    color: #1890ff;
+    background: transparent;
+    border-color: transparent;
+    box-shadow: none;
+
+    &:focus,
+    &:hover {
+        color: #40a9ff;
+        background: transparent;
+        border-color: transparent;
+    }
+
+    &:active {
+        color: #096dd9;
+        background: transparent;
+        border-color: transparent;
+    }
+
+    &[disabled] {
+        color: rgba(0, 0, 0, 0.25);
+        background: transparent;
+        border-color: transparent;
+        box-shadow: none;
+
+        &:hover,
+        &:focus,
+        &:active {
+            color: rgba(0, 0, 0, 0.25);
+            background: transparent;
+            border-color: transparent;
+            box-shadow: none;
+        }
+    }
+}
+
+// Ghost button variants
+.ant-btn-ghost {
+    color: #fff;
+    background: transparent;
+    border-color: #fff;
+
+    &:focus,
+    &:hover {
+        color: rgba(255, 255, 255, 0.8);
+        background: transparent;
+        border-color: rgba(255, 255, 255, 0.8);
+    }
+
+    &:active {
+        color: rgba(255, 255, 255, 0.65);
+        background: transparent;
+        border-color: rgba(255, 255, 255, 0.65);
+    }
+}
+
+// Loading icon for buttons
+.ant-btn-loading-icon {
+    margin-right: 8px;
+    pointer-events: none;
+}
+
+// ===== SPIN COMPONENT =====
+.ant-spin {
+    color: #1890ff;
+    vertical-align: middle;
+    text-align: center;
+    opacity: 1;
+    position: relative;
+    display: inline-block;
+
+    &-lg {
+        .ant-spin-dot {
+            font-size: 32px;
+        }
+
+        .ant-spin-dot-item {
+            width: 14px;
+            height: 14px;
+        }
+    }
+
+    &-sm {
+        .ant-spin-dot {
+            font-size: 14px;
+        }
+
+        .ant-spin-dot-item {
+            width: 6px;
+            height: 6px;
+        }
+    }
+}
+
+.ant-spin-spinning {
+    position: static;
+    display: inline-block;
+}
+
+.ant-spin-dot {
+    position: relative;
+    display: inline-block;
+    font-size: 20px;
+    width: 1em;
+    height: 1em;
+}
+
+.ant-spin-dot-item {
+    position: absolute;
+    display: block;
+    width: 9px;
+    height: 9px;
+    background-color: #1890ff;
+    border-radius: 100%;
+    transform: scale(0.75);
+    transform-origin: 50% 50%;
+    opacity: 0.3;
+    animation: antSpinMove 1s infinite linear alternate;
+}
+
+.ant-spin-dot-item:nth-child(1) {
+    top: 0;
+    left: 0;
+}
+
+.ant-spin-dot-item:nth-child(2) {
+    top: 0;
+    right: 0;
+    animation-delay: 0.4s;
+}
+
+.ant-spin-dot-item:nth-child(3) {
+    right: 0;
+    bottom: 0;
+    animation-delay: 0.8s;
+}
+
+.ant-spin-dot-item:nth-child(4) {
+    bottom: 0;
+    left: 0;
+    animation-delay: 1.2s;
+}
+
+// Button loading spinner (smaller)
+.ant-btn .ant-spin-dot {
+    font-size: 14px;
+}
+
+.ant-btn .ant-spin-dot-item {
+    width: 6px;
+    height: 6px;
+    background-color: currentColor;
+}
+
+// ===== ANIMATIONS =====
+@keyframes antSpinMove {
+    to {
+        opacity: 1;
+    }
+}
+
+// Modal animations
+.ant-modal {
+    animation: ant-modal-appear 0.2s;
+}
+
+.ant-modal-fade {
+    animation: ant-modal-fade-appear 0.3s ease-out;
+}
+
+.ant-modal-slide-up {
+    animation: ant-modal-slide-up-appear 0.3s ease-out;
+}
+
+.ant-modal-slide-down {
+    animation: ant-modal-slide-down-appear 0.3s ease-out;
+}
+
+.ant-modal-slide-left {
+    animation: ant-modal-slide-left-appear 0.3s ease-out;
+}
+
+.ant-modal-slide-right {
+    animation: ant-modal-slide-right-appear 0.3s ease-out;
+}
+
+@keyframes ant-modal-appear {
+    0% {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes ant-modal-fade-appear {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes ant-modal-slide-up-appear {
+    0% {
+        opacity: 0;
+        transform: translateY(100px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes ant-modal-slide-down-appear {
+    0% {
+        opacity: 0;
+        transform: translateY(-100px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes ant-modal-slide-left-appear {
+    0% {
+        opacity: 0;
+        transform: translateX(100px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes ant-modal-slide-right-appear {
+    0% {
+        opacity: 0;
+        transform: translateX(-100px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+// ===== RESPONSIVE DESIGN =====
+@media (max-width: 767px) {
+    .ant-modal {
+        max-width: calc(100vw - 16px);
+        margin: 8px auto;
+        top: 0;
+    }
+
+    .ant-modal-content {
+        width: auto;
+        max-width: none;
+    }
+
+    .ant-modal-small .ant-modal-content,
+    .ant-modal-large .ant-modal-content,
+    .ant-modal-extra-large .ant-modal-content {
+        width: auto;
+        max-width: none;
+        min-height: auto;
+    }
+
+    .ant-modal-header {
+        padding: 16px 16px;
+    }
+
+    .ant-modal-body {
+        padding: 16px;
+    }
+
+    .ant-modal-footer {
+        padding: 8px 12px;
+
+        .ant-btn {
+            width: 100%;
+            margin: 4px 0;
+
+            +.ant-btn {
+                margin-left: 0;
+            }
+        }
+    }
+}
+
+@media (max-width: 480px) {
+    .ant-modal-wrap {
+        padding: 8px;
+    }
+
+    .ant-modal {
+        top: 0;
+        margin: 0;
+    }
+
+    .ant-modal-content {
+        border-radius: 8px;
+    }
+}
+
+@media (max-height: 640px) {
+    .ant-modal {
+        top: 24px;
+    }
+}
+
+// ===== ACCESSIBILITY =====
+@media (prefers-contrast: high) {
+    .ant-modal-content {
+        border: 2px solid;
+    }
+
+    .ant-btn {
+        border-width: 2px;
+    }
+
+    .ant-modal-mask {
+        background-color: rgba(0, 0, 0, 0.8);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .ant-modal,
+    .ant-spin-dot-item,
+    .ant-btn,
+    .ant-modal-mask,
+    .ant-modal-wrap {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+
+// ===== DARK THEME SUPPORT =====
+@media (prefers-color-scheme: dark) {
+    .ant-modal-content {
+        background-color: #1f1f1f;
+        color: #fff;
+    }
+
+    .ant-modal-header {
+        background: #1f1f1f;
+        border-bottom-color: #434343;
+    }
+
+    .ant-modal-footer {
+        border-top-color: #434343;
+    }
+
+    .ant-modal-title {
+        color: #fff;
+    }
+
+    .ant-modal-close-icon {
+        color: rgba(255, 255, 255, 0.65);
+    }
+
+    .ant-modal-body {
+        color: rgba(255, 255, 255, 0.85);
+    }
+
+    .ant-modal-confirm-content {
+        color: rgba(255, 255, 255, 0.85);
+    }
+
+    .ant-btn-default {
+        background: #1f1f1f;
+        border-color: #434343;
+        color: #fff;
+
+        &:hover {
+            border-color: #40a9ff;
+            color: #40a9ff;
+        }
+    }
+
+    .ant-modal-mask {
+        background-color: rgba(0, 0, 0, 0.65);
+    }
+}
+
+// ===== PRINT STYLES =====
+@media print {
+
+    .ant-modal-mask,
+    .ant-modal-wrap {
+        display: none !important;
+    }
+}

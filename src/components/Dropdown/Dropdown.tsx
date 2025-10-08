@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { DropdownProps, DropdownItem } from './Dropdown.types';
 import './Dropdown.scss';
@@ -11,6 +11,7 @@ export const Dropdown: React.FC<DropdownProps> = ({
     // Configuração
     trigger = 'click',
     placement = 'bottom-start',
+    variant = 'default', // Nova prop
     disabled = false,
 
     // Aparência
@@ -55,6 +56,34 @@ export const Dropdown: React.FC<DropdownProps> = ({
 
     // Triggers em array
     const triggers = Array.isArray(trigger) ? trigger : [trigger];
+
+    // Processar itens baseado no variant
+    const processedItems = useMemo(() => {
+        if (variant !== 'divided') return items;
+
+        const result: DropdownItem[] = [];
+        
+        items.forEach((item, index) => {
+            // Adiciona o item
+            result.push(item);
+            
+            // Se não for o último item e não for um divider/header, adiciona divider
+            if (
+                index < items.length - 1 && 
+                item.type !== 'divider' && 
+                item.type !== 'header' &&
+                items[index + 1].type !== 'divider' &&
+                items[index + 1].type !== 'header'
+            ) {
+                result.push({
+                    key: `auto-divider-${index}`,
+                    type: 'divider'
+                });
+            }
+        });
+        
+        return result;
+    }, [items, variant]);
 
     // Calcular posição do dropdown
     const calculatePosition = useCallback(() => {
@@ -166,7 +195,7 @@ export const Dropdown: React.FC<DropdownProps> = ({
     const handleItemClick = useCallback((item: DropdownItem) => {
         if (item.disabled) return;
 
-        if (item.type === 'item') {
+        if (item.type === 'item' || !item.type) {
             // Executar ação do item
             item.onClick?.();
             onSelect?.(item);
@@ -270,6 +299,7 @@ export const Dropdown: React.FC<DropdownProps> = ({
     // Classes CSS
     const dropdownClasses = [
         'ui-dropdown',
+        `ui-dropdown--${variant}`, // Nova classe de variant
         currentlyOpen && 'ui-dropdown--open',
         disabled && 'ui-dropdown--disabled',
         className
@@ -321,7 +351,7 @@ export const Dropdown: React.FC<DropdownProps> = ({
 
                             {/* Items */}
                             <div className="ui-dropdown__items">
-                                {items.map((item, index) => {
+                                {processedItems.map((item, index) => {
                                     if (item.type === 'divider') {
                                         return (
                                             <div

@@ -16,6 +16,7 @@ export interface DropdownItem {
 
 export type DropdownTrigger = 'click' | 'hover' | 'contextMenu';
 export type DropdownPlacement = 'bottom-start' | 'bottom-end' | 'top-start' | 'top-end' | 'left' | 'right';
+export type DropdownVariant = 'default' | 'divided'; // Nova prop variant
 
 export interface DropdownProps {
     // Conteúdo
@@ -25,6 +26,7 @@ export interface DropdownProps {
     // Configuração
     trigger?: DropdownTrigger | DropdownTrigger[];
     placement?: DropdownPlacement;
+    variant?: DropdownVariant; // Nova prop
     disabled?: boolean;
 
     // Aparência

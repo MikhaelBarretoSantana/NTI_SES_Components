@@ -1,0 +1,44 @@
+:root {
+    --icon-size-xs: 8px;   // Extra small (raramente usado)
+    --icon-size-sm: 16px;  // Small - inputs, botões pequenos
+    --icon-size-md: 24px;  // Medium - padrão geral
+    --icon-size-lg: 32px;  // Large - elementos de destaque
+    --icon-size-xl: 40px;  // Extra large - títulos principais
+}
+
+.ui-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    
+    &--xs {
+        width: var(--icon-size-xs);
+        height: var(--icon-size-xs);
+        font-size: var(--icon-size-xs);
+    }
+    
+    &--sm {
+        width: var(--icon-size-sm);
+        height: var(--icon-size-sm);
+        font-size: var(--icon-size-sm);
+    }
+    
+    &--md {
+        width: var(--icon-size-md);
+        height: var(--icon-size-md);
+        font-size: var(--icon-size-md);
+    }
+    
+    &--lg {
+        width: var(--icon-size-lg);
+        height: var(--icon-size-lg);
+        font-size: var(--icon-size-lg);
+    }
+    
+    &--xl {
+        width: var(--icon-size-xl);
+        height: var(--icon-size-xl);
+        font-size: var(--icon-size-xl);
+    }
+}

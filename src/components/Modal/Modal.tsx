@@ -53,7 +53,7 @@ const CONFIRM_ICONS = {
 
 let globalZIndex = 1000;
 
-const Modal = forwardRef<ModalComponentRef, ModalProps>(({
+export const Modal = forwardRef<ModalComponentRef, ModalProps>(({
     // Content
     title,
     children,
@@ -639,5 +639,3 @@ const Modal = forwardRef<ModalComponentRef, ModalProps>(({
 });
 
 Modal.displayName = 'Modal';
-
-export default Modal;

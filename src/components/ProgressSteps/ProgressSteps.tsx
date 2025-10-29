@@ -23,10 +23,16 @@ const ProgressSteps: React.FC<ProgressStepsProps> = ({
     height,
     showDescription = false,
     allowStepNavigation = false,
+    completedColors,
 }) => {
     const calculateProgress = useMemo(() => {
         if (steps.length <= 1) return 0;
-        return ((currentStep - 1) / (steps.length - 1)) * 100;
+        const progress = ((currentStep - 1) / (steps.length - 1)) * 100;
+        return Math.min(progress, 100);
+    }, [currentStep, steps.length]);
+
+    const isAllCompleted = useMemo(() => {
+        return currentStep > steps.length;
     }, [currentStep, steps.length]);
 
     const handleStepClick = (stepId: number) => {
@@ -50,15 +56,18 @@ const ProgressSteps: React.FC<ProgressStepsProps> = ({
     };
 
     const containerStyle = useMemo(() => {
+        // Usa as cores de conclusão se todos os passos estiverem concluídos
+        const activeColors = isAllCompleted && completedColors ? completedColors : colors;
+
         const style: React.CSSProperties = {
             '--progress-width': `${calculateProgress}%`,
-            ...(colors?.primary && { '--color-primary': colors.primary }),
-            ...(colors?.secondary && { '--color-secondary': colors.secondary }),
-            ...(colors?.completed && { '--color-completed': colors.completed }),
-            ...(colors?.inactive && { '--color-inactive': colors.inactive }),
-            ...(colors?.text && { '--color-text': colors.text }),
-            ...(colors?.inactiveText && { '--color-inactive-text': colors.inactiveText }),
-            ...(colors?.background && { '--color-background': colors.background }),
+            ...(activeColors?.primary && { '--color-primary': activeColors.primary }),
+            ...(activeColors?.secondary && { '--color-secondary': activeColors.secondary }),
+            ...(activeColors?.completed && { '--color-completed': activeColors.completed }),
+            ...(activeColors?.inactive && { '--color-inactive': activeColors.inactive }),
+            ...(activeColors?.text && { '--color-text': activeColors.text }),
+            ...(activeColors?.inactiveText && { '--color-inactive-text': activeColors.inactiveText }),
+            ...(activeColors?.background && { '--color-background': activeColors.background }),
         } as React.CSSProperties;
 
         if (orientation === 'horizontal' && width) {
@@ -69,7 +78,7 @@ const ProgressSteps: React.FC<ProgressStepsProps> = ({
         }
 
         return style;
-    }, [calculateProgress, colors, orientation, width, height]);
+    }, [calculateProgress, colors, completedColors, orientation, width, height, isAllCompleted]);
 
     const containerClasses = [
         'progress-steps-container',
@@ -79,6 +88,7 @@ const ProgressSteps: React.FC<ProgressStepsProps> = ({
         `progress-steps-label-${labelPosition}`,
         animated && 'progress-steps-animated',
         !showConnector && 'progress-steps-no-connector',
+        isAllCompleted && 'progress-steps-all-completed',
         className,
     ]
         .filter(Boolean)
@@ -116,9 +126,6 @@ const ProgressSteps: React.FC<ProgressStepsProps> = ({
                                     ) : (
                                         showNumbers && <span className="step-number">{step.id}</span>
                                     )}
-                                    {/* {status === 'current' && !step.icon && showNumbers && (
-                                        <span className="step-number">{step.id}</span>
-                                    )} */}
                                 </>
                             )}
                         </div>

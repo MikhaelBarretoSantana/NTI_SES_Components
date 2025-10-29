@@ -87,6 +87,59 @@
         .progress-line:before {
             @include transition(all);
         }
+
+        &.progress-steps-all-completed .step-circle {
+            animation: pulse-success 1.5s ease-in-out;
+        }
+    }
+
+    // Estado de conclusão completa
+    &.progress-steps-all-completed {
+        .progress-line:before {
+            background: linear-gradient(90deg, var(--color-completed) 0%, #22c55e 50%, var(--color-completed) 100%);
+            background-size: 200% 200%;
+            animation: gradient-shift 3s ease-in-out infinite;
+        }
+
+        &.progress-steps-vertical .progress-line:before {
+            background: linear-gradient(180deg, var(--color-completed) 0%, #22c55e 50%, var(--color-completed) 100%);
+            background-size: 200% 200%;
+        }
+
+        .step-circle {
+            box-shadow: 0 0 15px rgba(16, 185, 129, 0.4);
+        }
+
+        .step-label {
+            color: var(--color-completed);
+            font-weight: 600;
+        }
+
+        .step-description {
+            color: var(--color-text);
+            opacity: 0.8;
+        }
+    }
+}
+
+// Animações para conclusão completa
+@keyframes pulse-success {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 0 15px rgba(16, 185, 129, 0.4);
+    }
+    50% {
+        transform: scale(1.05);
+        box-shadow: 0 0 25px rgba(16, 185, 129, 0.6);
+    }
+}
+
+@keyframes gradient-shift {
+    0%, 100% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
     }
 }
 
@@ -365,6 +418,12 @@
             color: var(--color-inactive);
         }
     }
+
+    &.progress-steps-all-completed {
+        .step-circle {
+            border-width: 3px;
+        }
+    }
 }
 
 // Variant: Outlined
@@ -384,6 +443,13 @@
             border-color: var(--color-completed);
             background-color: var(--color-completed);
             color: white;
+        }
+    }
+
+    &.progress-steps-all-completed {
+        .step-circle {
+            border-width: 4px;
+            box-shadow: 0 0 15px rgba(16, 185, 129, 0.4);
         }
     }
 }
@@ -418,6 +484,21 @@
 
         &:before {
             background: linear-gradient(180deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+        }
+    }
+
+    &.progress-steps-all-completed {
+        .step-circle {
+            background: linear-gradient(135deg, var(--color-completed) 0%, #22c55e 100%);
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+        }
+
+        .progress-line:before {
+            background: linear-gradient(90deg, var(--color-completed) 0%, #22c55e 50%, var(--color-completed) 100%);
+        }
+
+        &.progress-steps-vertical .progress-line:before {
+            background: linear-gradient(180deg, var(--color-completed) 0%, #22c55e 50%, var(--color-completed) 100%);
         }
     }
 }

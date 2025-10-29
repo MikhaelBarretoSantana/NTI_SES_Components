@@ -42,6 +42,9 @@ export interface ProgressStepsProps {
     /** Custom color scheme */
     colors?: ProgressStepsColors;
 
+    /** Custom color scheme when all steps are completed */
+    completedColors?: ProgressStepsColors;
+
     /** Show checkmarks on completed steps */
     showCheckmarks?: boolean;
 

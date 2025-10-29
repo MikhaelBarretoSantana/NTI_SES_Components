@@ -659,3 +659,90 @@ export const OnboardingFlowCompleted: Story = {
         showNumbers: false,
     },
 };
+
+// Responsive examples
+export const ResponsiveExample: Story = {
+    args: {
+        currentStep: 2,
+        steps: defaultSteps,
+        showDescription: true,
+    },
+    parameters: {
+        docs: {
+            description: {
+                story: 'O componente é totalmente responsivo. Em telas menores, os textos se ajustam automaticamente e o componente pode ter scroll horizontal se necessário.',
+            },
+        },
+    },
+    render: (args) => (
+        <div style={{ width: '100%', maxWidth: '100vw', overflow: 'hidden' }}>
+            <ProgressSteps {...args} />
+        </div>
+    ),
+};
+
+export const ResponsiveManySteps: Story = {
+    args: {
+        currentStep: 4,
+        steps: [
+            { id: 1, label: 'Início', description: 'Primeiro passo' },
+            { id: 2, label: 'Informações', description: 'Dados pessoais' },
+            { id: 3, label: 'Documentos', description: 'Upload de arquivos' },
+            { id: 4, label: 'Endereço', description: 'Localização' },
+            { id: 5, label: 'Pagamento', description: 'Forma de pagamento' },
+            { id: 6, label: 'Revisão', description: 'Conferir dados' },
+            { id: 7, label: 'Finalizar', description: 'Concluir processo' },
+        ],
+        showDescription: true,
+        variant: 'filled',
+    },
+    parameters: {
+        docs: {
+            description: {
+                story: 'Com muitos steps, o componente mantém a legibilidade e adiciona scroll horizontal quando necessário.',
+            },
+        },
+    },
+    render: (args) => (
+        <div style={{ width: '100%', maxWidth: '100vw', overflow: 'hidden' }}>
+            <ProgressSteps {...args} />
+        </div>
+    ),
+};
+
+export const ResponsiveAllSizes: Story = {
+    args: {
+        currentStep: 2,
+        steps: defaultSteps,
+        showDescription: true,
+    },
+    parameters: {
+        docs: {
+            description: {
+                story: 'Demonstração de como os diferentes tamanhos se comportam de forma responsiva.',
+            },
+        },
+    },
+    render: (args) => (
+        <div style={{ 
+            display: 'flex', 
+            flexDirection: 'column', 
+            gap: '40px',
+            width: '100%',
+            maxWidth: '100vw',
+        }}>
+            <div>
+                <h3 style={{ marginBottom: '10px', fontSize: '14px', fontWeight: '600' }}>Small</h3>
+                <ProgressSteps {...args} size="small" />
+            </div>
+            <div>
+                <h3 style={{ marginBottom: '10px', fontSize: '14px', fontWeight: '600' }}>Medium</h3>
+                <ProgressSteps {...args} size="medium" />
+            </div>
+            <div>
+                <h3 style={{ marginBottom: '10px', fontSize: '14px', fontWeight: '600' }}>Large</h3>
+                <ProgressSteps {...args} size="large" />
+            </div>
+        </div>
+    ),
+};

@@ -26,6 +26,8 @@ export { Pagination } from "./components/Pagination/Pagination";
 export { Modal } from "./components/Modal/Modal";
 export { DateRange } from "./components/DateRange/DateRange";
 
+export { ProgressSteps } from "./components/ProgressSteps/ProgressSteps";
+
 export type { ButtonProps } from './components/Button/Button.types';
 export type { InputProps, InputType, InputVariant } from './components/Input/Input.types';
 export type { TypographyProps } from './components/Typography/Typography.types';
@@ -86,3 +88,13 @@ export type {
     ModalStyles,
     ModalTheme
 } from "./components/Modal/Modal.types"
+
+export type {
+    Step,
+    ProgressStepsColors,
+    ProgressStepsProps,
+    ProgressStepsVariant,
+    ProgressStepsSize,
+    ProgressStepsOrientation,
+    ProgressStepsLabelPosition,
+} from "./components/ProgressSteps/ProgressSteps.types"

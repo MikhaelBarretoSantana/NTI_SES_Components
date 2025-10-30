@@ -4,7 +4,7 @@ import { faCheck } from '@fortawesome/free-solid-svg-icons';
 import { ProgressStepsProps } from './ProgressSteps.types';
 import './ProgressSteps.scss';
 
-const ProgressSteps: React.FC<ProgressStepsProps> = ({
+export const ProgressSteps: React.FC<ProgressStepsProps> = ({
     currentStep,
     steps,
     variant = 'default',
@@ -144,5 +144,3 @@ const ProgressSteps: React.FC<ProgressStepsProps> = ({
         </div>
     );
 };
-
-export default ProgressSteps;

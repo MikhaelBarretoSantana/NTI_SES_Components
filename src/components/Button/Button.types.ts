@@ -14,7 +14,7 @@ export interface ButtonProps {
 }
 
 // Enum Para definir Lado do Icone
-enum IconSide {
+export enum IconSide {
     "Left",
     "Right"
 }

@@ -23,12 +23,12 @@ export {
 export { Header } from "./components/Header/Header";
 export { Footer } from "./components/Footer/Footer";
 export { Pagination } from "./components/Pagination/Pagination";
-export { Modal } from "./components/Modal/Modal";
+export { default as Modal } from "./components/Modal/Modal";
 export { DateRange } from "./components/DateRange/DateRange";
 
 export { ProgressSteps } from "./components/ProgressSteps/ProgressSteps";
 
-export type { ButtonProps } from './components/Button/Button.types';
+export type { ButtonProps, IconSide } from './components/Button/Button.types';
 export type { InputProps, InputType, InputVariant } from './components/Input/Input.types';
 export type { TypographyProps } from './components/Typography/Typography.types';
 export type { SelectProps, SelectOption, SelectVariant } from './components/Select/Select.types';

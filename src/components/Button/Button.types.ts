@@ -13,8 +13,9 @@ export interface ButtonProps {
     className?: string;
 }
 
-// Enum Para definir Lado do Icone
-export enum IconSide {
-    "Left",
-    "Right"
-}
+export const IconSide = {
+    LEFT: 'left',
+    RIGHT: 'right',
+} as const;
+
+export type IconSide = typeof IconSide[keyof typeof IconSide];

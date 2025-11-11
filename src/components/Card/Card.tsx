@@ -12,9 +12,6 @@ import {
 } from './Card.types';
 import './Card.scss';
 
-/**
- * Componente Card principal
- */
 const Card: React.FC<CardProps> = ({
     children,
     variant = 'default',
@@ -37,60 +34,49 @@ const Card: React.FC<CardProps> = ({
     style = {},
     ...props
 }) => {
-    // Constrói as classes CSS
     const getCardClasses = (): string => {
         const classes = ['card'];
 
-        // Variante
         classes.push(`card--${variant}`);
 
         // Tamanho
         classes.push(`card--${size}`);
 
-        // Modificadores
         if (hover) classes.push('card--hover');
         if (shadow && variant !== 'elevated') classes.push('card--shadow');
         if (padding) classes.push('card--padding');
         if (onClick) classes.push('card--clickable');
 
-        // Header colorido
         if (variant === 'header-colored' && headerColor) {
-            // Se for uma cor predefinida, adiciona a classe correspondente
             const predefinedColors = ['primary', 'secondary', 'success', 'warning', 'danger', 'info'];
             if (predefinedColors.includes(headerColor)) {
                 classes.push(`card--header-${headerColor}`);
             }
         }
 
-        // Borda pontilhada
         if (variant === 'dashed') {
             if (dashedColor) {
                 const predefinedColors = ['primary', 'secondary', 'success', 'warning', 'danger', 'info'];
                 if (predefinedColors.includes(dashedColor)) {
                     classes.push(`card--dashed-${dashedColor}`);
                 } else {
-                    // Cor customizada
                     classes.push('card--dashed-custom');
                 }
             }
             
-            // Largura da borda
             if (typeof dashedWidth === 'string' && dashedWidth !== 'normal') {
                 classes.push(`card--dashed-${dashedWidth}`);
             }
         }
 
-        // Classe customizada
         if (className) classes.push(className);
 
         return classes.join(' ');
     };
 
-    // Constrói o estilo customizado
     const getCardStyle = (): React.CSSProperties & Record<string, string | number> => {
         const cardStyle: React.CSSProperties & Record<string, string | number> = { ...style };
 
-        // Customizações de borda
         if (borderColor) {
             const predefinedColors = ['primary', 'secondary', 'success', 'warning', 'danger', 'info', 'gray'];
             if (predefinedColors.includes(borderColor)) {
@@ -112,36 +98,29 @@ const Card: React.FC<CardProps> = ({
             cardStyle.borderRadius = `${borderRadius}px`;
         }
 
-        // Customizações de sombra
         if (shadowColor) {
             const intensity = shadowIntensity ?? 100;
             cardStyle['--shadow-color'] = shadowColor;
             cardStyle['--shadow-intensity'] = `${intensity}%`;
         }
 
-        // Cor de fundo customizada
         if (backgroundColor) {
             cardStyle.backgroundColor = backgroundColor;
         }
 
-        // Para variant header-colored, define variáveis CSS customizadas
         if (variant === 'header-colored') {
             cardStyle['--header-height'] = `${headerHeight}px`;
             
-            // Se a cor não for predefinida, aplica como cor customizada
             if (headerColor && !['primary', 'secondary', 'success', 'warning', 'danger', 'info'].includes(headerColor)) {
                 cardStyle['--header-color'] = headerColor;
             }
         }
 
-        // Para variant dashed, define variáveis CSS customizadas
         if (variant === 'dashed') {
-            // Cor customizada
             if (dashedColor && !['primary', 'secondary', 'success', 'warning', 'danger', 'info'].includes(dashedColor)) {
                 cardStyle['--dashed-color'] = dashedColor;
             }
             
-            // Largura customizada (número)
             if (typeof dashedWidth === 'number') {
                 cardStyle['--dashed-width'] = `${dashedWidth}px`;
             }
@@ -150,7 +129,6 @@ const Card: React.FC<CardProps> = ({
         return cardStyle;
     };
 
-    // Funções auxiliares para mapear valores predefinidos
     const getBorderColorValue = (color: string): string => {
         const colorMap: Record<string, string> = {
             'primary': '#3b82f6',
@@ -194,9 +172,6 @@ const Card: React.FC<CardProps> = ({
     );
 };
 
-/**
- * Componente CardIcon - Ícone destacado para cards de feature
- */
 const CardIcon: React.FC<CardIconProps> = ({
     icon,
     variant = 'primary',
@@ -210,7 +185,6 @@ const CardIcon: React.FC<CardIconProps> = ({
         className
     ].filter(Boolean).join(' ');
 
-    // Usa variáveis CSS para aplicar cores customizadas
     const getIconStyle = (): React.CSSProperties & Record<string, string> => {
         const style: React.CSSProperties & Record<string, string> = {};
         
@@ -235,9 +209,6 @@ const CardIcon: React.FC<CardIconProps> = ({
     );
 };
 
-/**
- * Componente CardHeader
- */
 const CardHeader: React.FC<CardHeaderProps> = ({
     children,
     className = '',
@@ -275,9 +246,6 @@ const CardHeader: React.FC<CardHeaderProps> = ({
     );
 };
 
-/**
- * Componente CardTitle
- */
 const CardTitle: React.FC<CardTitleProps> = ({
     children,
     className = '',
@@ -315,36 +283,24 @@ const CardTitle: React.FC<CardTitleProps> = ({
     );
 };
 
-/**
- * Componente CardSubtitle
- */
 const CardSubtitle: React.FC<CardSubtitleProps> = ({ children, className = '' }) => (
     <p className={`card-subtitle ${className}`}>
         {children}
     </p>
 );
 
-/**
- * Componente CardContent
- */
 const CardContent: React.FC<CardContentProps> = ({ children, className = '' }) => (
     <div className={`card-content ${className}`}>
         {children}
     </div>
 );
 
-/**
- * Componente CardFooter
- */
 const CardFooter: React.FC<CardFooterProps> = ({ children, className = '' }) => (
     <div className={`card-footer ${className}`}>
         {children}
     </div>
 );
 
-/**
- * Componente CardAction - Botão/Link para uso em footers
- */
 const CardAction: React.FC<CardActionProps> = ({
     children,
     icon,
@@ -402,9 +358,6 @@ const CardAction: React.FC<CardActionProps> = ({
     );
 };
 
-/**
- * Componente CardStatus - Para exibir status com ícones
- */
 interface CardStatusProps {
     children: React.ReactNode;
     variant: 'success' | 'warning' | 'error' | 'info';
@@ -432,7 +385,6 @@ const CardStatus: React.FC<CardStatusProps> = ({
     );
 };
 
-// Exportações
 export {
     Card,
     CardIcon,

@@ -51,20 +51,39 @@ $icon-container-colors: (
     'info': #0ea5e9
 );
 
+// Cores de borda customizáveis
+$border-colors: (
+    'primary': #3b82f6,
+    'secondary': #6b7280,
+    'success': #059669,
+    'warning': #d97706,
+    'danger': #dc2626,
+    'info': #0ea5e9,
+    'gray': #e5e7eb
+);
+
 .card {
     border-radius: $card-border-radius;
     transition: $card-transition;
     position: relative;
     overflow: hidden;
+    
+    // Suporte a variáveis CSS para customizações
+    border-color: var(--border-color, currentColor);
+    border-width: var(--border-width, auto);
+    --shadow-color: transparent;
+    --shadow-intensity: 100%;
+    --border-color: transparent;
+    --border-width: auto;
 
     &--default {
         background-color: $card-bg-white;
-        border: 1px solid $card-border-gray-200;
+        border: var(--border-width, 1px) solid var(--border-color, #{$card-border-gray-200});
     }
 
     &--outlined {
         background-color: $card-bg-white;
-        border: 2px solid $card-border-gray-300;
+        border: var(--border-width, 2px) solid var(--border-color, #{$card-border-gray-300});
     }
 
     &--elevated {
@@ -85,7 +104,7 @@ $icon-container-colors: (
 
     &--feature {
         background-color: $card-bg-white;
-        border: 2px solid $card-border-gray-200;
+        border: var(--border-width, 2px) solid var(--border-color, #{$card-border-gray-200});
         display: flex;
         flex-direction: column;
         position: relative;

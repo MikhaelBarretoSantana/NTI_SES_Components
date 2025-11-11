@@ -580,3 +580,184 @@ export const Playground: Story = {
         }
     }
 };
+
+// Customizações avançadas - Bordas coloridas
+export const CustomBorders: Story = {
+    render: () => (
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '1.5rem' }}>
+            <Card variant="feature" hover borderColor="primary" borderWidth="thick">
+                <CardHeader>
+                    <CardIcon icon={faRocket} variant="primary" />
+                    <CardTitle>Borda Primária</CardTitle>
+                    <CardSubtitle>Card feature com borda customizada primária</CardSubtitle>
+                </CardHeader>
+                <CardFooter>
+                    <CardAction variant="primary">Acessar</CardAction>
+                </CardFooter>
+            </Card>
+
+            <Card variant="feature" hover borderColor="success" borderWidth={3}>
+                <CardHeader>
+                    <CardIcon icon={faCheck} variant="success" />
+                    <CardTitle>Borda Success</CardTitle>
+                    <CardSubtitle>Borda com cor success e largura 3px customizada</CardSubtitle>
+                </CardHeader>
+                <CardFooter>
+                    <CardAction variant="primary">Confirmar</CardAction>
+                </CardFooter>
+            </Card>
+
+            <Card variant="feature" hover borderColor="#8b5cf6" borderWidth={2}>
+                <CardHeader>
+                    <CardIcon icon={faDatabase} backgroundColor="#8b5cf6" />
+                    <CardTitle>Borda Customizada</CardTitle>
+                    <CardSubtitle>Borda com cor hex customizada</CardSubtitle>
+                </CardHeader>
+                <CardFooter>
+                    <CardAction variant="primary">Usar</CardAction>
+                </CardFooter>
+            </Card>
+
+            <Card variant="feature" hover borderColor="danger" borderWidth="thin">
+                <CardHeader>
+                    <CardIcon icon={faExclamationTriangle} variant="danger" />
+                    <CardTitle>Borda Danger</CardTitle>
+                    <CardSubtitle>Borda fina com cor danger</CardSubtitle>
+                </CardHeader>
+                <CardFooter>
+                    <CardAction variant="primary">Resolver</CardAction>
+                </CardFooter>
+            </Card>
+        </div>
+    ),
+    parameters: {
+        docs: {
+            description: {
+                story: 'Demonstração de cards feature com bordas coloridas e larguras customizáveis usando as props borderColor e borderWidth.'
+            }
+        }
+    }
+};
+
+// Customizações avançadas - Cores de fundo
+export const CustomBackgrounds: Story = {
+    render: () => (
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '1.5rem' }}>
+            <Card variant="default" hover backgroundColor="#f0f9ff" borderColor="primary">
+                <CardTitle icon={faInfo}>Fundo Azul Claro</CardTitle>
+                <CardContent>
+                    Card com fundo customizado e borda colorida
+                </CardContent>
+            </Card>
+
+            <Card variant="default" hover backgroundColor="#f0fdf4" borderColor="success">
+                <CardTitle icon={faCheck}>Fundo Verde Claro</CardTitle>
+                <CardContent>
+                    Card com paleta de cores tema sucesso
+                </CardContent>
+            </Card>
+
+            <Card variant="default" hover backgroundColor="#fef3c7" borderColor="warning">
+                <CardTitle icon={faExclamationTriangle}>Fundo Amarelo</CardTitle>
+                <CardContent>
+                    Card com tema de aviso ou atenção
+                </CardContent>
+            </Card>
+        </div>
+    ),
+    parameters: {
+        docs: {
+            description: {
+                story: 'Cards com cores de fundo customizadas para diferentes contextos e estados.'
+            }
+        }
+    }
+};
+
+// Customizações avançadas - Border Radius
+export const CustomBorderRadius: Story = {
+    render: () => (
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem' }}>
+            <Card variant="default" hover borderRadius={0} borderColor="primary" borderWidth={2}>
+                <CardTitle icon={faTag}>Sem Arredondamento</CardTitle>
+                <CardContent>Card com bordas totalmente quadradas</CardContent>
+            </Card>
+
+            <Card variant="default" hover borderRadius={8} borderColor="success" borderWidth={2}>
+                <CardTitle icon={faTag}>Pequeno Arredondamento</CardTitle>
+                <CardContent>Card com 8px de border-radius</CardContent>
+            </Card>
+
+            <Card variant="default" hover borderRadius={16} borderColor="warning" borderWidth={2}>
+                <CardTitle icon={faTag}>Médio Arredondamento</CardTitle>
+                <CardContent>Card com 16px de border-radius</CardContent>
+            </Card>
+
+            <Card variant="default" hover borderRadius={24} borderColor="info" borderWidth={2}>
+                <CardTitle icon={faTag}>Grande Arredondamento</CardTitle>
+                <CardContent>Card com 24px de border-radius</CardContent>
+            </Card>
+        </div>
+    ),
+    parameters: {
+        docs: {
+            description: {
+                story: 'Cards com diferentes valores de border-radius para diversos estilos de design.'
+            }
+        }
+    }
+};
+
+// Customizações avançadas - Combinações
+export const AdvancedCustomization: Story = {
+    render: () => (
+        <div style={{ display: 'flex', gap: '1.5rem', flexWrap: 'wrap' }}>
+            <Card 
+                variant="feature" 
+                hover 
+                size="medium"
+                borderColor="#ec4899"
+                borderWidth={2}
+                borderRadius={12}
+                backgroundColor="#fce7f3"
+                style={{ maxWidth: '320px' }}
+            >
+                <CardHeader>
+                    <CardIcon icon={faRocket} backgroundColor="#ec4899" />
+                    <CardTitle>Customização Completa</CardTitle>
+                    <CardSubtitle>Bordas, cores e espaçamento totalmente customizados</CardSubtitle>
+                </CardHeader>
+                <CardFooter>
+                    <CardAction variant="primary">Explorar</CardAction>
+                </CardFooter>
+            </Card>
+
+            <Card 
+                variant="feature" 
+                hover 
+                size="medium"
+                borderColor="#06b6d4"
+                borderWidth={3}
+                borderRadius={16}
+                backgroundColor="#ecf0ff"
+                style={{ maxWidth: '320px' }}
+            >
+                <CardHeader>
+                    <CardIcon icon={faDatabase} backgroundColor="#06b6d4" />
+                    <CardTitle>Design Premium</CardTitle>
+                    <CardSubtitle>Combinação de cores harmoniosa e moderna</CardSubtitle>
+                </CardHeader>
+                <CardFooter>
+                    <CardAction variant="primary">Descobrir</CardAction>
+                </CardFooter>
+            </Card>
+        </div>
+    ),
+    parameters: {
+        docs: {
+            description: {
+                story: 'Demonstração completa de todas as customizações disponíveis em um único card.'
+            }
+        }
+    }
+};

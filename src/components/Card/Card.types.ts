@@ -25,6 +25,25 @@ export type CardDashedColor =
 
 export type CardDashedWidth = 'thin' | 'normal' | 'thick' | number;
 
+export type CardBorderColor =
+    | 'primary'
+    | 'secondary'
+    | 'success'
+    | 'warning'
+    | 'danger'
+    | 'info'
+    | 'gray'
+    | string; // Permite cores customizadas (hex: #8b5cf6, rgb, rgba, etc)
+
+/**
+ * Tipo para largura da borda
+ * - 'thin': 1px
+ * - 'normal': 2px (padrão)
+ * - 'thick': 3px
+ * - number: valor em pixels (ex: 5)
+ */
+export type CardBorderWidth = 'thin' | 'normal' | 'thick' | number;
+
 export type CardIconVariant = 'primary' | 'secondary' | 'success' | 'warning' | 'danger' | 'info';
 
 export interface CardProps {
@@ -40,14 +59,37 @@ export interface CardProps {
     shadow?: boolean;
     /** Controla o padding interno */
     padding?: boolean;
+    
+    // Customizações de borda
+    /** Cor da borda do card (para todas as variantes) */
+    borderColor?: CardBorderColor;
+    /** Largura da borda do card em pixels ou preset */
+    borderWidth?: CardBorderWidth;
+    /** Raio da borda em pixels (border-radius) */
+    borderRadius?: number;
+    
+    // Customizações de sombra
+    /** Cor da sombra em rgba/hex */
+    shadowColor?: string;
+    /** Intensidade da sombra (0-100) */
+    shadowIntensity?: number;
+    
+    // Customizações de cor de fundo
+    /** Cor de fundo customizada */
+    backgroundColor?: string;
+    
+    // Header colorido
     /** Cor do header superior (apenas para variant header-colored) */
     headerColor?: CardHeaderColor;
     /** Altura do header colorido em pixels */
     headerHeight?: number;
+    
+    // Borda pontilhada
     /** Cor da borda pontilhada (apenas para variant dashed) */
     dashedColor?: CardDashedColor;
     /** Largura da borda pontilhada (apenas para variant dashed) */
     dashedWidth?: CardDashedWidth;
+    
     /** Classes CSS customizadas */
     className?: string;
     /** Handler para clique no card */

@@ -22,6 +22,12 @@ const Card: React.FC<CardProps> = ({
     hover = false,
     shadow = true,
     padding = true,
+    borderColor,
+    borderWidth,
+    borderRadius,
+    shadowColor,
+    shadowIntensity,
+    backgroundColor,
     headerColor,
     headerHeight = 4,
     dashedColor,
@@ -84,6 +90,40 @@ const Card: React.FC<CardProps> = ({
     const getCardStyle = (): React.CSSProperties & Record<string, string | number> => {
         const cardStyle: React.CSSProperties & Record<string, string | number> = { ...style };
 
+        // Customizações de borda
+        if (borderColor) {
+            const predefinedColors = ['primary', 'secondary', 'success', 'warning', 'danger', 'info', 'gray'];
+            if (predefinedColors.includes(borderColor)) {
+                cardStyle['--border-color'] = `var(--card-border-${borderColor}, ${getBorderColorValue(borderColor)})`;
+            } else {
+                cardStyle['--border-color'] = borderColor;
+            }
+        }
+
+        if (borderWidth) {
+            if (typeof borderWidth === 'number') {
+                cardStyle['--border-width'] = `${borderWidth}px`;
+            } else {
+                cardStyle['--border-width'] = getBorderWidthValue(borderWidth);
+            }
+        }
+
+        if (borderRadius) {
+            cardStyle.borderRadius = `${borderRadius}px`;
+        }
+
+        // Customizações de sombra
+        if (shadowColor) {
+            const intensity = shadowIntensity ?? 100;
+            cardStyle['--shadow-color'] = shadowColor;
+            cardStyle['--shadow-intensity'] = `${intensity}%`;
+        }
+
+        // Cor de fundo customizada
+        if (backgroundColor) {
+            cardStyle.backgroundColor = backgroundColor;
+        }
+
         // Para variant header-colored, define variáveis CSS customizadas
         if (variant === 'header-colored') {
             cardStyle['--header-height'] = `${headerHeight}px`;
@@ -108,6 +148,29 @@ const Card: React.FC<CardProps> = ({
         }
 
         return cardStyle;
+    };
+
+    // Funções auxiliares para mapear valores predefinidos
+    const getBorderColorValue = (color: string): string => {
+        const colorMap: Record<string, string> = {
+            'primary': '#3b82f6',
+            'secondary': '#6b7280',
+            'success': '#059669',
+            'warning': '#d97706',
+            'danger': '#dc2626',
+            'info': '#0ea5e9',
+            'gray': '#e5e7eb'
+        };
+        return colorMap[color] || color;
+    };
+
+    const getBorderWidthValue = (width: string): string => {
+        const widthMap: Record<string, string> = {
+            'thin': '1px',
+            'normal': '2px',
+            'thick': '3px'
+        };
+        return widthMap[width] || '2px';
     };
 
     return (

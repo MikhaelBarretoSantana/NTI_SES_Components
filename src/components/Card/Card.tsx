@@ -7,7 +7,8 @@ import {
     CardSubtitleProps,
     CardContentProps,
     CardFooterProps,
-    CardActionProps
+    CardActionProps,
+    CardIconProps
 } from './Card.types';
 import './Card.scss';
 
@@ -125,6 +126,39 @@ const Card: React.FC<CardProps> = ({
             {...props}
         >
             {children}
+        </div>
+    );
+};
+
+/**
+ * Componente CardIcon - Ícone destacado para cards de feature
+ */
+const CardIcon: React.FC<CardIconProps> = ({
+    icon,
+    variant = 'primary',
+    backgroundColor,
+    iconColor = '#ffffff',
+    className = ''
+}) => {
+    const iconClasses = [
+        'card-icon-container',
+        `card-icon-container--${variant}`,
+        className
+    ].filter(Boolean).join(' ');
+
+    const iconStyle: React.CSSProperties = {};
+    
+    if (backgroundColor) {
+        iconStyle.backgroundColor = backgroundColor;
+    }
+
+    return (
+        <div className={iconClasses} style={iconStyle}>
+            <FontAwesomeIcon 
+                icon={icon} 
+                className="card-icon-container__icon" 
+                style={{ color: iconColor }}
+            />
         </div>
     );
 };
@@ -329,6 +363,7 @@ const CardStatus: React.FC<CardStatusProps> = ({
 // Exportações
 export {
     Card,
+    CardIcon,
     CardHeader,
     CardTitle,
     CardSubtitle,
@@ -340,6 +375,7 @@ export {
 export default Card;
 export type {
     CardProps,
+    CardIconProps,
     CardHeaderProps,
     CardTitleProps,
     CardSubtitleProps,

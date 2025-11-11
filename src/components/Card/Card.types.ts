@@ -1,7 +1,7 @@
 import { ReactNode, MouseEvent } from 'react';
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 
-export type CardVariant = 'default' | 'outlined' | 'elevated' | 'filled' | 'gradient' | 'header-colored' | 'dashed';
+export type CardVariant = 'default' | 'outlined' | 'elevated' | 'filled' | 'gradient' | 'header-colored' | 'dashed' | 'feature';
 
 export type CardSize = 'small' | 'medium' | 'large';
 
@@ -24,6 +24,8 @@ export type CardDashedColor =
     | string; // Permite cores customizadas
 
 export type CardDashedWidth = 'thin' | 'normal' | 'thick' | number;
+
+export type CardIconVariant = 'primary' | 'secondary' | 'success' | 'warning' | 'danger' | 'info';
 
 export interface CardProps {
     /** Conteúdo do card */
@@ -50,6 +52,8 @@ export interface CardProps {
     className?: string;
     /** Handler para clique no card */
     onClick?: (event: MouseEvent<HTMLDivElement>) => void;
+    /** Estilos inline customizados */
+    style?: React.CSSProperties;
     /** Props adicionais do elemento div */
     [key: string]: any;
 }
@@ -91,7 +95,7 @@ export interface CardActionProps {
     /** Variante do botão */
     variant?: 'primary' | 'secondary' | 'ghost' | 'danger';
     /** Tamanho do botão */
-    size?: 'small' | 'medium';
+    size?: 'small' | 'medium' | 'large';
     /** Handler de clique */
     onClick?: (event: MouseEvent<HTMLButtonElement>) => void;
     /** URL para link */
@@ -100,6 +104,19 @@ export interface CardActionProps {
     target?: string;
     /** Desabilitar ação */
     disabled?: boolean;
+    /** Classes CSS customizadas */
+    className?: string;
+}
+
+export interface CardIconProps {
+    /** Ícone a ser exibido */
+    icon: IconDefinition;
+    /** Variante de cor do container do ícone */
+    variant?: CardIconVariant;
+    /** Cor customizada de fundo (sobrescreve variant) */
+    backgroundColor?: string;
+    /** Cor customizada do ícone */
+    iconColor?: string;
     /** Classes CSS customizadas */
     className?: string;
 }

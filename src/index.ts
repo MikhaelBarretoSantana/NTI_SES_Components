@@ -12,6 +12,7 @@ export { Select } from './components/Select/Select';
 export { Dropdown } from './components/Dropdown/Dropdown';
 export {
     Card,
+    CardIcon,
     CardHeader,
     CardTitle,
     CardSubtitle,
@@ -47,11 +48,14 @@ export type {
     CardContentProps,
     CardFooterProps,
     CardActionProps,
+    CardIconProps,
     CardVariant,
     CardSize,
     CardHeaderColor,
     CardDashedColor,
-    CardDashedWidth
+    CardDashedWidth,
+    CardBorderColor,
+    CardBorderWidth
 } from "./components/Card/Card.types";
 export type {
     HeaderProps,

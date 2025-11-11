@@ -81,16 +81,16 @@ const Card: React.FC<CardProps> = ({
     };
 
     // Constrói o estilo customizado
-    const getCardStyle = (): React.CSSProperties => {
-        const cardStyle = { ...style };
+    const getCardStyle = (): React.CSSProperties & Record<string, string | number> => {
+        const cardStyle: React.CSSProperties & Record<string, string | number> = { ...style };
 
         // Para variant header-colored, define variáveis CSS customizadas
         if (variant === 'header-colored') {
-            cardStyle['--header-height' as any] = `${headerHeight}px`;
+            cardStyle['--header-height'] = `${headerHeight}px`;
             
             // Se a cor não for predefinida, aplica como cor customizada
             if (headerColor && !['primary', 'secondary', 'success', 'warning', 'danger', 'info'].includes(headerColor)) {
-                cardStyle['--header-color' as any] = headerColor;
+                cardStyle['--header-color'] = headerColor;
             }
         }
 
@@ -98,12 +98,12 @@ const Card: React.FC<CardProps> = ({
         if (variant === 'dashed') {
             // Cor customizada
             if (dashedColor && !['primary', 'secondary', 'success', 'warning', 'danger', 'info'].includes(dashedColor)) {
-                cardStyle['--dashed-color' as any] = dashedColor;
+                cardStyle['--dashed-color'] = dashedColor;
             }
             
             // Largura customizada (número)
             if (typeof dashedWidth === 'number') {
-                cardStyle['--dashed-width' as any] = `${dashedWidth}px`;
+                cardStyle['--dashed-width'] = `${dashedWidth}px`;
             }
         }
 
@@ -113,14 +113,15 @@ const Card: React.FC<CardProps> = ({
     return (
         <div
             className={getCardClasses()}
+            // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
             style={getCardStyle()}
             onClick={onClick}
             role={onClick ? 'button' : undefined}
-            tabIndex={onClick ? 0 : undefined}
-            onKeyDown={onClick ? (e) => {
+            tabIndex={onClick ? 0 : -1}
+            onKeyDown={onClick ? (e: React.KeyboardEvent<HTMLDivElement>) => {
                 if (e.key === 'Enter' || e.key === ' ') {
                     e.preventDefault();
-                    onClick(e as any);
+                    onClick(e as any as React.MouseEvent<HTMLDivElement>);
                 }
             } : undefined}
             {...props}
@@ -146,18 +147,26 @@ const CardIcon: React.FC<CardIconProps> = ({
         className
     ].filter(Boolean).join(' ');
 
-    const iconStyle: React.CSSProperties = {};
-    
-    if (backgroundColor) {
-        iconStyle.backgroundColor = backgroundColor;
-    }
+    // Usa variáveis CSS para aplicar cores customizadas
+    const getIconStyle = (): React.CSSProperties & Record<string, string> => {
+        const style: React.CSSProperties & Record<string, string> = {};
+        
+        if (backgroundColor) {
+            style['--icon-bg-color' as any] = backgroundColor;
+        }
+        
+        if (iconColor !== '#ffffff') {
+            style['--icon-color' as any] = iconColor;
+        }
+        
+        return style;
+    };
 
     return (
-        <div className={iconClasses} style={iconStyle}>
+        <div className={iconClasses} style={getIconStyle()}>
             <FontAwesomeIcon 
                 icon={icon} 
                 className="card-icon-container__icon" 
-                style={{ color: iconColor }}
             />
         </div>
     );

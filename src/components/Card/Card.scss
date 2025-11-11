@@ -265,18 +265,19 @@ $icon-container-colors: (
     justify-content: center;
     transition: $card-transition;
     flex-shrink: 0;
+    background-color: var(--icon-bg-color, transparent);
     
     &__icon {
         width: 2.5rem;
         height: 2.5rem;
 
         font-size: 1.75rem;
-        color: #ffffff;
+        color: var(--icon-color, #ffffff);
     }
     
     @each $name, $color in $icon-container-colors {
         &--#{$name} {
-            background-color: $color;
+            background-color: var(--icon-bg-color, #{$color});
         }
     }
     
@@ -595,6 +596,14 @@ $icon-container-colors: (
         .card-icon-container {
             top: -80px;
         }
+
+        &.card--padding {
+            padding: 3rem 2rem 2rem 2rem;
+        }
+
+        .card-title {
+            margin-top: 0.5rem;
+        }
     }
 }
 
@@ -676,6 +685,30 @@ $icon-container-colors: (
     }
 }
 
+// Responsividade para tablets
+@media (max-width: 1024px) and (min-width: 769px) {
+    .card--feature.card--medium {
+        .card-icon-container {
+            width: 72px;
+            height: 72px;
+            
+            &__icon {
+                width: 2rem;
+                height: 2rem;
+                font-size: 2rem;
+            }
+        }
+
+        .card-title {
+            font-size: 1.1875rem;
+        }
+
+        .card-subtitle {
+            font-size: 1rem;
+        }
+    }
+}
+
 // Responsividade
 @media (max-width: 768px) {
     .card {
@@ -684,10 +717,12 @@ $icon-container-colors: (
         }
         
         &--feature {
-            margin-top: 28px;
-            
-            .card-icon-container {
-                top: -28px;
+            &.card--medium {
+                margin-top: 32px;
+                
+                .card-icon-container {
+                    top: -64px;
+                }
             }
         }
     }
@@ -699,13 +734,31 @@ $icon-container-colors: (
     .card--feature {
         min-height: 280px;
         
+        &.card--medium {
+            &.card--padding {
+                padding: 2.5rem 1.5rem 1.5rem 1.5rem;
+            }
+
+            .card-icon-container {
+                width: 64px;
+                height: 64px;
+                
+                &__icon {
+                    width: 1.75rem;
+                    height: 1.75rem;
+                    font-size: 1.75rem;
+                }
+            }
+        }
+        
         .card-title {
             font-size: 1.125rem;
-            margin-top: 2rem;
+            margin-top: 0.75rem;
         }
         
         .card-subtitle {
             font-size: 0.875rem;
+            line-height: 1.5;
         }
     }
 

@@ -33,12 +33,12 @@ npm install @fortawesome/fontawesome-svg-core @fortawesome/free-solid-svg-icons 
   --font-family-accent: 'Gibralt', sans-serif;
   
   /* Cores Principais */
-  --color-primary: #0066cc;
-  --color-secondary: #64748b;
-  --color-success: #10b981;
-  --color-warning: #f59e0b;
-  --color-danger: #ef4444;
-  --color-info: #3b82f6;
+  --nti-color-primary: #0066cc;
+  --nti-color-secondary: #64748b;
+  --nti-color-success: #10b981;
+  --nti-color-warning: #f59e0b;
+  --nti-color-danger: #ef4444;
+  --nti-color-info: #3b82f6;
   
   /* Espaçamentos */
   --spacing-xs: 4px;
@@ -1625,8 +1625,8 @@ npm run type-check
 ```css
 /* Tema customizado */
 .my-app {
-  --color-primary: #8b5cf6;
-  --color-secondary: #06b6d4;
+  --nti-color-primary: #8b5cf6;
+  --nti-color-secondary: #06b6d4;
   --font-family-display: 'Custom Display Font', sans-serif;
   --border-radius-md: 0.75rem;
 }

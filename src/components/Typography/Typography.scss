@@ -71,7 +71,7 @@
 
 .ui-typography--caption {
     font-size: var(--font-size-xs);
-    color: var(--color-text-muted);
+    color: var(--nti-color-text-muted);
 }
 
 .ui-typography--overline {
@@ -157,19 +157,19 @@
 
 /* Colors */
 .ui-typography--color-primary {
-    color: var(--color-text-primary);
+    color: var(--nti-color-text-primary);
 }
 
 .ui-typography--color-secondary {
-    color: var(--color-text-secondary);
+    color: var(--nti-color-text-secondary);
 }
 
 .ui-typography--color-muted {
-    color: var(--color-text-muted);
+    color: var(--nti-color-text-muted);
 }
 
 .ui-typography--color-inverse {
-    color: var(--color-text-inverse);
+    color: var(--nti-color-text-inverse);
 }
 
 .ui-typography--color-inherit {

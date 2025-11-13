@@ -61,13 +61,13 @@ export const ProgressSteps: React.FC<ProgressStepsProps> = ({
 
         const style: React.CSSProperties = {
             '--progress-width': `${calculateProgress}%`,
-            ...(activeColors?.primary && { '--color-primary': activeColors.primary }),
-            ...(activeColors?.secondary && { '--color-secondary': activeColors.secondary }),
-            ...(activeColors?.completed && { '--color-completed': activeColors.completed }),
-            ...(activeColors?.inactive && { '--color-inactive': activeColors.inactive }),
-            ...(activeColors?.text && { '--color-text': activeColors.text }),
-            ...(activeColors?.inactiveText && { '--color-inactive-text': activeColors.inactiveText }),
-            ...(activeColors?.background && { '--color-background': activeColors.background }),
+            ...(activeColors?.primary && { '--nti-color-progress-primary': activeColors.primary }),
+            ...(activeColors?.secondary && { '--nti-color-progress-secondary': activeColors.secondary }),
+            ...(activeColors?.completed && { '--nti-color-progress-completed': activeColors.completed }),
+            ...(activeColors?.inactive && { '--nti-color-progress-inactive': activeColors.inactive }),
+            ...(activeColors?.text && { '--nti-color-progress-text': activeColors.text }),
+            ...(activeColors?.inactiveText && { '--nti-color-progress-inactive-text': activeColors.inactiveText }),
+            ...(activeColors?.background && { '--nti-color-progress-background': activeColors.background }),
         } as React.CSSProperties;
 
         if (orientation === 'horizontal' && width) {

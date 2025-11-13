@@ -1,14 +1,3 @@
-// Variables
-:root {
-    --color-primary: #1a4da0;
-    --color-secondary: #2563eb;
-    --color-completed: #10b981;
-    --color-inactive: #9ca3af;
-    --color-text: #1f2937;
-    --color-inactive-text: #6b7280;
-    --color-background: #ffffff;
-}
-
 @mixin flex-center {
     display: flex;
     align-items: center;
@@ -119,13 +108,13 @@
     // Estado de conclusão completa
     &.progress-steps-all-completed {
         .progress-line:before {
-            background: linear-gradient(90deg, var(--color-completed) 0%, #22c55e 50%, var(--color-completed) 100%);
+            background: linear-gradient(90deg, var(--nti-color-progress-completed) 0%, #22c55e 50%, var(--nti-color-progress-completed) 100%);
             background-size: 200% 200%;
             animation: gradient-shift 3s ease-in-out infinite;
         }
 
         &.progress-steps-vertical .progress-line:before {
-            background: linear-gradient(180deg, var(--color-completed) 0%, #22c55e 50%, var(--color-completed) 100%);
+            background: linear-gradient(180deg, var(--nti-color-progress-completed) 0%, #22c55e 50%, var(--nti-color-progress-completed) 100%);
             background-size: 200% 200%;
         }
 
@@ -134,12 +123,12 @@
         }
 
         .step-label {
-            color: var(--color-completed);
+            color: var(--nti-color-progress-completed);
             font-weight: 600;
         }
 
         .step-description {
-            color: var(--color-text);
+            color: var(--nti-color-progress-text);
             opacity: 0.8;
         }
     }
@@ -173,7 +162,7 @@
     left: 70px; // Aumenta o espaço lateral para acomodar melhor os steps
     right: 70px;
     height: 2px;
-    background-color: var(--color-inactive);
+    background-color: var(--nti-color-progress-inactive);
     z-index: 1;
 
     .progress-steps-no-connector & {
@@ -186,7 +175,7 @@
         top: 0;
         left: 0;
         height: 100%;
-        background-color: var(--color-primary);
+        background-color: var(--nti-color-progress-primary);
         z-index: 1;
         width: var(--progress-width, 0%);
     }
@@ -211,7 +200,7 @@
         }
 
         &:focus {
-            outline: 2px solid var(--color-primary);
+            outline: 2px solid var(--nti-color-progress-primary);
             outline-offset: 4px;
             border-radius: 8px;
         }
@@ -233,7 +222,7 @@
 .step-circle {
     @include flex-center;
     border-radius: 50%;
-    background-color: var(--color-inactive);
+    background-color: var(--nti-color-progress-inactive);
     color: white;
     font-weight: 600;
     position: relative;
@@ -250,16 +239,16 @@
 
     // States
     .step-current & {
-        background-color: var(--color-primary);
+        background-color: var(--nti-color-progress-primary);
         box-shadow: 0 0 0 4px rgba(26, 77, 160, 0.1);
     }
 
     .step-completed & {
-        background-color: var(--color-completed);
+        background-color: var(--nti-color-progress-completed);
     }
 
     .step-inactive & {
-        background-color: var(--color-inactive);
+        background-color: var(--nti-color-progress-inactive);
     }
 }
 
@@ -299,7 +288,7 @@
 
 .step-label {
     font-size: 14px;
-    color: var(--color-inactive-text);
+    color: var(--nti-color-progress-inactive)-text;
     font-weight: 500;
     line-height: 1.4;
     max-width: 100%;
@@ -310,22 +299,22 @@
     hyphens: auto;
 
     .step-current & {
-        color: var(--color-primary);
+        color: var(--nti-color-progress-primary);
         font-weight: 600;
     }
 
     .step-completed & {
-        color: var(--color-text);
+        color: var(--nti-color-progress-text);
     }
 
     .step-inactive & {
-        color: var(--color-inactive-text);
+        color: var(--nti-color-progress-inactive)-text;
     }
 }
 
 .step-description {
     font-size: 12px;
-    color: var(--color-inactive-text);
+    color: var(--nti-color-progress-inactive)-text;
     line-height: 1.3;
     max-width: 100%;
     width: 100%;
@@ -336,7 +325,7 @@
 
     .step-current &,
     .step-completed & {
-        color: var(--color-text);
+        color: var(--nti-color-progress-text);
         opacity: 0.7;
     }
 }
@@ -481,25 +470,25 @@
 .progress-steps-minimal {
     .step-circle {
         background-color: transparent;
-        border: 2px solid var(--color-inactive);
-        color: var(--color-inactive);
+        border: 2px solid var(--nti-color-progress-inactive);
+        color: var(--nti-color-progress-inactive);
 
         .step-current & {
-            border-color: var(--color-primary);
-            color: var(--color-primary);
+            border-color: var(--nti-color-progress-primary);
+            color: var(--nti-color-progress-primary);
             background-color: transparent;
             box-shadow: none;
         }
 
         .step-completed & {
-            border-color: var(--color-completed);
-            background-color: var(--color-completed);
+            border-color: var(--nti-color-progress-completed);
+            background-color: var(--nti-color-progress-completed);
             color: white;
         }
 
         .step-inactive & {
-            border-color: var(--color-inactive);
-            color: var(--color-inactive);
+            border-color: var(--nti-color-progress-inactive);
+            color: var(--nti-color-progress-inactive);
         }
     }
 
@@ -513,19 +502,19 @@
 // Variant: Outlined
 .progress-steps-outlined {
     .step-circle {
-        border: 3px solid var(--color-inactive);
-        background-color: var(--color-background);
-        color: var(--color-inactive);
+        border: 3px solid var(--nti-color-progress-inactive);
+        background-color: var(--nti-color-progress-background);
+        color: var(--nti-color-progress-inactive);
 
         .step-current & {
-            border-color: var(--color-primary);
-            color: var(--color-primary);
+            border-color: var(--nti-color-progress-primary);
+            color: var(--nti-color-progress-primary);
             border-width: 3px;
         }
 
         .step-completed & {
-            border-color: var(--color-completed);
-            background-color: var(--color-completed);
+            border-color: var(--nti-color-progress-completed);
+            background-color: var(--nti-color-progress-completed);
             color: white;
         }
     }
@@ -542,16 +531,16 @@
 .progress-steps-filled {
     .step-circle {
         .step-current & {
-            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+            background: linear-gradient(135deg, var(--nti-color-progress-primary) 0%, var(--nti-color-progress-secondary) 100%);
         }
 
         .step-completed & {
-            background: var(--color-completed);
+            background: var(--nti-color-progress-completed);
         }
 
         .step-inactive & {
             background-color: #e5e7eb;
-            color: var(--color-inactive-text);
+            color: var(--nti-color-progress-inactive)-text;
         }
     }
 
@@ -559,7 +548,7 @@
         height: 4px;
 
         &:before {
-            background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+            background: linear-gradient(90deg, var(--nti-color-progress-primary) 0%, var(--nti-color-progress-secondary) 100%);
         }
     }
 
@@ -567,22 +556,22 @@
         width: 4px;
 
         &:before {
-            background: linear-gradient(180deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+            background: linear-gradient(180deg, var(--nti-color-progress-primary) 0%, var(--nti-color-progress-secondary) 100%);
         }
     }
 
     &.progress-steps-all-completed {
         .step-circle {
-            background: linear-gradient(135deg, var(--color-completed) 0%, #22c55e 100%);
+            background: linear-gradient(135deg, var(--nti-color-progress-completed) 0%, #22c55e 100%);
             box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
         }
 
         .progress-line:before {
-            background: linear-gradient(90deg, var(--color-completed) 0%, #22c55e 50%, var(--color-completed) 100%);
+            background: linear-gradient(90deg, var(--nti-color-progress-completed) 0%, #22c55e 50%, var(--nti-color-progress-completed) 100%);
         }
 
         &.progress-steps-vertical .progress-line:before {
-            background: linear-gradient(180deg, var(--color-completed) 0%, #22c55e 50%, var(--color-completed) 100%);
+            background: linear-gradient(180deg, var(--nti-color-progress-completed) 0%, #22c55e 50%, var(--nti-color-progress-completed) 100%);
         }
     }
 }

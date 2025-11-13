@@ -12,7 +12,7 @@
 .ui-select__label {
     font-size: var(--font-size-sm);
     font-weight: var(--font-weight-medium);
-    color: var(--color-text-primary);
+    color: var(--nti-color-text-primary);
     margin-bottom: var(--spacing-xs);
     display: block;
 }
@@ -32,24 +32,24 @@
 }
 
 .ui-select__required {
-    color: var(--color-danger);
+    color: var(--nti-color-danger);
     margin-left: 2px;
 }
 
 .ui-select__trigger:focus {
-    border-color: var(--color-primary);
+    border-color: var(--nti-color-primary);
     box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
 }
 
 /* Variants */
 .ui-select--filled .ui-select__trigger {
-    background-color: var(--color-secondary);
+    background-color: var(--nti-color-secondary);
     border: 1px solid transparent;
 }
 
 .ui-select--filled .ui-select__trigger:focus {
     background-color: white;
-    border-color: var(--color-primary);
+    border-color: var(--nti-color-primary);
 }
 
 .ui-select--outlined .ui-select__trigger {
@@ -65,7 +65,7 @@
 }
 
 .ui-select--ghost .ui-select__trigger:focus {
-    border-bottom-color: var(--color-primary);
+    border-bottom-color: var(--nti-color-primary);
     box-shadow: none;
 }
 
@@ -108,11 +108,11 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    color: var(--color-text-primary);
+    color: var(--nti-color-text-primary);
 }
 
 .ui-select__text--placeholder {
-    color: var(--color-text-muted);
+    color: var(--nti-color-text-muted);
 }
 
 /* Ícones - todos padronizados */
@@ -121,7 +121,7 @@
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    color: var(--color-text-secondary);
+    color: var(--nti-color-text-secondary);
     transition: all 0.2s ease;
 }
 
@@ -148,14 +148,14 @@
     cursor: pointer;
     padding: 2px;
     border-radius: 2px;
-    color: var(--color-text-muted);
+    color: var(--nti-color-text-muted);
     transition: all 0.2s ease;
     display: flex;
     align-items: center;
     justify-content: center;
     
     &:hover {
-        color: var(--color-text-primary);
+        color: var(--nti-color-text-primary);
         background-color: rgba(0, 0, 0, 0.05);
     }
 }
@@ -173,7 +173,7 @@
 .ui-select__spinner {
     .ui-select__icon {
         animation: spin 1s linear infinite;
-        color: var(--color-primary);
+        color: var(--nti-color-primary);
     }
 }
 
@@ -250,7 +250,7 @@
     width: var(--icon-size-md);
     height: var(--icon-size-md);
     font-size: var(--icon-size-md);
-    color: var(--color-text-muted);
+    color: var(--nti-color-text-muted);
     position: absolute;
     left: var(--spacing-md);
     top: 50%;
@@ -269,11 +269,11 @@
 }
 
 .ui-select__search-input:focus {
-    border-color: var(--color-primary);
+    border-color: var(--nti-color-primary);
 }
 
 .ui-select__search-input::placeholder {
-    color: var(--color-text-muted);
+    color: var(--nti-color-text-muted);
 }
 
 /* Options Container */
@@ -306,7 +306,7 @@
 
 .ui-select__option--selected {
     background-color: rgba(0, 102, 204, 0.15);
-    color: var(--color-primary);
+    color: var(--nti-color-primary);
 }
 
 .ui-select__option--disabled {
@@ -328,7 +328,7 @@
 }
 
 .ui-select__option-check {
-    color: var(--color-primary);
+    color: var(--nti-color-primary);
 }
 
 .ui-select__option-content {
@@ -339,7 +339,7 @@
 .ui-select__option-label {
     display: block;
     font-weight: var(--font-weight-medium);
-    color: var(--color-text-primary);
+    color: var(--nti-color-text-primary);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -348,7 +348,7 @@
 .ui-select__option-description {
     display: block;
     font-size: var(--font-size-xs);
-    color: var(--color-text-secondary);
+    color: var(--nti-color-text-secondary);
     margin-top: 2px;
     white-space: nowrap;
     overflow: hidden;
@@ -360,8 +360,8 @@
     padding: var(--spacing-sm) var(--spacing-md);
     font-size: var(--font-size-xs);
     font-weight: var(--font-weight-semibold);
-    color: var(--color-text-secondary);
-    background-color: var(--color-secondary);
+    color: var(--nti-color-text-secondary);
+    background-color: var(--nti-color-secondary);
     text-transform: uppercase;
     letter-spacing: 0.5px;
 }
@@ -373,41 +373,41 @@
     justify-content: center;
     gap: var(--spacing-sm);
     padding: var(--spacing-lg) var(--spacing-md);
-    color: var(--color-text-muted);
+    color: var(--nti-color-text-muted);
     font-size: var(--font-size-sm);
 }
 
 /* Estados */
 .ui-select--error .ui-select__trigger {
-    border-color: var(--color-danger);
+    border-color: var(--nti-color-danger);
 }
 
 .ui-select--error .ui-select__trigger:focus {
-    border-color: var(--color-danger);
+    border-color: var(--nti-color-danger);
     box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.1);
 }
 
 .ui-select--success .ui-select__trigger {
-    border-color: var(--color-success);
+    border-color: var(--nti-color-success);
 }
 
 .ui-select--success .ui-select__trigger:focus {
-    border-color: var(--color-success);
+    border-color: var(--nti-color-success);
     box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.1);
 }
 
 .ui-select--warning .ui-select__trigger {
-    border-color: var(--color-warning);
+    border-color: var(--nti-color-warning);
 }
 
 .ui-select--warning .ui-select__trigger:focus {
-    border-color: var(--color-warning);
+    border-color: var(--nti-color-warning);
     box-shadow: 0 0 0 3px rgba(255, 193, 7, 0.1);
 }
 
 .ui-select--disabled .ui-select__trigger {
-    background-color: var(--color-secondary);
-    color: var(--color-text-muted);
+    background-color: var(--nti-color-secondary);
+    color: var(--nti-color-text-muted);
     cursor: not-allowed;
     opacity: 0.6;
 }
@@ -419,25 +419,25 @@
 /* Helper Text */
 .ui-select__helper {
     font-size: var(--font-size-xs);
-    color: var(--color-text-secondary);
+    color: var(--nti-color-text-secondary);
     margin-top: var(--spacing-xs);
 }
 
 /* Mensagens de estado */
 .ui-select__error {
-    color: var(--color-danger);
+    color: var(--nti-color-danger);
     font-size: var(--font-size-xs);
     margin-top: var(--spacing-xs);
 }
 
 .ui-select__success {
-    color: var(--color-success);
+    color: var(--nti-color-success);
     font-size: var(--font-size-xs);
     margin-top: var(--spacing-xs);
 }
 
 .ui-select__warning {
-    color: var(--color-warning);
+    color: var(--nti-color-warning);
     font-size: var(--font-size-xs);
     margin-top: var(--spacing-xs);
 }

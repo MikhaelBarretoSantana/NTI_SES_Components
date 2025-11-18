@@ -12,7 +12,7 @@ export const Button: React.FC<ButtonProps> = ({
     children,
     onClick,
     icon,
-    iconSide = "Right",
+    iconSide = "right",
     type = 'button',
     className = '',
     ...props
@@ -22,8 +22,8 @@ export const Button: React.FC<ButtonProps> = ({
     const sizeClass = `ui-button--${size}`;
     const disabledClass = disabled || loading ? 'ui-button--disabled' : '';
     const loadingClass = loading ? 'ui-button--loading' : '';
-    const iconRight = icon && iconSide === "Right";
-    const iconLeft = icon && iconSide === "Left";
+    const iconRight = icon && iconSide === "right";
+    const iconLeft = icon && iconSide === "left";
 
     const buttonClass = [
         baseClass,

@@ -42,6 +42,8 @@ export const Typography: React.FC<TypographyProps> = ({
     align = 'left',
     children,
     className = '',
+    style,
+    onClick,
     ...props
 }) => {
     const Component = component || variantMapping[variant];
@@ -61,7 +63,7 @@ export const Typography: React.FC<TypographyProps> = ({
     ].filter(Boolean).join(' ');
 
     return (
-        <Component className={classes} {...props}>
+        <Component className={classes} style={style} onClick={onClick} {...props}>
             {children}
         </Component>
     );

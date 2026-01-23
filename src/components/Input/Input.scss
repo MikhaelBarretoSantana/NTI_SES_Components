@@ -11,13 +11,13 @@
 .ui-input__label {
     font-size: var(--font-size-sm);
     font-weight: var(--font-weight-medium);
-    color: var(--color-text-primary);
+    color: var(--nti-color-text-primary);
     margin-bottom: var(--spacing-xs);
     display: block;
 }
 
 .ui-input__required {
-    color: var(--color-danger);
+    color: var(--nti-color-danger);
     margin-left: 2px;
 }
 
@@ -36,7 +36,7 @@
     border-radius: var(--radius-md);
     font-family: var(--font-family-body);
     font-size: var(--font-size-md);
-    color: var(--color-text-primary);
+    color: var(--nti-color-text-primary);
     background-color: white;
     transition: all 0.2s ease;
     outline: none;
@@ -44,23 +44,23 @@
 }
 
 .ui-input__field:focus {
-    border-color: var(--color-primary);
+    border-color: var(--nti-color-primary);
     box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
 }
 
 .ui-input__field::placeholder {
-    color: var(--color-text-muted);
+    color: var(--nti-color-text-muted);
 }
 
 /* Variants */
 .ui-input--filled .ui-input__field {
-    background-color: var(--color-secondary);
+    background-color: var(--nti-color-secondary);
     border: 1px solid transparent;
 }
 
 .ui-input--filled .ui-input__field:focus {
     background-color: white;
-    border-color: var(--color-primary);
+    border-color: var(--nti-color-primary);
 }
 
 .ui-input--outlined .ui-input__field {
@@ -78,7 +78,7 @@
 }
 
 .ui-input--ghost .ui-input__field:focus {
-    border-bottom-color: var(--color-primary);
+    border-bottom-color: var(--nti-color-primary);
     box-shadow: none;
 }
 
@@ -140,19 +140,19 @@
     border: none;
     background: transparent;
     cursor: pointer;
-    color: var(--color-text-muted);
+    color: var(--nti-color-text-muted);
     transition: all 0.2s ease;
     padding: 2px;
     border-radius: 2px;
     z-index: 1;
     
     &:hover {
-        color: var(--color-text-primary);
+        color: var(--nti-color-text-primary);
         background-color: rgba(0, 0, 0, 0.05);
     }
     
     &:focus {
-        outline: 2px solid var(--color-primary);
+        outline: 2px solid var(--nti-color-primary);
         outline-offset: 1px;
     }
 }
@@ -214,11 +214,11 @@
 
 /* Addons */
 .ui-input__addon {
-    background-color: var(--color-secondary);
+    background-color: var(--nti-color-secondary);
     border: 1px solid #d1d5db;
     padding: var(--spacing-sm) var(--spacing-md);
     font-size: var(--font-size-sm);
-    color: var(--color-text-secondary);
+    color: var(--nti-color-text-secondary);
     white-space: nowrap;
     display: flex;
     align-items: center;
@@ -260,7 +260,7 @@
 
 .ui-input__spinner-icon {
     animation: spin 1s linear infinite;
-    color: var(--color-primary);
+    color: var(--nti-color-primary);
 }
 
 @keyframes spin {
@@ -271,7 +271,7 @@
 /* Counter */
 .ui-input__counter {
     font-size: var(--font-size-xs);
-    color: var(--color-text-muted);
+    color: var(--nti-color-text-muted);
     text-align: right;
     margin-top: var(--spacing-xs);
 }
@@ -279,41 +279,41 @@
 /* Helper Text */
 .ui-input__helper {
     font-size: var(--font-size-xs);
-    color: var(--color-text-secondary);
+    color: var(--nti-color-text-secondary);
     margin-top: var(--spacing-xs);
 }
 
 /* Estados */
 .ui-input--error .ui-input__field {
-    border-color: var(--color-danger);
+    border-color: var(--nti-color-danger);
 }
 
 .ui-input--error .ui-input__field:focus {
-    border-color: var(--color-danger);
+    border-color: var(--nti-color-danger);
     box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.1);
 }
 
 .ui-input--success .ui-input__field {
-    border-color: var(--color-success);
+    border-color: var(--nti-color-success);
 }
 
 .ui-input--success .ui-input__field:focus {
-    border-color: var(--color-success);
+    border-color: var(--nti-color-success);
     box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.1);
 }
 
 .ui-input--warning .ui-input__field {
-    border-color: var(--color-warning);
+    border-color: var(--nti-color-warning);
 }
 
 .ui-input--warning .ui-input__field:focus {
-    border-color: var(--color-warning);
+    border-color: var(--nti-color-warning);
     box-shadow: 0 0 0 3px rgba(255, 193, 7, 0.1);
 }
 
 .ui-input--disabled .ui-input__field {
-    background-color: var(--color-secondary);
-    color: var(--color-text-muted);
+    background-color: var(--nti-color-secondary);
+    color: var(--nti-color-text-muted);
     cursor: not-allowed;
     opacity: 0.6;
 }
@@ -326,19 +326,19 @@
 
 /* Mensagens de estado */
 .ui-input__error {
-    color: var(--color-danger);
+    color: var(--nti-color-danger);
     font-size: var(--font-size-xs);
     margin-top: var(--spacing-xs);
 }
 
 .ui-input__success {
-    color: var(--color-success);
+    color: var(--nti-color-success);
     font-size: var(--font-size-xs);
     margin-top: var(--spacing-xs);
 }
 
 .ui-input__warning {
-    color: var(--color-warning);
+    color: var(--nti-color-warning);
     font-size: var(--font-size-xs);
     margin-top: var(--spacing-xs);
 }

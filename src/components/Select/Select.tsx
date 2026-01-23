@@ -60,6 +60,11 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(({
     containerClassName = '',
     dropdownClassName = '',
     optionClassName = '',
+    optionIconClassName = '',
+    optionLabelClassName = '',
+    optionDescriptionClassName = '',
+    optionCheckClassName = '',
+    optionContentClassName = '',
 
     // Refs
     containerRef,
@@ -72,11 +77,14 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(({
     const [searchTerm, setSearchTerm] = useState('');
     const [focusedIndex, setFocusedIndex] = useState(-1);
     const [internalValue, setInternalValue] = useState(value || defaultValue || (multiple ? [] : null));
+    const [hoveredOptionValue, setHoveredOptionValue] = useState<string | number | null>(null);
+    const [tooltipPosition, setTooltipPosition] = useState<'top' | 'bottom'>('top');
 
     // Refs
     const selectRef = useRef<HTMLDivElement>(null);
     const searchRef = useRef<HTMLInputElement>(null);
     const optionsRef = useRef<HTMLDivElement>(null);
+    const tooltipRef = useRef<HTMLDivElement>(null);
     const inputId = React.useId();
     const dropdownId = `${inputId}-dropdown`;
 
@@ -139,6 +147,27 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(({
 
         return `${displayLabels.join(', ')} +${remainingCount} mais`;
     }, [selectedOptions, placeholder, multiple, maxSelectedDisplay]);
+
+    // Calcular posição do tooltip
+    const calculateTooltipPosition = useCallback((element: HTMLElement) => {
+        if (!element || !optionsRef.current) return;
+
+        setTimeout(() => {
+            const optionRect = element.getBoundingClientRect();
+            const optionsRect = optionsRef.current!.getBoundingClientRect();
+            
+            // Espaço disponível acima da opção dentro do dropdown
+            const spaceAbove = optionRect.top - optionsRect.top;
+            // Considerar a altura aproximada do tooltip (50px) + margem
+            const tooltipHeight = 50;
+            
+            if (spaceAbove < tooltipHeight + 20) {
+                setTooltipPosition('bottom');
+            } else {
+                setTooltipPosition('top');
+            }
+        }, 0);
+    }, []);
 
     // Handlers
     const handleToggle = useCallback(() => {
@@ -404,6 +433,7 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(({
                                         ? internalValue.includes(option.value)
                                         : internalValue === option.value;
                                     const isFocused = index === focusedIndex;
+                                    const isTooltipVisible = hoveredOptionValue === option.value && option.tooltip;
 
                                     return (
                                         <div
@@ -417,21 +447,38 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(({
                                             ].filter(Boolean).join(' ')}
                                             role="option"
                                             aria-selected={isSelected}
+                                            onMouseEnter={(e) => {
+                                                setHoveredOptionValue(option.value);
+                                                calculateTooltipPosition(e.currentTarget);
+                                            }}
+                                            onMouseLeave={() => setHoveredOptionValue(null)}
                                             onClick={() => handleOptionClick(option)}
                                         >
                                             {option.icon && (
-                                                <FontAwesomeIcon icon={option.icon} className="ui-select__option-icon" />
+                                                <FontAwesomeIcon 
+                                                    icon={option.icon} 
+                                                    className={['ui-select__option-icon', optionIconClassName].filter(Boolean).join(' ')} 
+                                                />
                                             )}
 
-                                            <div className="ui-select__option-content">
-                                                <span className="ui-select__option-label">{option.label}</span>
+                                            <div className={['ui-select__option-content', optionContentClassName].filter(Boolean).join(' ')}>
+                                                <span className={['ui-select__option-label', optionLabelClassName].filter(Boolean).join(' ')}>{option.label}</span>
                                                 {option.description && (
-                                                    <span className="ui-select__option-description">{option.description}</span>
+                                                    <span className={['ui-select__option-description', optionDescriptionClassName].filter(Boolean).join(' ')}>{option.description}</span>
                                                 )}
                                             </div>
 
                                             {isSelected && (
-                                                <FontAwesomeIcon icon={faCheck} className="ui-select__option-check" />
+                                                <FontAwesomeIcon 
+                                                    icon={faCheck} 
+                                                    className={['ui-select__option-check', optionCheckClassName].filter(Boolean).join(' ')} 
+                                                />
+                                            )}
+
+                                            {isTooltipVisible && (
+                                                <div className={`ui-select__tooltip ui-select__tooltip--${tooltipPosition}`}>
+                                                    {option.tooltip}
+                                                </div>
                                             )}
                                         </div>
                                     );
@@ -445,6 +492,7 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(({
                                             const isSelected = Array.isArray(internalValue)
                                                 ? internalValue.includes(option.value)
                                                 : internalValue === option.value;
+                                            const isTooltipVisible = hoveredOptionValue === option.value && option.tooltip;
 
                                             return (
                                                 <div
@@ -458,21 +506,38 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(({
                                                     ].filter(Boolean).join(' ')}
                                                     role="option"
                                                     aria-selected={isSelected}
+                                                    onMouseEnter={(e) => {
+                                                        setHoveredOptionValue(option.value);
+                                                        calculateTooltipPosition(e.currentTarget);
+                                                    }}
+                                                    onMouseLeave={() => setHoveredOptionValue(null)}
                                                     onClick={() => handleOptionClick(option)}
                                                 >
                                                     {option.icon && (
-                                                        <FontAwesomeIcon icon={option.icon} className="ui-select__option-icon" />
+                                                        <FontAwesomeIcon 
+                                                            icon={option.icon} 
+                                                            className={['ui-select__option-icon', optionIconClassName].filter(Boolean).join(' ')} 
+                                                        />
                                                     )}
 
-                                                    <div className="ui-select__option-content">
-                                                        <span className="ui-select__option-label">{option.label}</span>
+                                                    <div className={['ui-select__option-content', optionContentClassName].filter(Boolean).join(' ')}>
+                                                        <span className={['ui-select__option-label', optionLabelClassName].filter(Boolean).join(' ')}>{option.label}</span>
                                                         {option.description && (
-                                                            <span className="ui-select__option-description">{option.description}</span>
+                                                            <span className={['ui-select__option-description', optionDescriptionClassName].filter(Boolean).join(' ')}>{option.description}</span>
                                                         )}
                                                     </div>
 
                                                     {isSelected && (
-                                                        <FontAwesomeIcon icon={faCheck} className="ui-select__option-check" />
+                                                        <FontAwesomeIcon 
+                                                            icon={faCheck} 
+                                                            className={['ui-select__option-check', optionCheckClassName].filter(Boolean).join(' ')} 
+                                                        />
+                                                    )}
+
+                                                    {isTooltipVisible && (
+                                                        <div className={`ui-select__tooltip ui-select__tooltip--${tooltipPosition}`}>
+                                                            {option.tooltip}
+                                                        </div>
                                                     )}
                                                 </div>
                                             );

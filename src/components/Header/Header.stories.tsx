@@ -1,19 +1,15 @@
+import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Header } from './Header';
-import { HeaderNavigationItem } from './Header.types';
-import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-    faHome,
-    faFileAlt,
+import { 
+    faRocket, 
+    faHome, 
+    faInfo, 
+    faEnvelope, 
     faUser,
-    faSignInAlt,
+    faShoppingCart,
     faCog,
-    faQuestionCircle,
-    faPlus,
-    faChartBar,
-    faUsers,
-    faBox,
+    faSearch,
     faBell
 } from '@fortawesome/free-solid-svg-icons';
 
@@ -22,248 +18,213 @@ const meta: Meta<typeof Header> = {
     component: Header,
     parameters: {
         layout: 'fullscreen',
+        docs: {
+            description: {
+                component: 'Componente Header responsivo com suporte a posicionamento flexível da logo em desktop e mobile.',
+            },
+        },
     },
     tags: ['autodocs'],
     argTypes: {
         variant: {
             control: 'select',
             options: ['default', 'transparent'],
+            description: 'Variante visual do header',
+        },
+        sticky: {
+            control: 'boolean',
+            description: 'Define se o header fica fixo ao fazer scroll',
+        },
+        showMobileMenu: {
+            control: 'boolean',
+            description: 'Mostra/esconde o menu mobile',
         },
     },
 };
 
 export default meta;
-type Story = StoryObj<typeof meta>;
+type Story = StoryObj<typeof Header>;
 
-// Navigation items genéricos
-const basicNavigation: HeaderNavigationItem[] = [
-    { key: 'home', label: 'Início', icon: faHome, href: '/', active: true },
-    { key: 'products', label: 'Produtos', href: '/products' },
-    { key: 'about', label: 'Sobre', href: '/about' },
-    { key: 'contact', label: 'Contato', href: '/contact' },
+// Dados reutilizáveis
+const defaultNavigation = [
+    { key: 'home', label: 'Home', icon: faHome, active: true },
+    { key: 'about', label: 'Sobre', icon: faInfo },
+    { key: 'services', label: 'Serviços' },
+    { key: 'contact', label: 'Contato', icon: faEnvelope },
 ];
 
-const dashboardNavigation: HeaderNavigationItem[] = [
-    { key: 'dashboard', label: 'Dashboard', icon: faChartBar, href: '/dashboard', active: true },
-    { key: 'users', label: 'Usuários', icon: faUsers, href: '/users' },
-    { key: 'products', label: 'Produtos', icon: faBox, href: '/products' },
-    { key: 'settings', label: 'Configurações', icon: faCog, href: '/settings' },
+const extendedNavigation = [
+    { key: 'home', label: 'Home', icon: faHome, active: true },
+    { key: 'products', label: 'Produtos', icon: faShoppingCart },
+    { key: 'about', label: 'Sobre', icon: faInfo },
+    { key: 'services', label: 'Serviços' },
+    { key: 'blog', label: 'Blog' },
+    { key: 'contact', label: 'Contato', icon: faEnvelope },
 ];
 
-// Header básico genérico
+const minimalNavigation = [
+    { key: 'home', label: 'Home', active: true },
+    { key: 'about', label: 'Sobre' },
+];
+
+// =============================================================================
+// EXEMPLOS BÁSICOS
+// =============================================================================
+
 export const Default: Story = {
     args: {
         logo: {
             text: 'MeuApp',
-            icon: faBox
+            icon: faRocket,
         },
-        navigation: [
-            { key: 'home', label: 'Início', icon: faHome, href: '/' }
-        ],
-        actionButton: {
-            label: 'Entrar',
-            variant: 'primary'
-        }
-    },
-};
-
-// Header completo para landing page
-export const LandingPage: Story = {
-    args: {
-        logo: {
-            text: 'MinhaMarca',
-            icon: faBox
-        },
-        navigation: basicNavigation,
-        actionButton: {
-            label: 'Começar Agora',
-            variant: 'primary'
-        }
-    },
-};
-
-// Header para dashboard/admin
-export const Dashboard: Story = {
-    args: {
-        logo: {
-            text: 'Admin Panel'
-        },
-        navigation: dashboardNavigation,
-        actionButton: {
-            label: 'João Silva',
-            variant: 'secondary',
-            icon: faUser
-        }
-    },
-};
-
-// Header com logo de imagem
-export const WithImageLogo: Story = {
-    args: {
-        logo: {
-            image: 'https://via.placeholder.com/120x32/2563eb/ffffff?text=LOGO',
-            text: 'Fallback Text',
-            href: '/'
-        },
-        navigation: basicNavigation,
+        navigation: defaultNavigation,
         actionButton: {
             label: 'Login',
             variant: 'primary',
-            icon: faSignInAlt
-        }
+        },
     },
 };
 
-// Header SaaS
-export const SaaSApp: Story = {
+export const LogoComImagem: Story = {
     args: {
         logo: {
-            text: 'DataFlow',
-            icon: faChartBar
+            text: 'MeuApp',
+            image: 'https://via.placeholder.com/120x40/2563eb/ffffff?text=Logo',
         },
-        navigation: [
-            { key: 'dashboard', label: 'Dashboard', icon: faHome, active: true },
-            { key: 'analytics', label: 'Analytics', icon: faChartBar },
-            { key: 'team', label: 'Equipe', icon: faUsers },
-            { key: 'settings', label: 'Configurações', icon: faCog },
-        ],
+        navigation: defaultNavigation,
         actionButton: {
-            label: 'Upgrade',
-            variant: 'primary'
-        }
+            label: 'Entrar',
+            variant: 'primary',
+        },
     },
 };
 
-// Header e-commerce
-export const ECommerce: Story = {
+export const SomenteTexto: Story = {
     args: {
         logo: {
-            text: 'ShopCenter',
-            icon: faBox
+            text: 'Minha Empresa',
         },
-        navigation: [
-            { key: 'home', label: 'Home', href: '/' },
-            { key: 'products', label: 'Produtos', href: '/products' },
-            { key: 'categories', label: 'Categorias', href: '/categories' },
-            { key: 'deals', label: 'Ofertas', href: '/deals' },
-        ],
+        navigation: defaultNavigation,
         actionButton: {
-            label: 'Minha Conta',
-            variant: 'ghost',
-            icon: faUser
-        }
+            label: 'Cadastrar',
+            variant: 'primary',
+        },
     },
 };
 
-// Header transparente para hero sections
 export const Transparent: Story = {
     args: {
         logo: {
-            text: 'StartupName',
-            icon: faBox
+            text: 'MeuApp',
+            icon: faRocket,
         },
-        navigation: [
-            { key: 'home', label: 'Home', href: '/' },
-            { key: 'features', label: 'Recursos', href: '/features' },
-            { key: 'pricing', label: 'Preços', href: '/pricing' },
-            { key: 'contact', label: 'Contato', href: '/contact' },
-        ],
+        navigation: defaultNavigation,
         actionButton: {
-            label: 'Teste Grátis',
-            variant: 'primary'
+            label: 'Login',
+            variant: 'ghost',
         },
-        variant: 'transparent'
+        variant: 'transparent',
     },
-    decorators: [
-        (Story) => (
-            <div style={{ 
-                background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-                minHeight: '100vh',
-                color: 'white'
-            }}>
-                <Story />
-                <div style={{ padding: '4rem 2rem', textAlign: 'center' }}>
-                    <h1 style={{ margin: '2rem 0', color: 'white', fontSize: '3rem' }}>
-                        Bem-vindo ao Futuro
-                    </h1>
-                    <p style={{ color: 'rgba(255,255,255,0.9)', fontSize: '1.2rem' }}>
-                        Header transparente funcionando perfeitamente sobre backgrounds
-                    </p>
-                </div>
-            </div>
-        ),
-    ],
-};
-
-// Header minimalista
-export const Minimal: Story = {
-    args: {
-        logo: {
-            text: 'Simple'
-        },
-        navigation: [
-            { key: 'work', label: 'Trabalhos' },
-            { key: 'about', label: 'Sobre' },
-            { key: 'contact', label: 'Contato' },
-        ],
-        actionButton: null
+    parameters: {
+        backgrounds: { default: 'dark' },
     },
 };
 
-// Header sticky para demonstrar scroll
 export const Sticky: Story = {
     args: {
         logo: {
-            text: 'StickyApp',
-            icon: faBox
+            text: 'MeuApp',
+            icon: faRocket,
         },
-        navigation: dashboardNavigation,
+        navigation: defaultNavigation,
         actionButton: {
-            label: 'Perfil',
-            variant: 'secondary',
-            icon: faUser
+            label: 'Login',
+            variant: 'primary',
         },
-        sticky: true
+        sticky: true,
     },
     decorators: [
         (Story) => (
             <div>
                 <Story />
-                <div style={{ height: '200vh', padding: '2rem' }}>
-                    <h2>Conteúdo da página</h2>
-                    <p><strong>Role para baixo para ver o header sticky funcionando!</strong></p>
-                    {Array.from({ length: 100 }, (_, i) => (
-                        <p key={i}>
-                            Linha {i + 1}: Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                            Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                        </p>
-                    ))}
+                <div style={{ height: '200vh', padding: '2rem', background: 'linear-gradient(180deg, #f0f0f0 0%, #ffffff 100%)' }}>
+                    <h2>Role a página para ver o header sticky</h2>
+                    <p>O header permanecerá fixo no topo da página ao fazer scroll.</p>
                 </div>
             </div>
         ),
     ],
 };
 
-// Demonstração do menu mobile
-export const MobileMenu: Story = {
+// =============================================================================
+// POSICIONAMENTO DA LOGO - DESKTOP
+// =============================================================================
+
+export const LogoEsquerdaDesktop: Story = {
+    name: '🖥️ Desktop: Logo à Esquerda',
     args: {
         logo: {
-            text: 'MobileApp',
-            icon: faBox
+            text: 'MeuApp',
+            icon: faRocket,
+            position: 'left',
         },
-        navigation: [
-            { key: 'home', label: 'Início', icon: faHome, active: true },
-            { key: 'products', label: 'Produtos', icon: faBox },
-            { key: 'users', label: 'Usuários', icon: faUsers },
-            { key: 'analytics', label: 'Relatórios', icon: faChartBar },
-            { key: 'settings', label: 'Configurações', icon: faCog },
-            { key: 'help', label: 'Ajuda', icon: faQuestionCircle },
-        ],
+        navigation: defaultNavigation,
         actionButton: {
-            label: 'Perfil',
+            label: 'Login',
             variant: 'primary',
-            icon: faUser
-        }
+        },
+    },
+};
+
+export const LogoCentroDesktop: Story = {
+    name: '🖥️ Desktop: Logo Centralizada',
+    args: {
+        logo: {
+            text: 'MeuApp',
+            icon: faRocket,
+            position: 'center',
+        },
+        navigation: defaultNavigation,
+        actionButton: {
+            label: 'Login',
+            variant: 'primary',
+        },
+    },
+};
+
+export const LogoDireitaDesktop: Story = {
+    name: '🖥️ Desktop: Logo à Direita',
+    args: {
+        logo: {
+            text: 'MeuApp',
+            icon: faRocket,
+            position: 'right',
+        },
+        navigation: defaultNavigation,
+        actionButton: {
+            label: 'Login',
+            variant: 'primary',
+        },
+    },
+};
+
+// =============================================================================
+// POSICIONAMENTO DA LOGO - MOBILE
+// =============================================================================
+
+export const LogoEsquerdaMobile: Story = {
+    name: '📱 Mobile: Logo à Esquerda',
+    args: {
+        logo: {
+            text: 'MeuApp',
+            icon: faRocket,
+            mobilePosition: 'left',
+        },
+        navigation: defaultNavigation,
+        actionButton: {
+            label: 'Login',
+            variant: 'primary',
+        },
     },
     parameters: {
         viewport: {
@@ -272,252 +233,553 @@ export const MobileMenu: Story = {
     },
 };
 
-// Demonstração específica para tablet
-export const TabletView: Story = {
+export const LogoCentroMobile: Story = {
+    name: '📱 Mobile: Logo Centralizada',
     args: {
         logo: {
-            text: 'TabletApp',
-            icon: faBox
+            text: 'MeuApp',
+            icon: faRocket,
+            mobilePosition: 'center',
         },
-        navigation: [
-            { key: 'dashboard', label: 'Dashboard', icon: faHome, active: true },
-            { key: 'projects', label: 'Projetos', icon: faBox },
-            { key: 'team', label: 'Equipe', icon: faUsers },
-            { key: 'reports', label: 'Relatórios', icon: faChartBar },
-            { key: 'settings', label: 'Configurações', icon: faCog },
-        ],
+        navigation: defaultNavigation,
         actionButton: {
-            label: 'João Silva',
-            variant: 'secondary',
-            icon: faUser
-        }
+            label: 'Login',
+            variant: 'primary',
+        },
     },
     parameters: {
         viewport: {
-            defaultViewport: 'tablet',
+            defaultViewport: 'mobile1',
         },
     },
 };
 
-// Demonstração específica para tablet em portrait
-export const TabletPortrait: Story = {
+export const LogoDireitaMobile: Story = {
+    name: '📱 Mobile: Logo à Direita',
     args: {
         logo: {
-            text: 'PortraitApp',
-            icon: faBox
+            text: 'MeuApp',
+            icon: faRocket,
+            mobilePosition: 'right',
+        },
+        navigation: defaultNavigation,
+        actionButton: {
+            label: 'Login',
+            variant: 'primary',
+        },
+    },
+    parameters: {
+        viewport: {
+            defaultViewport: 'mobile1',
+        },
+    },
+};
+
+// =============================================================================
+// ALINHAMENTO DOS ITENS DO MENU MOBILE
+// =============================================================================
+
+export const MenuMobileEsquerda: Story = {
+    name: '📱 Menu Mobile: Itens à Esquerda',
+    args: {
+        logo: {
+            text: 'MeuApp',
+            icon: faRocket,
+            mobilePosition: 'center',
+        },
+        navigation: defaultNavigation,
+        actionButton: {
+            label: 'Login',
+            variant: 'primary',
+        },
+        mobileMenuAlign: 'left',
+    },
+    parameters: {
+        viewport: {
+            defaultViewport: 'mobile1',
+        },
+    },
+};
+
+export const MenuMobileCentro: Story = {
+    name: '📱 Menu Mobile: Itens Centralizados',
+    args: {
+        logo: {
+            text: 'MeuApp',
+            icon: faRocket,
+            mobilePosition: 'center',
+        },
+        navigation: defaultNavigation,
+        actionButton: {
+            label: 'Login',
+            variant: 'primary',
+        },
+        mobileMenuAlign: 'center',
+    },
+    parameters: {
+        viewport: {
+            defaultViewport: 'mobile1',
+        },
+    },
+};
+
+export const MenuMobileDireita: Story = {
+    name: '📱 Menu Mobile: Itens à Direita',
+    args: {
+        logo: {
+            text: 'MeuApp',
+            icon: faRocket,
+            mobilePosition: 'center',
+        },
+        navigation: defaultNavigation,
+        actionButton: {
+            label: 'Login',
+            variant: 'primary',
+        },
+        mobileMenuAlign: 'right',
+    },
+    parameters: {
+        viewport: {
+            defaultViewport: 'mobile1',
+        },
+    },
+};
+
+// =============================================================================
+// ALINHAMENTO DA NAVEGAÇÃO DESKTOP
+// =============================================================================
+
+export const NavDesktopEsquerda: Story = {
+    name: '🖥️ Desktop Nav: Itens à Esquerda',
+    args: {
+        logo: {
+            text: 'MeuApp',
+            icon: faRocket,
+            position: 'left',
+        },
+        navigation: defaultNavigation,
+        actionButton: {
+            label: 'Login',
+            variant: 'primary',
+        },
+        desktopNavAlign: 'left',
+    },
+};
+
+export const NavDesktopCentro: Story = {
+    name: '🖥️ Desktop Nav: Itens Centralizados',
+    args: {
+        logo: {
+            text: 'MeuApp',
+            icon: faRocket,
+            position: 'left',
+        },
+        navigation: defaultNavigation,
+        actionButton: {
+            label: 'Login',
+            variant: 'primary',
+        },
+        desktopNavAlign: 'center',
+    },
+};
+
+export const NavDesktopDireita: Story = {
+    name: '🖥️ Desktop Nav: Itens à Direita',
+    args: {
+        logo: {
+            text: 'MeuApp',
+            icon: faRocket,
+            position: 'left',
+        },
+        navigation: defaultNavigation,
+        actionButton: {
+            label: 'Login',
+            variant: 'primary',
+        },
+        desktopNavAlign: 'right',
+    },
+};
+
+// =============================================================================
+// COMBINAÇÕES DESKTOP + MOBILE
+// =============================================================================
+
+export const CentroDesktopEsquerdaMobile: Story = {
+    name: '🔄 Centro (Desktop) + Esquerda (Mobile)',
+    args: {
+        logo: {
+            text: 'MeuApp',
+            icon: faRocket,
+            position: 'center',
+            mobilePosition: 'left',
+        },
+        navigation: defaultNavigation,
+        actionButton: {
+            label: 'Login',
+            variant: 'primary',
+        },
+    },
+};
+
+export const EsquerdaDesktopCentroMobile: Story = {
+    name: '🔄 Esquerda (Desktop) + Centro (Mobile)',
+    args: {
+        logo: {
+            text: 'MeuApp',
+            icon: faRocket,
+            position: 'left',
+            mobilePosition: 'center',
+        },
+        navigation: defaultNavigation,
+        actionButton: {
+            label: 'Login',
+            variant: 'primary',
+        },
+    },
+};
+
+export const DireitaDesktopCentroMobile: Story = {
+    name: '🔄 Direita (Desktop) + Centro (Mobile)',
+    args: {
+        logo: {
+            text: 'MeuApp',
+            icon: faRocket,
+            position: 'right',
+            mobilePosition: 'center',
+        },
+        navigation: defaultNavigation,
+        actionButton: {
+            label: 'Login',
+            variant: 'primary',
+        },
+    },
+};
+
+// =============================================================================
+// VARIAÇÕES DE BOTÕES DE AÇÃO
+// =============================================================================
+
+export const BotaoPrimary: Story = {
+    name: '🎨 Action Button: Primary',
+    args: {
+        logo: {
+            text: 'MeuApp',
+            icon: faRocket,
+        },
+        navigation: defaultNavigation,
+        actionButton: {
+            label: 'Login',
+            icon: faUser,
+            variant: 'primary',
+        },
+    },
+};
+
+export const BotaoSecondary: Story = {
+    name: '🎨 Action Button: Secondary',
+    args: {
+        logo: {
+            text: 'MeuApp',
+            icon: faRocket,
+        },
+        navigation: defaultNavigation,
+        actionButton: {
+            label: 'Configurações',
+            icon: faCog,
+            variant: 'secondary',
+        },
+    },
+};
+
+export const BotaoGhost: Story = {
+    name: '🎨 Action Button: Ghost',
+    args: {
+        logo: {
+            text: 'MeuApp',
+            icon: faRocket,
+        },
+        navigation: defaultNavigation,
+        actionButton: {
+            label: 'Buscar',
+            icon: faSearch,
+            variant: 'ghost',
+        },
+    },
+};
+
+export const SemBotaoAcao: Story = {
+    name: '🎨 Sem Action Button',
+    args: {
+        logo: {
+            text: 'MeuApp',
+            icon: faRocket,
+        },
+        navigation: defaultNavigation,
+        actionButton: null,
+    },
+};
+
+// =============================================================================
+// VARIAÇÕES DE NAVEGAÇÃO
+// =============================================================================
+
+export const NavegacaoMinima: Story = {
+    name: '📋 Navegação Mínima',
+    args: {
+        logo: {
+            text: 'MeuApp',
+            icon: faRocket,
+        },
+        navigation: minimalNavigation,
+        actionButton: {
+            label: 'Login',
+            variant: 'primary',
+        },
+    },
+};
+
+export const NavegacaoExtensa: Story = {
+    name: '📋 Navegação Extensa',
+    args: {
+        logo: {
+            text: 'MeuApp',
+            icon: faRocket,
+        },
+        navigation: extendedNavigation,
+        actionButton: {
+            label: 'Login',
+            variant: 'primary',
+        },
+    },
+};
+
+export const NavegacaoComIcones: Story = {
+    name: '📋 Todos os Itens com Ícones',
+    args: {
+        logo: {
+            text: 'MeuApp',
+            icon: faRocket,
         },
         navigation: [
-            { key: 'home', label: 'Início', icon: faHome, active: true },
-            { key: 'products', label: 'Produtos', icon: faBox },
-            { key: 'users', label: 'Usuários', icon: faUsers },
-            { key: 'analytics', label: 'Analytics', icon: faChartBar },
+            { key: 'home', label: 'Home', icon: faHome, active: true },
+            { key: 'products', label: 'Produtos', icon: faShoppingCart },
             { key: 'notifications', label: 'Notificações', icon: faBell },
             { key: 'settings', label: 'Configurações', icon: faCog },
         ],
         actionButton: {
-            label: 'João S.',
+            label: 'Perfil',
+            icon: faUser,
             variant: 'primary',
-            icon: faUser
-        }
-    },
-    parameters: {
-        viewport: {
-            defaultViewport: 'ipad',
         },
     },
 };
 
-// Header sem menu mobile (para casos específicos)
-export const NoMobileMenu: Story = {
+export const SemNavegacao: Story = {
+    name: '📋 Sem Navegação',
     args: {
         logo: {
-            text: 'SimpleApp'
+            text: 'MeuApp',
+            icon: faRocket,
+        },
+        navigation: [],
+        actionButton: {
+            label: 'Login',
+            variant: 'primary',
+        },
+    },
+};
+
+// =============================================================================
+// CASOS DE USO REAIS
+// =============================================================================
+
+export const SiteCorporativo: Story = {
+    name: '💼 Caso: Site Corporativo',
+    args: {
+        logo: {
+            text: 'Empresa Corp',
+            image: 'https://via.placeholder.com/140x40/1e3a8a/ffffff?text=EmpresaCorp',
+            position: 'left',
+            mobilePosition: 'center',
         },
         navigation: [
-            { key: 'home', label: 'Home' },
+            { key: 'home', label: 'Início', active: true },
+            { key: 'solutions', label: 'Soluções' },
+            { key: 'about', label: 'Sobre Nós' },
+            { key: 'careers', label: 'Carreiras' },
+            { key: 'contact', label: 'Contato' },
+        ],
+        actionButton: {
+            label: 'Portal do Cliente',
+            variant: 'primary',
+        },
+        sticky: true,
+    },
+};
+
+export const Ecommerce: Story = {
+    name: '🛒 Caso: E-commerce',
+    args: {
+        logo: {
+            text: 'ShopStore',
+            icon: faShoppingCart,
+            position: 'left',
+            mobilePosition: 'left',
+        },
+        navigation: [
+            { key: 'home', label: 'Início', active: true },
+            { key: 'products', label: 'Produtos', icon: faShoppingCart },
+            { key: 'deals', label: 'Ofertas' },
+            { key: 'support', label: 'Suporte' },
+        ],
+        actionButton: {
+            label: 'Minha Conta',
+            icon: faUser,
+            variant: 'secondary',
+        },
+    },
+};
+
+export const AppSaas: Story = {
+    name: '⚡ Caso: SaaS App',
+    args: {
+        logo: {
+            text: 'CloudApp',
+            icon: faRocket,
+            position: 'center',
+            mobilePosition: 'center',
+        },
+        navigation: [
+            { key: 'dashboard', label: 'Dashboard' },
+            { key: 'features', label: 'Recursos' },
+            { key: 'pricing', label: 'Planos' },
+        ],
+        actionButton: {
+            label: 'Começar Grátis',
+            variant: 'primary',
+        },
+        variant: 'transparent',
+    },
+    parameters: {
+        backgrounds: { default: 'dark' },
+    },
+};
+
+export const BlogPessoal: Story = {
+    name: '📝 Caso: Blog Pessoal',
+    args: {
+        logo: {
+            text: 'Meu Blog',
+            position: 'center',
+            mobilePosition: 'center',
+        },
+        navigation: [
+            { key: 'home', label: 'Início', active: true },
+            { key: 'articles', label: 'Artigos' },
             { key: 'about', label: 'Sobre' },
         ],
         actionButton: {
-            label: 'Contato',
-            variant: 'ghost'
+            label: 'Newsletter',
+            icon: faEnvelope,
+            variant: 'ghost',
         },
-        showMobileMenu: false
+        mobileMenuAlign: 'center',
     },
-    parameters: {
-        viewport: {
-            defaultViewport: 'mobile1',
+};
+
+// =============================================================================
+// ESTADOS E INTERAÇÕES
+// =============================================================================
+
+export const ItemDesabilitado: Story = {
+    name: '🚫 Item de Navegação Desabilitado',
+    args: {
+        logo: {
+            text: 'MeuApp',
+            icon: faRocket,
+        },
+        navigation: [
+            { key: 'home', label: 'Home', active: true },
+            { key: 'about', label: 'Sobre' },
+            { key: 'premium', label: 'Premium', disabled: true },
+            { key: 'contact', label: 'Contato' },
+        ],
+        actionButton: {
+            label: 'Login',
+            variant: 'primary',
         },
     },
 };
 
-// Header com interações completas
-export const Interactive: Story = {
-    render: () => {
-        const handleNavigationClick = (item: HeaderNavigationItem) => {
-            alert(`Navegando para: ${item.label}`);
-        };
-
-        const handleActionClick = () => {
-            alert('Botão de ação clicado!');
-        };
-
-        const handleLogoClick = () => {
-            alert('Logo clicado - voltando ao início');
-        };
-
-        return (
-            <Header
-                logo={{
-                    text: 'InteractiveApp',
-                    icon: faBox
-                }}
-                navigation={[
-                    { key: 'dashboard', label: 'Dashboard', icon: faHome },
-                    { key: 'projects', label: 'Projetos', icon: faBox },
-                    { key: 'team', label: 'Equipe', icon: faUsers },
-                    { key: 'notifications', label: 'Notificações', icon: faBell },
-                ]}
-                actionButton={{
-                    label: 'Meu Perfil',
-                    variant: 'secondary',
-                    icon: faUser
-                }}
-                onNavigationClick={handleNavigationClick}
-                onActionClick={handleActionClick}
-                onLogoClick={handleLogoClick}
-            />
-        );
+export const BotaoDesabilitado: Story = {
+    name: '🚫 Action Button Desabilitado',
+    args: {
+        logo: {
+            text: 'MeuApp',
+            icon: faRocket,
+        },
+        navigation: defaultNavigation,
+        actionButton: {
+            label: 'Em Manutenção',
+            variant: 'primary',
+            disabled: true,
+        },
     },
 };
 
-// Showcase de diferentes variantes
-export const AllVariants: Story = {
+export const ComCallbacks: Story = {
+    name: '🎯 Com Callbacks de Interação',
+    args: {
+        logo: {
+            text: 'MeuApp',
+            icon: faRocket,
+            href: '/',
+        },
+        navigation: defaultNavigation,
+        actionButton: {
+            label: 'Login',
+            variant: 'primary',
+        },
+        onLogoClick: () => alert('Logo clicada!'),
+        onNavigationClick: (item) => alert(`Navegação clicada: ${item.label}`),
+        onActionClick: () => alert('Action button clicado!'),
+    },
+};
+
+// =============================================================================
+// COMPARAÇÃO LADO A LADO
+// =============================================================================
+
+export const ComparacaoCompleta: Story = {
+    name: '📊 Comparação: Todas as Posições',
     render: () => (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem', padding: '2rem' }}>
             <div>
-                <h3 style={{ marginBottom: '1rem', padding: '0 1rem' }}>Header Padrão</h3>
+                <h3 style={{ marginBottom: '1rem' }}>Desktop - Logo à Esquerda</h3>
                 <Header
-                    logo={{ text: 'Padrão', icon: faBox }}
-                    navigation={[{ key: 'home', label: 'Início', icon: faHome }]}
-                    actionButton={{ label: 'Primário', variant: 'primary' }}
+                    logo={{ text: 'MeuApp', icon: faRocket, position: 'left' }}
+                    navigation={defaultNavigation}
+                    actionButton={{ label: 'Login', variant: 'primary' }}
                 />
             </div>
             
             <div>
-                <h3 style={{ marginBottom: '1rem', padding: '0 1rem' }}>Com Botão Secundário</h3>
+                <h3 style={{ marginBottom: '1rem' }}>Desktop - Logo Centralizada</h3>
                 <Header
-                    logo={{ text: 'Secundário', icon: faUsers }}
-                    navigation={[{ key: 'dashboard', label: 'Dashboard', icon: faChartBar }]}
-                    actionButton={{ label: 'Secundário', variant: 'secondary', icon: faUser }}
+                    logo={{ text: 'MeuApp', icon: faRocket, position: 'center' }}
+                    navigation={defaultNavigation}
+                    actionButton={{ label: 'Login', variant: 'primary' }}
                 />
             </div>
             
             <div>
-                <h3 style={{ marginBottom: '1rem', padding: '0 1rem' }}>Com Botão Ghost</h3>
+                <h3 style={{ marginBottom: '1rem' }}>Desktop - Logo à Direita</h3>
                 <Header
-                    logo={{ text: 'Ghost', icon: faCog }}
-                    navigation={[{ key: 'settings', label: 'Configurações', icon: faCog }]}
-                    actionButton={{ label: 'Ghost', variant: 'ghost', icon: faQuestionCircle }}
-                />
-            </div>
-            
-            <div>
-                <h3 style={{ marginBottom: '1rem', padding: '0 1rem' }}>Sem Botão de Ação</h3>
-                <Header
-                    logo={{ text: 'Minimalista' }}
-                    navigation={[
-                        { key: 'home', label: 'Home' },
-                        { key: 'about', label: 'Sobre' }
-                    ]}
-                    actionButton={null}
+                    logo={{ text: 'MeuApp', icon: faRocket, position: 'right' }}
+                    navigation={defaultNavigation}
+                    actionButton={{ label: 'Login', variant: 'primary' }}
                 />
             </div>
         </div>
     ),
-};
-
-// Exemplo real de uso - FormsSaúde
-export const FormsSaudeExample: Story = {
-    args: {
-        logo: {
-            text: 'FormsSaúde',
-            icon: faFileAlt,
-            href: '/'
-        },
-        navigation: [
-            { key: 'home', label: 'Início', icon: faHome, href: '/', active: true }
-        ],
-        actionButton: {
-            label: 'Efetuar Login',
-            variant: 'primary'
-        }
-    },
-};
-
-// Exemplo completo de aplicação
-export const CompleteApplication: Story = {
-    render: () => {
-        const [currentPage, setCurrentPage] = React.useState('dashboard');
-
-        const appNavigation = [
-            { key: 'dashboard', label: 'Dashboard', icon: faHome, active: currentPage === 'dashboard' },
-            { key: 'users', label: 'Usuários', icon: faUsers, active: currentPage === 'users' },
-            { key: 'products', label: 'Produtos', icon: faBox, active: currentPage === 'products' },
-            { key: 'analytics', label: 'Relatórios', icon: faChartBar, active: currentPage === 'analytics' },
-            { key: 'settings', label: 'Configurações', icon: faCog, active: currentPage === 'settings' },
-        ];
-
-        return (
-            <div>
-                <Header
-                    logo={{
-                        text: 'MyApp',
-                        icon: faBox,
-                        href: '/'
-                    }}
-                    navigation={appNavigation}
-                    actionButton={{
-                        label: 'João Silva',
-                        variant: 'secondary',
-                        icon: faUser
-                    }}
-                    onNavigationClick={(item) => {
-                        setCurrentPage(item.key);
-                        console.log(`Navegando para: ${item.label}`);
-                    }}
-                    onActionClick={() => alert('Menu do usuário clicado!')}
-                    onLogoClick={() => {
-                        setCurrentPage('dashboard');
-                        console.log('Voltando ao início');
-                    }}
-                    sticky
-                />
-                
-                <div style={{ padding: '2rem', minHeight: '100vh', background: '#f8f9fa' }}>
-                    <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-                        <h1 style={{ marginBottom: '1rem' }}>
-                            {appNavigation.find(nav => nav.active)?.label || 'Página'}
-                        </h1>
-                        <p style={{ color: '#6b7280', marginBottom: '2rem' }}>
-                            Esta é a página {appNavigation.find(nav => nav.active)?.label.toLowerCase()}. 
-                            Use a navegação no header para trocar de página.
-                        </p>
-                        
-                        <div style={{ 
-                            background: 'white', 
-                            padding: '2rem', 
-                            borderRadius: '8px',
-                            border: '1px solid #e5e7eb'
-                        }}>
-                            <h2>Conteúdo da página</h2>
-                            <p>
-                                O header funciona perfeitamente com navegação dinâmica e 
-                                menu mobile responsivo. Teste redimensionando a janela!
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        );
-    },
 };

@@ -110,7 +110,7 @@
     font-weight: 500;
     
     &:hover {
-        color: var(--color-primary);
+        color: var(--nti-color-primary);
         
         .ui-footer__link-icon {
             transform: translateY(-1px);
@@ -179,10 +179,10 @@
 .ui-footer--text-light {
     .ui-footer__link {
         &:hover {
-            color: var(--color-primary-light, #60a5fa);
+            color: var(--nti-color-primary-light, #60a5fa);
             
             .ui-footer__link-icon {
-                color: var(--color-primary-light, #60a5fa);
+                color: var(--nti-color-primary-light, #60a5fa);
             }
         }
     }

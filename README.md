@@ -33,12 +33,12 @@ npm install @fortawesome/fontawesome-svg-core @fortawesome/free-solid-svg-icons 
   --font-family-accent: 'Gibralt', sans-serif;
   
   /* Cores Principais */
-  --color-primary: #0066cc;
-  --color-secondary: #64748b;
-  --color-success: #10b981;
-  --color-warning: #f59e0b;
-  --color-danger: #ef4444;
-  --color-info: #3b82f6;
+  --nti-color-primary: #0066cc;
+  --nti-color-secondary: #64748b;
+  --nti-color-success: #10b981;
+  --nti-color-warning: #f59e0b;
+  --nti-color-danger: #ef4444;
+  --nti-color-info: #3b82f6;
   
   /* Espaçamentos */
   --spacing-xs: 4px;
@@ -118,9 +118,10 @@ Sistema flexível de cartões com múltiplas variantes e subcomponentes especial
 #### Variantes Principais
 ```tsx
 import { 
-  Card, CardHeader, CardTitle, CardSubtitle, CardContent, 
+  Card, CardIcon, CardHeader, CardTitle, CardSubtitle, CardContent, 
   CardFooter, CardAction, CardStatus 
 } from '@nti_ses/ui-components';
+import { faRocket, faCheck, faWarning, faInfo } from '@fortawesome/free-solid-svg-icons';
 
 // Variantes básicas
 <Card variant="default">Card padrão</Card>
@@ -136,6 +137,18 @@ import {
 
 <Card variant="dashed" dashedColor="warning" dashedWidth="thick">
   Card com borda pontilhada
+</Card>
+
+// Variante Feature com ícone destacado (novo!)
+<Card variant="feature" size="medium" hover>
+  <CardHeader>
+    <CardIcon icon={faRocket} variant="primary" />
+    <CardTitle>Feature Card</CardTitle>
+    <CardSubtitle>Card moderno com ícone destacado</CardSubtitle>
+  </CardHeader>
+  <CardFooter>
+    <CardAction variant="primary">Explorar</CardAction>
+  </CardFooter>
 </Card>
 
 // Tamanhos e modificadores
@@ -198,16 +211,104 @@ import {
 ```
 
 #### Props Avançadas do Card
-- **variant**: `'default'` | `'outlined'` | `'elevated'` | `'filled'` | `'gradient'` | `'header-colored'` | `'dashed'`
+
+**Propriedades Base:**
+- **variant**: `'default'` | `'outlined'` | `'elevated'` | `'filled'` | `'gradient'` | `'header-colored'` | `'dashed'` | `'feature'`
 - **size**: `'small'` | `'medium'` | `'large'`
 - **hover**: boolean - efeito hover
 - **shadow**: boolean - sombra do card
 - **padding**: boolean - padding interno
+- **onClick**: (event: MouseEvent<HTMLDivElement>) => void
+
+**Customizações de Borda:**
+- **borderColor**: `'primary'` | `'secondary'` | `'success'` | `'warning'` | `'danger'` | `'info'` | `'gray'` | `string` (hex, rgb, rgba)
+- **borderWidth**: `'thin'` (1px) | `'normal'` (2px) | `'thick'` (3px) | `number` (pixels)
+- **borderRadius**: number - raio das bordas em pixels
+
+**Customizações de Sombra:**
+- **shadowColor**: string - cor da sombra (rgba, hex, etc)
+- **shadowIntensity**: number - intensidade da sombra (0-100, padrão: 100)
+
+**Customizações de Fundo:**
+- **backgroundColor**: string - cor de fundo customizada
+
+**Variantes Especiais:**
 - **headerColor**: string | cores predefinidas (`'primary'`, `'secondary'`, `'success'`, `'warning'`, `'danger'`, `'info'`)
 - **headerHeight**: number - altura do header em pixels
 - **dashedColor**: string | cores predefinidas
 - **dashedWidth**: `'thin'` | `'normal'` | `'thick'` | number
-- **onClick**: (event: MouseEvent<HTMLDivElement>) => void
+
+#### Exemplos de Customizações Avançadas
+
+**Card Feature com Borda Colorida:**
+```tsx
+<Card 
+  variant="feature" 
+  hover 
+  borderColor="primary" 
+  borderWidth="thick"
+  size="medium"
+>
+  <CardHeader>
+    <CardIcon icon={faRocket} variant="primary" />
+    <CardTitle>Seu Título</CardTitle>
+    <CardSubtitle>Descrição</CardSubtitle>
+  </CardHeader>
+  <CardFooter>
+    <CardAction variant="primary">Ação</CardAction>
+  </CardFooter>
+</Card>
+```
+
+**Card com Design Customizado Completo:**
+```tsx
+<Card 
+  variant="default"
+  hover
+  borderColor="#8b5cf6"
+  borderWidth={2}
+  borderRadius={12}
+  backgroundColor="#faf5ff"
+  shadow
+  shadowColor="rgba(139, 92, 246, 0.2)"
+>
+  <CardTitle>Design Premium</CardTitle>
+  <CardContent>Totalmente customizável</CardContent>
+</Card>
+```
+
+**Card com Paleta de Cores Harmônica:**
+```tsx
+<Card
+  variant="feature"
+  borderColor="success"
+  borderWidth={2}
+  borderRadius={12}
+  backgroundColor="#f0fdf4"
+  hover
+>
+  <CardHeader>
+    <CardIcon icon={faCheck} variant="success" />
+    <CardTitle>Sucesso</CardTitle>
+  </CardHeader>
+</Card>
+```
+
+**CardIcon - Ícone Destacado para Feature Cards:**
+```tsx
+import { CardIcon } from '@nti_ses/ui-components';
+import { faDatabase } from '@fortawesome/free-solid-svg-icons';
+
+// Usando cores predefinidas
+<CardIcon icon={faDatabase} variant="primary" />
+
+// Usando cores customizadas
+<CardIcon 
+  icon={faDatabase} 
+  backgroundColor="#8b5cf6" 
+  iconColor="#ffffff"
+/>
+```
 
 ---
 
@@ -1524,8 +1625,8 @@ npm run type-check
 ```css
 /* Tema customizado */
 .my-app {
-  --color-primary: #8b5cf6;
-  --color-secondary: #06b6d4;
+  --nti-color-primary: #8b5cf6;
+  --nti-color-secondary: #06b6d4;
   --font-family-display: 'Custom Display Font', sans-serif;
   --border-radius-md: 0.75rem;
 }

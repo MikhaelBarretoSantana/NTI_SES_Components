@@ -108,7 +108,7 @@
     text-align: left;
     cursor: pointer;
     transition: all 0.2s ease;
-    color: var(--color-text-primary);
+    color: var(--nti-color-text-primary);
     text-decoration: none;
     font-size: var(--font-size-sm);
 }
@@ -128,7 +128,7 @@
 }
 
 .ui-dropdown__item--danger {
-    color: var(--color-danger);
+    color: var(--nti-color-danger);
 }
 
 .ui-dropdown__item--danger:hover:not(.ui-dropdown__item--disabled) {
@@ -169,7 +169,7 @@
 .ui-dropdown__item-description {
     display: block;
     font-size: var(--font-size-xs);
-    color: var(--color-text-muted);
+    color: var(--nti-color-text-muted);
     margin-top: 2px;
     white-space: nowrap;
     overflow: hidden;
@@ -188,7 +188,7 @@
     padding: var(--spacing-xs) var(--spacing-md);
     font-size: var(--font-size-xs);
     font-weight: var(--font-weight-semibold);
-    color: var(--color-text-secondary);
+    color: var(--nti-color-text-secondary);
     text-transform: uppercase;
     letter-spacing: 0.5px;
 }
@@ -219,7 +219,7 @@
 /* Estados específicos dos ícones */
 .ui-dropdown__item--danger {
     .ui-dropdown__item-icon {
-        color: var(--color-danger);
+        color: var(--nti-color-danger);
     }
 }
 

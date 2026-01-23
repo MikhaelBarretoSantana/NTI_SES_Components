@@ -6,6 +6,8 @@ export interface HeaderLogo {
     icon?: IconDefinition;
     image?: string;
     href?: string;
+    position?: 'left' | 'center' | 'right'; // Posição da logo no desktop
+    mobilePosition?: 'left' | 'center' | 'right'; // Posição da logo no mobile
 }
 
 export interface HeaderNavigationItem {
@@ -36,6 +38,10 @@ export interface HeaderProps {
     
     // Mobile behavior
     showMobileMenu?: boolean;
+    mobileMenuAlign?: 'left' | 'center' | 'right'; // Alinhamento dos itens do menu mobile
+    
+    // Desktop behavior
+    desktopNavAlign?: 'left' | 'center' | 'right'; // Alinhamento dos itens de navegação no desktop
     
     // Callbacks
     onNavigationClick?: (item: HeaderNavigationItem) => void;

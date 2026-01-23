@@ -4,7 +4,7 @@
 // Variáveis
 $card-border-radius: 0.5rem; // 8px
 $card-transition: all 0.2s ease;
-$card-padding: 1.5rem; // 24px
+$card-padding: 3rem 2rem; // 24px
 $card-header-margin-bottom: 1rem; // 16px
 $card-footer-margin-top: 1rem; // 16px
 $card-footer-padding-top: 1rem; // 16px
@@ -26,7 +26,6 @@ $card-text-gray-500: #6b7280;
 $card-shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
 $card-shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -2px rgb(0 0 0 / 0.05);
 
-// Cores para ações
 $primary-color: #3b82f6;
 $primary-hover: #2563eb;
 $secondary-color: #6b7280;
@@ -34,7 +33,6 @@ $secondary-hover: #4b5563;
 $danger-color: #dc2626;
 $danger-hover: #b91c1c;
 
-// Cores para header
 $header-colors: (
     'primary': #3b82f6,
     'secondary': #6b7280,
@@ -44,22 +42,48 @@ $header-colors: (
     'info': #0ea5e9
 );
 
-// Componente base
+$icon-container-colors: (
+    'primary': #3b82f6,
+    'secondary': #6b7280,
+    'success': #059669,
+    'warning': #d97706,
+    'danger': #dc2626,
+    'info': #0ea5e9
+);
+
+// Cores de borda customizáveis
+$border-colors: (
+    'primary': #3b82f6,
+    'secondary': #6b7280,
+    'success': #059669,
+    'warning': #d97706,
+    'danger': #dc2626,
+    'info': #0ea5e9,
+    'gray': #e5e7eb
+);
+
 .card {
     border-radius: $card-border-radius;
     transition: $card-transition;
     position: relative;
     overflow: hidden;
+    
+    // Suporte a variáveis CSS para customizações
+    border-color: var(--border-color, currentColor);
+    border-width: var(--border-width, auto);
+    --shadow-color: transparent;
+    --shadow-intensity: 100%;
+    --border-color: transparent;
+    --border-width: auto;
 
-    // Variantes
     &--default {
         background-color: $card-bg-white;
-        border: 1px solid $card-border-gray-200;
+        border: var(--border-width, 1px) solid var(--border-color, #{$card-border-gray-200});
     }
 
     &--outlined {
         background-color: $card-bg-white;
-        border: 2px solid $card-border-gray-300;
+        border: var(--border-width, 2px) solid var(--border-color, #{$card-border-gray-300});
     }
 
     &--elevated {
@@ -78,11 +102,67 @@ $header-colors: (
         border: 1px solid $card-border-blue-200;
     }
 
+    &--feature {
+        background-color: $card-bg-white;
+        border: var(--border-width, 2px) solid var(--border-color, #{$card-border-gray-200});
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        overflow: visible;
+        
+        .card-header {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            position: relative;
+        }
+        
+        .card-title {
+            margin: 0.5rem 0;
+
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: $card-text-gray-900;
+        }
+        
+        .card-subtitle {
+            color: $card-text-gray-600;
+            font-size: 1.1875rem;
+            line-height: 1.6;
+
+            margin: 0;
+        }
+        
+        .card-content {
+            width: 100%;
+            margin-bottom: 1.5rem;
+        }
+        
+        .card-footer {
+            width: 100%;
+            border-top: none;
+            padding-top: 0;
+        }
+        
+        .card-action {
+            width: 100%;
+            justify-content: center;
+            font-size: 1rem;
+            padding: 1rem;
+            border-radius: 10px;
+            font-weight: 600;
+        }
+        
+        .card-icon-container {
+            position: absolute;
+        }
+    }
+
     &--dashed {
         background-color: $card-bg-white;
         border: 2px dashed $card-border-gray-300;
         
-        // Variações de cores para bordas pontilhadas
         &.card--dashed-primary {
             border-color: $primary-color;
             border-width: 2px;
@@ -113,13 +193,11 @@ $header-colors: (
             border-width: 2px;
         }
         
-        // Suporte para cor customizada via CSS custom property
         &.card--dashed-custom {
             border-color: var(--dashed-color, #{$card-border-gray-300});
             border-width: var(--dashed-width, 2px);
         }
         
-        // Diferentes estilos de pontilhado
         &.card--dashed-thick {
             border-width: 3px;
         }
@@ -128,7 +206,6 @@ $header-colors: (
             border-width: 1px;
         }
         
-        // Efeito hover especial para dashed
         &.card--hover:hover {
             border-style: solid;
             transform: translateY(-2px);
@@ -151,7 +228,6 @@ $header-colors: (
             z-index: 1;
         }
 
-        // Cores predefinidas para header
         @each $name, $color in $header-colors {
             &.card--header-#{$name} {
                 &::before {
@@ -161,20 +237,18 @@ $header-colors: (
         }
     }
 
-    // Tamanhos
     &--small {
-        font-size: 0.875rem; // 14px
+        font-size: 0.875rem;
     }
 
     &--medium {
-        font-size: 1rem; // 16px
+        font-size: 1rem;
     }
 
     &--large {
-        font-size: 1.125rem; // 18px
+        font-size: 1.125rem;
     }
 
-    // Modificadores
     &--shadow {
         box-shadow: $card-shadow-sm;
 
@@ -201,6 +275,36 @@ $header-colors: (
     }
 }
 
+.card-icon-container {
+    width: 80px;
+    height: 80px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: $card-transition;
+    flex-shrink: 0;
+    background-color: var(--icon-bg-color, transparent);
+    
+    &__icon {
+        width: 2.5rem;
+        height: 2.5rem;
+
+        font-size: 1.75rem;
+        color: var(--icon-color, #ffffff);
+    }
+    
+    @each $name, $color in $icon-container-colors {
+        &--#{$name} {
+            background-color: var(--icon-bg-color, #{$color});
+        }
+    }
+    
+    .card--feature.card--hover:hover & {
+        transform: scale(1.05);
+    }
+}
+
 // Sub-componentes
 .card-header {
     margin-bottom: $card-header-margin-bottom;
@@ -222,7 +326,7 @@ $header-colors: (
     height: var(--icon-size-md);
     font-size: var(--icon-size-md);
     flex-shrink: 0;
-    color: var(--color-text-primary);
+    color: var(--nti-color-text-primary);
 }
 
 .card-header__content {
@@ -254,7 +358,7 @@ $header-colors: (
     height: var(--icon-size-md);
     font-size: var(--icon-size-md);
     flex-shrink: 0;
-    color: var(--color-text-primary);
+    color: var(--nti-color-text-primary);
 }
 
 .card-title__content {
@@ -338,6 +442,11 @@ $header-colors: (
     &--medium {
         padding: 0.5rem 1rem;
         font-size: 0.875rem;
+    }
+
+    &--large {
+        padding: 0.75rem 1.5rem;
+        font-size: 1rem;
     }
 
     // Variantes
@@ -440,12 +549,48 @@ $header-colors: (
         height: var(--icon-size-md);
         font-size: var(--icon-size-md);
     }
+
+    .card-title {
+        font-size: 1rem;
+    }
+
+    .card-subtitle {
+        font-size: 0.875rem;
+    }
     
     .card-action__icon,
     .card-status__icon {
         width: var(--icon-size-lg);
         height: var(--icon-size-lg);
         font-size: var(--icon-size-lg);
+    }
+    
+    .card-icon-container {
+        width: 56px;
+        height: 56px;
+        padding: 1.25rem;
+        
+        &__icon {
+            width: 1.5rem;
+            height: 1.5rem;
+            font-size: 1.5rem;
+        }
+    }
+    
+    &.card--feature {
+        margin-top: 28px;
+        
+        &.card--padding {
+            padding: 2.5rem 1.5rem;
+        }
+
+        .card-icon-container {
+            top: -56px;
+        }
+        
+        .card-title {
+            margin-top: 0.75rem;
+        }
     }
 }
 
@@ -462,7 +607,24 @@ $header-colors: (
         width: var(--icon-size-md);
         height: var(--icon-size-md);
         font-size: var(--icon-size-md);
-    }}
+    }
+
+    &.card--feature {
+        margin-top: 40px;
+        
+        .card-icon-container {
+            top: -80px;
+        }
+
+        &.card--padding {
+            padding: 3rem 2rem 2rem 2rem;
+        }
+
+        .card-title {
+            margin-top: 0.5rem;
+        }
+    }
+}
 
 .card--large {
     .card-header__icon,
@@ -471,12 +633,48 @@ $header-colors: (
         height: var(--icon-size-xl);
         font-size: var(--icon-size-xl);
     }
+
+    .card-title {
+        font-size: 1.5rem;
+    }
+
+    .card-subtitle {
+        font-size: 1.375rem;
+    }
     
     .card-action__icon,
     .card-status__icon {
         width: var(--icon-size-lg);
         height: var(--icon-size-lg);
         font-size: var(--icon-size-lg);
+    }
+    
+    .card-icon-container {
+        width: 96px;
+        height: 96px;
+        padding: 1.75rem;
+        
+        &__icon {
+            width: 2.5rem;
+            height: 2.5rem;
+            font-size: 2.5rem;
+        }
+    }
+    
+    &.card--feature {
+        margin-top: 48px;
+        
+        &.card--padding {
+            padding: 3.5rem 2.5rem;
+        }
+        
+        .card-icon-container {
+            top: -96px;
+        }
+        
+        .card-title {
+            margin-top: 1rem;
+        }
     }
 }
 
@@ -506,16 +704,81 @@ $header-colors: (
     }
 }
 
+// Responsividade para tablets
+@media (max-width: 1024px) and (min-width: 769px) {
+    .card--feature.card--medium {
+        .card-icon-container {
+            width: 72px;
+            height: 72px;
+            
+            &__icon {
+                width: 2rem;
+                height: 2rem;
+                font-size: 2rem;
+            }
+        }
+
+        .card-title {
+            font-size: 1.1875rem;
+        }
+
+        .card-subtitle {
+            font-size: 1rem;
+        }
+    }
+}
+
 // Responsividade
 @media (max-width: 768px) {
     .card {
         &--padding {
-            padding: 1rem; // 16px em mobile
+            padding: 1rem;
+        }
+        
+        &--feature {
+            &.card--medium {
+                margin-top: 32px;
+                
+                .card-icon-container {
+                    top: -64px;
+                }
+            }
         }
     }
 
     .card-title {
-        font-size: 1.125rem; // 18px em mobile
+        font-size: 1.125rem;
+    }
+    
+    .card--feature {
+        min-height: 280px;
+        
+        &.card--medium {
+            &.card--padding {
+                padding: 2.5rem 1.5rem 1.5rem 1.5rem;
+            }
+
+            .card-icon-container {
+                width: 64px;
+                height: 64px;
+                
+                &__icon {
+                    width: 1.75rem;
+                    height: 1.75rem;
+                    font-size: 1.75rem;
+                }
+            }
+        }
+        
+        .card-title {
+            font-size: 1.125rem;
+            margin-top: 0.75rem;
+        }
+        
+        .card-subtitle {
+            font-size: 0.875rem;
+            line-height: 1.5;
+        }
     }
 
     .card-footer--actions {
@@ -540,6 +803,15 @@ $header-colors: (
             width: var(--icon-size-md);
             height: var(--icon-size-md);
             font-size: var(--icon-size-md);
+        }
+    }
+    
+    .card-icon-container {
+        width: 56px;
+        height: 56px;
+        
+        &__icon {
+            font-size: 1.5rem;
         }
     }
 }

@@ -9,7 +9,7 @@
     &__label {
         display: block;
         margin-bottom: var(--spacing-sm);
-        color: var(--color-text-primary, #374151);
+        color: var(--nti-color-text-primary, #374151);
         font-size: 0.875rem;
         font-weight: 500;
         line-height: 1.5;
@@ -22,20 +22,20 @@
         width: 100%;
         min-height: 2.5rem;
         padding: 0 var(--spacing-md, 0.75rem);
-        border: 1px solid var(--color-border, #d1d5db);
+        border: 1px solid var(--nti-color-border, #d1d5db);
         border-radius: var(--border-radius-md, 0.375rem);
-        background-color: var(--color-background, #ffffff);
+        background-color: var(--nti-color-background, #ffffff);
         cursor: pointer;
         transition: all 0.2s ease-in-out;
 
         &:hover:not(.ui-daterange--disabled .ui-daterange__trigger) {
-            border-color: var(--color-border-hover, #9ca3af);
+            border-color: var(--nti-color-border-hover, #9ca3af);
         }
 
         &:focus {
             outline: none;
-            border-color: var(--color-primary, #3b82f6);
-            box-shadow: 0 0 0 3px var(--color-primary-light, rgba(59, 130, 246, 0.1));
+            border-color: var(--nti-color-primary, #3b82f6);
+            box-shadow: 0 0 0 3px var(--nti-color-primary-light, rgba(59, 130, 246, 0.1));
         }
     }
 
@@ -44,7 +44,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        color: var(--color-text-muted, #6b7280);
+        color: var(--nti-color-text-muted, #6b7280);
         transition: color 0.2s ease-in-out;
 
         &--left {
@@ -65,7 +65,7 @@
 
     // Spinner
     &__spinner {
-        color: var(--color-primary, #3b82f6);
+        color: var(--nti-color-primary, #3b82f6);
     }
 
     // Botão limpar
@@ -77,13 +77,13 @@
         height: 1.25rem;
         border: none;
         border-radius: 50%;
-        background-color: var(--color-text-muted, #6b7280);
-        color: var(--color-background, #ffffff);
+        background-color: var(--nti-color-text-muted, #6b7280);
+        color: var(--nti-color-background, #ffffff);
         cursor: pointer;
         transition: background-color 0.2s ease-in-out;
 
         &:hover {
-            background-color: var(--color-danger, #ef4444);
+            background-color: var(--nti-color-danger, #ef4444);
         }
 
         svg {
@@ -95,7 +95,7 @@
     // Texto de exibição
     &__text {
         flex: 1;
-        color: var(--color-text-primary, #374151);
+        color: var(--nti-color-text-primary, #374151);
         font-size: 0.875rem;
         line-height: 1.5;
         white-space: nowrap;
@@ -103,7 +103,7 @@
         text-overflow: ellipsis;
 
         &--placeholder {
-            color: var(--color-text-muted, #9ca3af);
+            color: var(--nti-color-text-muted, #9ca3af);
         }
     }
 
@@ -116,9 +116,9 @@
         z-index: 1000;
         margin-top: var(--spacing-xs, 0.25rem);
         padding: var(--spacing-lg, 1rem);
-        border: 1px solid var(--color-border, #d1d5db);
+        border: 1px solid var(--nti-color-border, #d1d5db);
         border-radius: var(--border-radius-lg, 0.5rem);
-        background-color: var(--color-background, #ffffff);
+        background-color: var(--nti-color-background, #ffffff);
         box-shadow: var(--shadow-lg, 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05));
         animation: slideDown 0.2s ease-out;
     }
@@ -141,7 +141,7 @@
     &__input-label {
         font-size: 0.75rem;
         font-weight: 500;
-        color: var(--color-text-muted, #6b7280);
+        color: var(--nti-color-text-muted, #6b7280);
         text-transform: uppercase;
         letter-spacing: 0.025em;
     }
@@ -149,22 +149,22 @@
     &__input {
         width: 100%;
         padding: var(--spacing-sm, 0.5rem) var(--spacing-md, 0.75rem);
-        border: 1px solid var(--color-border, #d1d5db);
+        border: 1px solid var(--nti-color-border, #d1d5db);
         border-radius: var(--border-radius-md, 0.375rem);
         font-size: 0.875rem;
-        background-color: var(--color-background, #ffffff);
-        color: var(--color-text-primary, #374151);
+        background-color: var(--nti-color-background, #ffffff);
+        color: var(--nti-color-text-primary, #374151);
         transition: border-color 0.2s ease-in-out;
 
         &:focus {
             outline: none;
-            border-color: var(--color-primary, #3b82f6);
-            box-shadow: 0 0 0 3px var(--color-primary-light, rgba(59, 130, 246, 0.1));
+            border-color: var(--nti-color-primary, #3b82f6);
+            box-shadow: 0 0 0 3px var(--nti-color-primary-light, rgba(59, 130, 246, 0.1));
         }
 
         &:disabled {
-            background-color: var(--color-background-disabled, #f9fafb);
-            color: var(--color-text-muted, #9ca3af);
+            background-color: var(--nti-color-background-disabled, #f9fafb);
+            color: var(--nti-color-text-muted, #9ca3af);
             cursor: not-allowed;
         }
     }
@@ -173,14 +173,14 @@
         display: flex;
         align-items: center;
         padding-bottom: var(--spacing-sm, 0.5rem);
-        color: var(--color-text-muted, #6b7280);
+        color: var(--nti-color-text-muted, #6b7280);
         font-weight: 500;
     }
 
     // Divisor
     &__divider {
         height: 1px;
-        background-color: var(--color-border, #e5e7eb);
+        background-color: var(--nti-color-border, #e5e7eb);
         margin: var(--spacing-lg, 1rem) 0;
     }
 
@@ -189,7 +189,7 @@
         &-title {
             font-size: 0.75rem;
             font-weight: 600;
-            color: var(--color-text-muted, #6b7280);
+            color: var(--nti-color-text-muted, #6b7280);
             text-transform: uppercase;
             letter-spacing: 0.025em;
             margin-bottom: var(--spacing-md, 0.75rem);
@@ -215,25 +215,25 @@
         transition: background-color 0.2s ease-in-out;
 
         &:hover {
-            background-color: var(--color-background-hover, #f3f4f6);
+            background-color: var(--nti-color-background-hover, #f3f4f6);
         }
 
         &:focus {
             outline: none;
-            background-color: var(--color-background-hover, #f3f4f6);
-            box-shadow: 0 0 0 2px var(--color-primary, #3b82f6);
+            background-color: var(--nti-color-background-hover, #f3f4f6);
+            box-shadow: 0 0 0 2px var(--nti-color-primary, #3b82f6);
         }
 
         &-label {
             font-size: 0.875rem;
             font-weight: 500;
-            color: var(--color-text-primary, #374151);
+            color: var(--nti-color-text-primary, #374151);
             margin-bottom: 0.125rem;
         }
 
         &-description {
             font-size: 0.75rem;
-            color: var(--color-text-muted, #6b7280);
+            color: var(--nti-color-text-muted, #6b7280);
             line-height: 1.4;
         }
     }
@@ -249,29 +249,29 @@
     }
 
     &__helper {
-        color: var(--color-text-muted, #6b7280);
+        color: var(--nti-color-text-muted, #6b7280);
     }
 
     &__error {
-        color: var(--color-danger, #dc2626);
+        color: var(--nti-color-danger, #dc2626);
     }
 
     &__success {
-        color: var(--color-success, #059669);
+        color: var(--nti-color-success, #059669);
     }
 
     &__warning {
-        color: var(--color-warning, #d97706);
+        color: var(--nti-color-warning, #d97706);
     }
 
     // Variantes
     &--filled {
         .ui-daterange__trigger {
-            background-color: var(--color-background-subtle, #f9fafb);
+            background-color: var(--nti-color-background-subtle, #f9fafb);
             border-color: transparent;
 
             &:hover {
-                background-color: var(--color-background-hover, #f3f4f6);
+                background-color: var(--nti-color-background-hover, #f3f4f6);
             }
         }
     }
@@ -288,12 +288,12 @@
             border-color: transparent;
 
             &:hover {
-                background-color: var(--color-background-hover, #f3f4f6);
+                background-color: var(--nti-color-background-hover, #f3f4f6);
             }
 
             &:focus {
-                border-color: var(--color-primary, #3b82f6);
-                background-color: var(--color-background, #ffffff);
+                border-color: var(--nti-color-primary, #3b82f6);
+                background-color: var(--nti-color-background, #ffffff);
             }
         }
     }
@@ -350,8 +350,8 @@
 
         .ui-daterange__trigger {
             cursor: not-allowed;
-            background-color: var(--color-background-disabled, #f9fafb);
-            color: var(--color-text-muted, #9ca3af);
+            background-color: var(--nti-color-background-disabled, #f9fafb);
+            color: var(--nti-color-text-muted, #9ca3af);
         }
     }
 
@@ -364,30 +364,30 @@
     // Estados de validação
     &--error {
         .ui-daterange__trigger {
-            border-color: var(--color-danger, #dc2626);
+            border-color: var(--nti-color-danger, #dc2626);
 
             &:focus {
-                box-shadow: 0 0 0 3px var(--color-danger-light, rgba(220, 38, 38, 0.1));
+                box-shadow: 0 0 0 3px var(--nti-color-danger-light, rgba(220, 38, 38, 0.1));
             }
         }
     }
 
     &--success {
         .ui-daterange__trigger {
-            border-color: var(--color-success, #059669);
+            border-color: var(--nti-color-success, #059669);
 
             &:focus {
-                box-shadow: 0 0 0 3px var(--color-success-light, rgba(5, 150, 105, 0.1));
+                box-shadow: 0 0 0 3px var(--nti-color-success-light, rgba(5, 150, 105, 0.1));
             }
         }
     }
 
     &--warning {
         .ui-daterange__trigger {
-            border-color: var(--color-warning, #d97706);
+            border-color: var(--nti-color-warning, #d97706);
 
             &:focus {
-                box-shadow: 0 0 0 3px var(--color-warning-light, rgba(217, 119, 6, 0.1));
+                box-shadow: 0 0 0 3px var(--nti-color-warning-light, rgba(217, 119, 6, 0.1));
             }
         }
     }

@@ -17,7 +17,7 @@
 /* Info Section - Moved to separate line on mobile */
 .ui-pagination__info {
     font-size: 0.875rem;
-    color: var(--color-text-muted, #6b7280);
+    color: var(--nti-color-text-muted, #6b7280);
     white-space: nowrap;
     order: 1;
     
@@ -45,19 +45,19 @@
 
 .ui-pagination__page-size-select {
     padding: 0.25rem 0.5rem;
-    border: 1px solid var(--color-border, #d1d5db);
+    border: 1px solid var(--nti-color-border, #d1d5db);
     border-radius: var(--border-radius-lg, 0.5rem);
-    background-color: var(--color-background, white);
+    background-color: var(--nti-color-background, white);
     font-size: 0.875rem;
-    color: var(--color-text-primary, #374151);
+    color: var(--nti-color-text-primary, #374151);
     cursor: pointer;
     transition: all 0.2s ease;
     min-width: 4rem;
     
     &:focus {
         outline: none;
-        border-color: var(--color-primary, #3b82f6);
-        box-shadow: 0 0 0 2px var(--color-primary-light, rgba(59, 130, 246, 0.1));
+        border-color: var(--nti-color-primary, #3b82f6);
+        box-shadow: 0 0 0 2px var(--nti-color-primary-light, rgba(59, 130, 246, 0.1));
     }
     
     &:disabled {
@@ -72,9 +72,9 @@
     align-items: center;
     gap: 0;
     order: 2;
-    border: 1px solid var(--color-border, #e5e7eb);
+    border: 1px solid var(--nti-color-border, #e5e7eb);
     border-radius: var(--border-radius-lg, 0.5rem);
-    background-color: var(--color-background, white);
+    background-color: var(--nti-color-background, white);
     padding: 0.125rem;
     box-shadow: var(--shadow-sm, 0 1px 2px 0 rgba(0, 0, 0, 0.05));
     
@@ -99,7 +99,7 @@
     gap: 0.25rem;
     border: none;
     background-color: transparent;
-    color: var(--color-text-primary, #374151);
+    color: var(--nti-color-text-primary, #374151);
     cursor: pointer;
     transition: all 0.2s ease;
     text-decoration: none;
@@ -107,13 +107,13 @@
     position: relative;
     
     &:hover:not(:disabled):not(.ui-pagination__button--active) {
-        background-color: var(--color-background-hover, #f3f4f6);
-        color: var(--color-primary, #3b82f6);
+        background-color: var(--nti-color-background-hover, #f3f4f6);
+        color: var(--nti-color-primary, #3b82f6);
     }
     
     &:focus {
         outline: none;
-        box-shadow: 0 0 0 2px var(--color-primary-light, rgba(59, 130, 246, 0.2));
+        box-shadow: 0 0 0 2px var(--nti-color-primary-light, rgba(59, 130, 246, 0.2));
         z-index: 1;
     }
     
@@ -128,11 +128,11 @@
     
     // Active state for current page - Blue circular background
     &--active {
-        background-color: var(--color-primary, #3b82f6);
+        background-color: var(--nti-color-primary, #3b82f6);
         color: white;
         
         &:hover:not(:disabled) {
-            background-color: var(--color-primary-dark, #2563eb);
+            background-color: var(--nti-color-primary-dark, #2563eb);
         }
     }
     
@@ -175,7 +175,7 @@
     justify-content: center;
     width: 2rem;
     height: 2rem;
-    color: var(--color-text-muted, #9ca3af);
+    color: var(--nti-color-text-muted, #9ca3af);
     font-size: 0.875rem;
     margin: 0 0.0625rem;
     
@@ -203,30 +203,30 @@
 
 .ui-pagination__jumper-label {
     font-size: 0.875rem;
-    color: var(--color-text-muted, #6b7280);
+    color: var(--nti-color-text-muted, #6b7280);
     white-space: nowrap;
 }
 
 .ui-pagination__jumper-input {
     width: 3rem;
     padding: 0.25rem 0.5rem;
-    border: 1px solid var(--color-border, #d1d5db);
+    border: 1px solid var(--nti-color-border, #d1d5db);
     border-radius: var(--border-radius-md, 0.375rem);
     font-size: 0.875rem;
     text-align: center;
-    background-color: var(--color-background, white);
-    color: var(--color-text-primary, #374151);
+    background-color: var(--nti-color-background, white);
+    color: var(--nti-color-text-primary, #374151);
     
     &:focus {
         outline: none;
-        border-color: var(--color-primary, #3b82f6);
-        box-shadow: 0 0 0 2px var(--color-primary-light, rgba(59, 130, 246, 0.1));
+        border-color: var(--nti-color-primary, #3b82f6);
+        box-shadow: 0 0 0 2px var(--nti-color-primary-light, rgba(59, 130, 246, 0.1));
     }
     
     &:disabled {
         opacity: 0.5;
         cursor: not-allowed;
-        background-color: var(--color-background-disabled, #f9fafb);
+        background-color: var(--nti-color-background-disabled, #f9fafb);
     }
 }
 
@@ -322,8 +322,8 @@
     }
     
     .ui-pagination__button--active {
-        background-color: var(--color-primary, #3b82f6);
-        border: 2px solid var(--color-primary, #3b82f6);
+        background-color: var(--nti-color-primary, #3b82f6);
+        border: 2px solid var(--nti-color-primary, #3b82f6);
     }
 }
 
@@ -340,13 +340,13 @@
         border: 1px solid transparent;
         
         &--active {
-            background-color: var(--color-primary, #3b82f6);
+            background-color: var(--nti-color-primary, #3b82f6);
             color: white;
         }
         
         &:hover:not(:disabled):not(.ui-pagination__button--active) {
-            background-color: var(--color-background-hover, #f3f4f6);
-            border-color: var(--color-border, #d1d5db);
+            background-color: var(--nti-color-background-hover, #f3f4f6);
+            border-color: var(--nti-color-border, #d1d5db);
         }
     }
 }
@@ -357,7 +357,7 @@
     pointer-events: none;
     
     .ui-pagination__controls {
-        background-color: var(--color-background-disabled, #f9fafb);
+        background-color: var(--nti-color-background-disabled, #f9fafb);
     }
 }
 

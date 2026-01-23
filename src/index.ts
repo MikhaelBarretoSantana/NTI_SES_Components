@@ -12,6 +12,7 @@ export { Select } from './components/Select/Select';
 export { Dropdown } from './components/Dropdown/Dropdown';
 export {
     Card,
+    CardIcon,
     CardHeader,
     CardTitle,
     CardSubtitle,
@@ -23,10 +24,12 @@ export {
 export { Header } from "./components/Header/Header";
 export { Footer } from "./components/Footer/Footer";
 export { Pagination } from "./components/Pagination/Pagination";
-export { Modal } from "./components/Modal/Modal";
+export { default as Modal } from "./components/Modal/Modal";
 export { DateRange } from "./components/DateRange/DateRange";
 
-export type { ButtonProps } from './components/Button/Button.types';
+export { ProgressSteps } from "./components/ProgressSteps/ProgressSteps";
+
+export type { ButtonProps, IconSide } from './components/Button/Button.types';
 export type { InputProps, InputType, InputVariant } from './components/Input/Input.types';
 export type { TypographyProps } from './components/Typography/Typography.types';
 export type { SelectProps, SelectOption, SelectVariant } from './components/Select/Select.types';
@@ -45,11 +48,14 @@ export type {
     CardContentProps,
     CardFooterProps,
     CardActionProps,
+    CardIconProps,
     CardVariant,
     CardSize,
     CardHeaderColor,
     CardDashedColor,
-    CardDashedWidth
+    CardDashedWidth,
+    CardBorderColor,
+    CardBorderWidth
 } from "./components/Card/Card.types";
 export type {
     HeaderProps,
@@ -86,3 +92,13 @@ export type {
     ModalStyles,
     ModalTheme
 } from "./components/Modal/Modal.types"
+
+export type {
+    Step,
+    ProgressStepsColors,
+    ProgressStepsProps,
+    ProgressStepsVariant,
+    ProgressStepsSize,
+    ProgressStepsOrientation,
+    ProgressStepsLabelPosition,
+} from "./components/ProgressSteps/ProgressSteps.types"

@@ -63,6 +63,14 @@ const optionsWithDescriptions: SelectOption[] = [
     },
 ];
 
+const optionsWithTooltip: SelectOption[] = [
+    { value: 'sp', label: 'São Paulo', tooltip: 'Estado com maior PIB do Brasil' },
+    { value: 'rj', label: 'Rio de Janeiro', tooltip: 'Conhecido pela Baía de Guanabara' },
+    { value: 'mg', label: 'Minas Gerais', tooltip: 'Estado produtor de minério de ferro' },
+    { value: 'rs', label: 'Rio Grande do Sul', tooltip: 'Estado mais ao sul do Brasil' },
+    { value: 'pr', label: 'Paraná', tooltip: 'Localizado na região sul' },
+];
+
 const groupedOptions: SelectOption[] = [
     { value: 'br', label: 'Brasil', icon: faFlag, group: 'América do Sul' },
     { value: 'ar', label: 'Argentina', icon: faFlag, group: 'América do Sul' },
@@ -156,6 +164,15 @@ export const Loading: Story = {
         label: 'Carregando...',
         loading: true,
         loadingText: 'Buscando dados...',
+    },
+};
+
+export const WithTooltip: Story = {
+    args: {
+        options: optionsWithTooltip,
+        label: 'Estado (com tooltip)',
+        placeholder: 'Passe o mouse sobre as opções',
+        searchable: true,
     },
 };
 

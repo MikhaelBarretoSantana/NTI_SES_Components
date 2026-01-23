@@ -639,3 +639,5 @@ export const Modal = forwardRef<ModalComponentRef, ModalProps>(({
 });
 
 Modal.displayName = 'Modal';
+
+export default Modal

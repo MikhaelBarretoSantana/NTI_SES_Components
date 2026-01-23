@@ -35,19 +35,32 @@
     --line-height-loose: 1.8;
 
     /* Colors */
-    --color-primary: #0066cc;
-    --color-primary-hover: #0052a3;
-    --color-secondary: #f5f5f5;
-    --color-danger: #870900;
-    --color-success: #28a745;
-    --color-warning: #ffc107;
-    --color-info: #17a2b8;
+    --nti-color-primary: #0066cc;
+    --nti-color-primary-hover: #0052a3;
+    --nti-color-secondary: #f5f5f5;
+    --nti-color-danger: #870900;
+    --nti-color-success: #28a745;
+    --nti-color-warning: #ffc107;
+    --nti-color-info: #17a2b8;
 
     /* Text Colors */
-    --color-text-primary: #454545;
-    --color-text-secondary: #4a5568;
-    --color-text-muted: #718096;
-    --color-text-inverse: #ffffff;
+    --nti-color-text-primary: #454545;
+    --nti-color-text-secondary: #4a5568;
+    --nti-color-text-muted: #718096;
+    --nti-color-text-inverse: #ffffff;
+
+    /* Progress Steps Component Colors */
+    --nti-color-progress-primary: #1a4da0;
+    --nti-color-progress-secondary: #2563eb;
+    --nti-color-progress-completed: #10b981;
+    --nti-color-progress-inactive: #9ca3af;
+    --nti-color-progress-text: #1f2937;
+    --nti-color-progress-inactive-text: #6b7280;
+    --nti-color-progress-background: #ffffff;
+
+    /* Button Component Colors */
+    --nti-color-button-primary: #164194;
+    --nti-color-button-primary-hover: #0B246A;
 
     /* Spacing */
     --spacing-xs: 4px;

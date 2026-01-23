@@ -63,6 +63,11 @@ export interface SelectProps {
     containerClassName?: string;
     dropdownClassName?: string;
     optionClassName?: string;
+    optionIconClassName?: string;
+    optionLabelClassName?: string;
+    optionDescriptionClassName?: string;
+    optionCheckClassName?: string;
+    optionContentClassName?: string;
     
     // Referências
     containerRef?: React.Ref<HTMLDivElement>;

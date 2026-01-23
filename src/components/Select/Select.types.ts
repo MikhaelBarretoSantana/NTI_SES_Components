@@ -8,6 +8,7 @@ export interface SelectOption {
     icon?: IconDefinition;
     description?: string;
     group?: string;
+    tooltip?: string;
 }
 
 export type SelectVariant = 'default' | 'filled' | 'outlined' | 'ghost';

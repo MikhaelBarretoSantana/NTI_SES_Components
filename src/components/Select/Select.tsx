@@ -417,6 +417,7 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(({
                                             ].filter(Boolean).join(' ')}
                                             role="option"
                                             aria-selected={isSelected}
+                                            title={option.tooltip}
                                             onClick={() => handleOptionClick(option)}
                                         >
                                             {option.icon && (
@@ -458,6 +459,7 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(({
                                                     ].filter(Boolean).join(' ')}
                                                     role="option"
                                                     aria-selected={isSelected}
+                                                    title={option.tooltip}
                                                     onClick={() => handleOptionClick(option)}
                                                 >
                                                     {option.icon && (
